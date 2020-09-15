@@ -38,5 +38,9 @@
   "DiaSemana": {
     "dataSource": "mysqlDS",
     "public": true
+  },
+  "CtrlFin_Conta": {
+    "dataSource": "mysqlDS",
+    "public": true
   }
 }

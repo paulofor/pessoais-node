@@ -1,0 +1,53 @@
+{
+  "name": "CtrlFin_Conta",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "ativo": {
+      "type": "string"
+    },
+    "fonte": {
+      "type": "string"
+    },
+    "aplicacao": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "mensal": {
+      "type": "string"
+    },
+    "precoMes": {
+      "type": "number"
+    },
+    "nomeCripto": {
+      "type": "string"
+    },
+    "ignoraSaldo": {
+      "type": "string"
+    },
+    "nomeCelular": {
+      "type": "string"
+    },
+    "pessoal": {
+      "type": "string"
+    },
+    "movimentacaoCelular": {
+      "type": "string"
+    },
+    "projecaoProporcional": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
