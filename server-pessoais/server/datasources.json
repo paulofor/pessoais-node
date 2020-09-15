@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDS": {
+    "host": "mysql.lojadigicom.com.br",
+    "port": 3306,
+    "database": "lojadigicom",
+    "password": "gerproj",
+    "name": "mysqlDS",
+    "user": "lojadigicom",
+    "connector": "mysql"
+  }
+}

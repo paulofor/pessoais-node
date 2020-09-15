@@ -1,0 +1,28 @@
+{
+  "name": "DiaSemana",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "dia_semana"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "name" : "id_dia_semana",
+      "id" : true
+    },
+    "nome": {
+      "type": "string"
+    },
+    "tempo": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
