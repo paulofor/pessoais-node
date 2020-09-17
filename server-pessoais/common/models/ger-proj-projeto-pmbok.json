@@ -1,0 +1,130 @@
+{
+  "name": "GerProj_ProjetoPmbok",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "projeto_pmbok"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "nome": {
+      "type": "string"
+    },
+    "quantidadeIteracao": {
+      "type": "number"
+    },
+    "ativo": {
+      "type": "string"
+    },
+    "apelido": {
+      "type": "string"
+    },
+    "tempoAlocadoSemana": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "TempoAno": {
+      "accepts": [
+        {
+          "arg": "ano",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/tempoAno",
+          "verb": "get"
+        }
+      ]
+    },
+    "TempoMes": {
+      "accepts": [
+        {
+          "arg": "mes",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "ano",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/tempoMes",
+          "verb": "get"
+        }
+      ]
+    },
+    "TempoDia": {
+      "accepts": [
+        {
+          "arg": "dia",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "mes",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "ano",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/tempoDia",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

@@ -36,11 +36,15 @@
     "public": false
   },
   "DiaSemana": {
-    "dataSource": "mysqlDS",
+    "dataSource": "gerProjDS",
     "public": true
   },
   "CtrlFin_Conta": {
-    "dataSource": "mysqlDS",
+    "dataSource": "ctrlFinDS",
+    "public": true
+  },
+  "GerProj_ProjetoPmbok": {
+    "dataSource": "gerProjDS",
     "public": true
   }
 }
