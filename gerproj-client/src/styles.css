@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+ }
+  
+ .example-container > * {
+    width: 100%;
+ }
+
+ .canvas-board.-terco {
+    height: 33%;
+ }
+
+ .painel-direita {
+     width: 500px;
+ }
+
+ .custo {
+   color: #46813f;
+ }
+
+ .taxa {
+    color: #f95201;
+ }
+
+
