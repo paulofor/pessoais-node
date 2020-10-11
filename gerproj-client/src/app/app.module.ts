@@ -35,6 +35,9 @@ import { ProjetoAnoComponent } from './projeto-ano/projeto-ano.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { ProjetoDetalheComponent } from './projeto-detalhe/projeto-detalhe.component';
+import { GrupoProjetoListComponent } from './grupo-projeto-list/grupo-projeto-list.component';
+import { GrupoProjetoEditComponent } from './grupo-projeto-edit/grupo-projeto-edit.component';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -43,6 +46,9 @@ registerLocaleData(localePt, 'pt-BR');
     SidebarComponent,
     HomeComponent,
     ProjetoAnoComponent,
+    ProjetoDetalheComponent,
+    GrupoProjetoListComponent,
+    GrupoProjetoEditComponent,
   ],
   imports: [
     BrowserModule,

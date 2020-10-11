@@ -46,5 +46,13 @@
   "GerProj_ProjetoPmbok": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "GerProj_GrupoProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "GerProj_ObjetivoResultado": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

@@ -30,7 +30,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "gerProjGrupoprojetos": {
+      "type": "hasOne",
+      "model": "GerProj_GrupoProjeto",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {
     "TempoAno": {
