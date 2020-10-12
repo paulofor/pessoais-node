@@ -4,6 +4,8 @@ import { User } from '../../models/User';
 import { DiaSemana } from '../../models/DiaSemana';
 import { CtrlFin_Conta } from '../../models/CtrlFin_Conta';
 import { GerProj_ProjetoPmbok } from '../../models/GerProj_ProjetoPmbok';
+import { GerProj_GrupoProjeto } from '../../models/GerProj_GrupoProjeto';
+import { GerProj_ObjetivoResultado } from '../../models/GerProj_ObjetivoResultado';
 
 export interface Models { [name: string]: any }
 
@@ -15,6 +17,8 @@ export class SDKModels {
     DiaSemana: DiaSemana,
     CtrlFin_Conta: CtrlFin_Conta,
     GerProj_ProjetoPmbok: GerProj_ProjetoPmbok,
+    GerProj_GrupoProjeto: GerProj_GrupoProjeto,
+    GerProj_ObjetivoResultado: GerProj_ObjetivoResultado,
     
   };
 

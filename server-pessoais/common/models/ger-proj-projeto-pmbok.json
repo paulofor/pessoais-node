@@ -11,13 +11,15 @@
   "properties": {
     "id": {
       "type": "number",
+      "name" : "id_projeto_pmbok",
       "id": true
     },
     "nome": {
       "type": "string"
     },
     "quantidadeIteracao": {
-      "type": "number"
+      "type": "number",
+      "name" : "quantidade_iteracao"
     },
     "ativo": {
       "type": "string"
@@ -26,13 +28,14 @@
       "type": "string"
     },
     "tempoAlocadoSemana": {
-      "type": "string"
+      "type": "string",
+      "name" : "tempo_alocado_semana"
     }
   },
   "validations": [],
   "relations": {
-    "gerProjGrupoprojetos": {
-      "type": "hasOne",
+    "grupoProjeto": {
+      "type": "belongsTo",
       "model": "GerProj_GrupoProjeto",
       "foreignKey": ""
     }

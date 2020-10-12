@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  GerProj_GrupoProjeto
+} from '../index';
 
 declare var Object: any;
 export interface GerProj_ProjetoPmbokInterface {
@@ -8,6 +11,8 @@ export interface GerProj_ProjetoPmbokInterface {
   "ativo"?: string;
   "apelido"?: string;
   "tempoAlocadoSemana"?: string;
+  "grupoProjetoId"?: number;
+  grupoProjeto?: GerProj_GrupoProjeto;
 }
 
 export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
@@ -17,6 +22,8 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
   "ativo": string;
   "apelido": string;
   "tempoAlocadoSemana": string;
+  "grupoProjetoId": number;
+  grupoProjeto: GerProj_GrupoProjeto;
   constructor(data?: GerProj_ProjetoPmbokInterface) {
     Object.assign(this, data);
   }
@@ -74,8 +81,20 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           name: 'tempoAlocadoSemana',
           type: 'string'
         },
+        "grupoProjetoId": {
+          name: 'grupoProjetoId',
+          type: 'number'
+        },
       },
       relations: {
+        grupoProjeto: {
+          name: 'grupoProjeto',
+          type: 'GerProj_GrupoProjeto',
+          model: 'GerProj_GrupoProjeto',
+          relationType: 'belongsTo',
+                  keyFrom: 'grupoProjetoId',
+          keyTo: 'id'
+        },
       }
     }
   }

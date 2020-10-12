@@ -3,7 +3,10 @@
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "mysql": {
+      "table": "GrupoProjeto"
+    }
   },
   "properties": {
     "nome": {
@@ -11,7 +14,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "objetivoResultado": {
+      "type": "belongsTo",
+      "model": "GerProj_ObjetivoResultado",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

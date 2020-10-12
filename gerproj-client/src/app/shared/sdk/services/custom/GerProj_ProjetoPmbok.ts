@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GerProj_ProjetoPmbok } from '../../models/GerProj_ProjetoPmbok';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { GerProj_GrupoProjeto } from '../../models/GerProj_GrupoProjeto';
 
 
 /**
@@ -27,6 +28,36 @@ export class GerProj_ProjetoPmbokApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
+  }
+
+  /**
+   * Busca relação grupoProjeto de belongsTo.
+   *
+   * @param {any} id GerProj_ProjetoPmbok id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `GerProj_ProjetoPmbok` object.)
+   * </em>
+   */
+  public getGrupoProjeto(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/GerProj_ProjetoPmboks/:id/grupoProjeto";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
   }
 
   /**

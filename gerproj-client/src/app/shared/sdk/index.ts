@@ -45,13 +45,15 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
 import { SocketBrowser } from './sockets/socket.browser';
-
+import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { DiaSemanaApi } from './services/custom/DiaSemana';
 import { CtrlFin_ContaApi } from './services/custom/CtrlFin_Conta';
 import { GerProj_ProjetoPmbokApi } from './services/custom/GerProj_ProjetoPmbok';
+import { GerProj_GrupoProjetoApi } from './services/custom/GerProj_GrupoProjeto';
+import { GerProj_ObjetivoResultadoApi } from './services/custom/GerProj_ObjetivoResultado';
 /**
 * @module SDKBrowserModule
 * @description
@@ -86,8 +88,11 @@ export class SDKBrowserModule {
         DiaSemanaApi,
         CtrlFin_ContaApi,
         GerProj_ProjetoPmbokApi,
+        GerProj_GrupoProjetoApi,
+        GerProj_ObjetivoResultadoApi,
         internalStorageProvider,
-        { provide: SDKStorage, useClass: StorageBrowser }
+        { provide: SDKStorage, useClass: StorageBrowser },
+        { provide: SocketDriver, useClass: SocketBrowser }
       ]
     };
   }
