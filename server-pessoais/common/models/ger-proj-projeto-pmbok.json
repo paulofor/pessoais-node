@@ -11,15 +11,19 @@
   "properties": {
     "id": {
       "type": "number",
-      "name" : "id_projeto_pmbok",
-      "id": true
+      "id": true,
+      "mysql": {
+        "columnName": "id_projeto_pmbok"
+      }
     },
     "nome": {
       "type": "string"
     },
     "quantidadeIteracao": {
       "type": "number",
-      "name" : "quantidade_iteracao"
+      "mysql": {
+        "columnName": "quantidade_iteracao"
+      }
     },
     "ativo": {
       "type": "string"
@@ -29,7 +33,9 @@
     },
     "tempoAlocadoSemana": {
       "type": "string",
-      "name" : "tempo_alocado_semana"
+      "mysql": {
+        "columnName": "tempo_alocado_semana"
+      }
     }
   },
   "validations": [],
@@ -131,6 +137,42 @@
       "http": [
         {
           "path": "/tempoDia",
+          "verb": "get"
+        }
+      ]
+    },
+    "DetalheDia": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/detalheDia",
+          "verb": "get"
+        }
+      ]
+    },
+    "ProgramacaoSemanal": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/programacaoSemanal",
           "verb": "get"
         }
       ]

@@ -56,6 +56,55 @@ module.exports = function (Gerprojprojetopmbok) {
 
     /**
     * 
+    * @param {Function(Error, array)} callback
+    */
+    Gerprojprojetopmbok.ProgramacaoSemanal = function(callback) {
+        let sql = " select nome, tempo as segundos, sec_to_time(tempo) as tempo " +
+        " from " +
+        " ( " +
+        " select projeto_pmbok.nome, sum(time_to_sec(tempo_previsto)) as tempo " +
+        " from projeto_pmbok " +
+        " inner join alocacao_tempo2 on alocacao_tempo2.id_projeto_pmbok_pa = projeto_pmbok.id_projeto_pmbok " +
+        " where id_usuario_p = 1 " +
+        " group by projeto_pmbok.nome " +
+        " ) as tab " +
+        " where tempo <> 0 " +
+        " order by tempo desc ";
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql, (err,resultado) => {
+             var total = resultado.reduce((acumulador, item, indice, original) => {
+            return acumulador += item.segundos;
+            }, 0);
+            var resultado2 = resultado.map((item) => {
+                var perc = item.segundos / total;
+                item['percentual'] = perc * 100;
+                return item;
+            })
+            callback(err,resultado2);
+        });
+    };
+  
+
+
+    /**
+    * 
+    * @param {Function(Error, array)} callback
+    */
+    Gerprojprojetopmbok.DetalheDia = function(callback) {
+        let sql = " select distinct projeto_pmbok.* " +
+        "  from projeto_pmbok " +
+        "  inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
+        "  inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto " +
+        "  inner join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = iteracao_entrega.id_iteracao_entrega " +
+        "  where date_format(hora_inicio,'%Y-%m-%d') = date_format(date_sub(now(),interval 2 hour),'%Y-%m-%d') " +
+        "  order by hora_inicio ";
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql,callback);
+    };
+
+
+    /**
+    * 
     * @param {number} ano 
     * @param {array} saida 
     * @param {Function(Error, array)} callback

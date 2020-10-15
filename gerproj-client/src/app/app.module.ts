@@ -38,6 +38,9 @@ import localePt from '@angular/common/locales/pt';
 import { ProjetoDetalheComponent } from './projeto-detalhe/projeto-detalhe.component';
 import { GrupoProjetoListComponent } from './grupo-projeto-list/grupo-projeto-list.component';
 import { GrupoProjetoEditComponent } from './grupo-projeto-edit/grupo-projeto-edit.component';
+import { ExecucaoDiaComponent } from './execucao-dia/execucao-dia.component';
+import { DetalheDiaAtualComponent } from './detalhe-dia-atual/detalhe-dia-atual.component';
+import { ProgramacaoSemanalComponent } from './programacao-semanal/programacao-semanal.component';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -49,6 +52,9 @@ registerLocaleData(localePt, 'pt-BR');
     ProjetoDetalheComponent,
     GrupoProjetoListComponent,
     GrupoProjetoEditComponent,
+    ExecucaoDiaComponent,
+    DetalheDiaAtualComponent,
+    ProgramacaoSemanalComponent,
   ],
   imports: [
     BrowserModule,

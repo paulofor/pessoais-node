@@ -1,4 +1,7 @@
 /* tslint:disable */
+
+import { BASE_URL } from "../../constantes/base.url";
+
 /**
 * @module LoopBackConfig
 * @description
@@ -20,7 +23,7 @@
 * }
 **/
 export class LoopBackConfig {
-  private static path: string = '//0.0.0.0:21016';
+  private static path: string = BASE_URL;
   private static version: string | number = 'api';
   private static authPrefix: string = '';
   private static debug: boolean = true;
