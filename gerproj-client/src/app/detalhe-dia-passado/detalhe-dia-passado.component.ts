@@ -8,7 +8,7 @@ import { GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
 })
 export class DetalheDiaPassadoComponent implements OnInit {
 
-  @Input() ano: number
+  @Input() ano;
   lista: GerProj_ProjetoPmbok[];
 
   constructor(private srv: GerProj_ProjetoPmbokApi) { }
@@ -19,8 +19,8 @@ export class DetalheDiaPassadoComponent implements OnInit {
 
   carrega() {
     let hoje = new Date();
-    let dia = hoje.getDay();
-    let mes = hoje.getMonth();
+    let dia = hoje.getDate();
+    let mes = hoje.getMonth() + 1;
     this.srv.TempoDia(dia,mes,this.ano)
       .subscribe((resultado:GerProj_ProjetoPmbok[])=> {
         console.log('Dia:' , dia, '  Mes:', mes, ' Ano:' ,this.ano);

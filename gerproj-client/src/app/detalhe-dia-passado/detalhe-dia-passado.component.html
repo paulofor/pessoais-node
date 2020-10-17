@@ -1,3 +1,23 @@
-<p>
-  detalhe-dia-passado works!
-</p>
+<div class="card" *ngIf="lista">
+  <div class="header">
+    <h4 class="title">{{ano}}</h4>
+  </div>
+  <div class="content table-responsive table-full-width">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th width="5%"></th>
+          <th width="10%">Projeto</th>
+          <th width="10%">Tempo Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of lista; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{item.nome}}</td>
+          <td>{{item.tempo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
