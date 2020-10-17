@@ -41,6 +41,7 @@ import { GrupoProjetoEditComponent } from './grupo-projeto-edit/grupo-projeto-ed
 import { ExecucaoDiaComponent } from './execucao-dia/execucao-dia.component';
 import { DetalheDiaAtualComponent } from './detalhe-dia-atual/detalhe-dia-atual.component';
 import { ProgramacaoSemanalComponent } from './programacao-semanal/programacao-semanal.component';
+import { DetalheDiaPassadoComponent } from './detalhe-dia-passado/detalhe-dia-passado.component';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -55,6 +56,7 @@ registerLocaleData(localePt, 'pt-BR');
     ExecucaoDiaComponent,
     DetalheDiaAtualComponent,
     ProgramacaoSemanalComponent,
+    DetalheDiaPassadoComponent,
   ],
   imports: [
     BrowserModule,

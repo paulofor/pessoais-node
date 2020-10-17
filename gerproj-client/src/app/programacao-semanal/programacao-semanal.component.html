@@ -1,3 +1,34 @@
-<p>
-  programacao-semanal works!
-</p>
+<div class="main-content" *ngIf="lista">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Hoje</h4>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th width="5%"></th>
+                  <th width="10%">Projeto</th>
+                  <th width="10%">Percentual</th>
+                  <th width="10%">Tempo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of lista; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{item.nome}}</td>
+                  <td>{{item.percentual | number: '1.2-2'}}</td>
+                  <td>{{item.tempo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
