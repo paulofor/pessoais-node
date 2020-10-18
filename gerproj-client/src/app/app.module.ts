@@ -99,6 +99,7 @@ registerLocaleData(localePt, 'pt-BR');
 
   ],
   entryComponents : [
+    GrupoProjetoEditComponent
   ],
   bootstrap: [AppComponent]
 })
