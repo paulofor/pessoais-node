@@ -1,0 +1,22 @@
+
+<div class="main-content" *ngIf="item">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">{{item.nome}}</h4>
+            <button (click)="edita()" class="btn btn-sm btn-primary">Alterar</button>
+          </div>
+          <div class="content">
+            <p>Objetivo:</p>
+            <p>{{item.objetivo}}</p>
+            <p>Resultado:</p>
+            <p>{{item.resultado}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

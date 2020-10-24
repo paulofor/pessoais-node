@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Projeto</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="200" #objetivo [(ngModel)]="item.objetivo" name="objetivo" placeholder="Objetivo" />
+    </mat-form-field>
+
+ 
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

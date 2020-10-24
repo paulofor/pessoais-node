@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DetalheDiaAtualComponent } from '../detalhe-dia-atual/detalhe-dia-atual.component';
+import { DetalheProjetoComponent } from '../detalhe-projeto/detalhe-projeto.component';
 import { GrupoProjetoListComponent } from '../grupo-projeto-list/grupo-projeto-list.component';
 
 
@@ -17,6 +18,8 @@ export const routes : Routes = [
     { path: 'programacaoSemanal' , component: ProgramacaoSemanalComponent },
 
     { path: 'grupoProjeto' , component:GrupoProjetoListComponent},
+
+    { path: 'detalheProjeto/:id' , component: DetalheProjetoComponent },
 
     { path: '',          redirectTo: 'home', pathMatch: 'full' }
 ]

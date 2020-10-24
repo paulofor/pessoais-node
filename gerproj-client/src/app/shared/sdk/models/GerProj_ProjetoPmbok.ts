@@ -12,6 +12,8 @@ export interface GerProj_ProjetoPmbokInterface {
   "apelido"?: string;
   "tempoAlocadoSemana"?: string;
   "grupoProjetoId"?: number;
+  "objetivo"?: string;
+  "resultado"?: string;
   grupoProjeto?: GerProj_GrupoProjeto;
 }
 
@@ -23,6 +25,8 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
   "apelido": string;
   "tempoAlocadoSemana": string;
   "grupoProjetoId": number;
+  "objetivo" : string;
+  "resultado" : string;
   grupoProjeto: GerProj_GrupoProjeto;
   constructor(data?: GerProj_ProjetoPmbokInterface) {
     Object.assign(this, data);
@@ -85,6 +89,14 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           name: 'grupoProjetoId',
           type: 'number'
         },
+        "objetivo" : {
+          name: 'objetivo',
+          type: 'string'
+        },
+        "resultado" : {
+          name: 'resultado',
+          type: 'string'
+        }
       },
       relations: {
         grupoProjeto: {

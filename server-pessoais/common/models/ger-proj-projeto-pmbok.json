@@ -36,6 +36,12 @@
       "mysql": {
         "columnName": "tempo_alocado_semana"
       }
+    },
+    "objetivo" : {
+      "type" : "string"
+    },
+    "resultado" : {
+      "type" : "string"
     }
   },
   "validations": [],
