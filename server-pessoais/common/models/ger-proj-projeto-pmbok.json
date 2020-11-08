@@ -37,11 +37,14 @@
         "columnName": "tempo_alocado_semana"
       }
     },
-    "objetivo" : {
-      "type" : "string"
+    "objetivo": {
+      "type": "string"
     },
-    "resultado" : {
-      "type" : "string"
+    "resultado": {
+      "type": "string"
+    },
+    "crenca": {
+      "type": "string"
     }
   },
   "validations": [],

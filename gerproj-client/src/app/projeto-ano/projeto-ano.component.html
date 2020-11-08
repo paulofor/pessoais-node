@@ -12,9 +12,11 @@
               <thead>
                 <tr>
                   <th width="5%"></th>
-                  <th width="10%">Projeto</th>
+                  <th width="30%">Projeto</th>
                   <th width="10%">Tempo Total</th>
                   <th width="10%">Percentual</th>
+                  <th width="23%">Objetivo</th>
+                  <th width="23%">Resultado</th>
 
                 </tr>
               </thead>
@@ -24,6 +26,8 @@
                   <td><a routerLink="/detalheProjeto/{{item.id}}">{{item.nome}}</a></td>
                   <td>{{item.tempo}}</td>
                   <td>{{item.percentual | number:'1.2-2'}}</td>
+                  <td>{{item.objetivo}}</td>
+                  <td>{{item.resultado}}</td>
                 </tr>
               </tbody>
             </table>

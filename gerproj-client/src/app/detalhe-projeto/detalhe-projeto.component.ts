@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DetalheProjetoEditaComponent } from '../detalhe-projeto-edita/detalhe-projeto-edita.component';
 import { GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
@@ -18,7 +18,8 @@ export class DetalheProjetoComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe((params:Params) => {
       let id = params['id'];
-      this.srv.findById(id)
+      let filtro = { 'include' : 'grupoProjeto'}
+      this.srv.findById(id, filtro)
         .subscribe((result:GerProj_ProjetoPmbok) => {
           console.log('result:' , result);
           this.item = result;
@@ -29,6 +30,7 @@ export class DetalheProjetoComponent implements OnInit {
   edita() {
     this.dialog.open(DetalheProjetoEditaComponent, {
       width: '800px',
+      height: '400px',
       data: this.item
     })
   }

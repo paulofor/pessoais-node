@@ -130,7 +130,8 @@ module.exports = function (Gerprojprojetopmbok) {
         " from " +
         " ( " +
         " (select id_sistema as id, nome, 'Sistema' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
-        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos " +
+        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos, " +
+        " '-' as objetivo, '-' as resultado " +
         " from tempo_tarefa " +
         " inner join tarefa on id_tarefa = id_tarefa_cp " +
         " inner join sistema on id_sistema = tarefa.id_sistema_er " +
@@ -139,7 +140,8 @@ module.exports = function (Gerprojprojetopmbok) {
         " group by id_sistema, nome) " +
         " union all " +
         " (select id_tema as id, nome, 'Tema' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
-        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos " +
+        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos, " +
+        " '-' as objetivo, '-' as resultado " +
         " from tempo_tarefa " +
         " inner join tarefa on id_tarefa = id_tarefa_cp " +
         " inner join tema on id_tema = tarefa.id_tema_pa " +
@@ -148,7 +150,8 @@ module.exports = function (Gerprojprojetopmbok) {
         " group by id_tema, nome) " +
         " union all " +
         " (select id_projeto as id, nome, 'Projeto' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
-        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos " +
+        " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos, " +
+        " '-' as objetivo, '-' as resultado " +
         " from tempo_tarefa " +
         " inner join tarefa on id_tarefa = id_tarefa_cp " +
         " inner join projeto on id_projeto = tarefa.id_projeto_pa " +
@@ -157,7 +160,8 @@ module.exports = function (Gerprojprojetopmbok) {
         " group by id_projeto, nome) " +
         " union all " +
         " (select id_projeto_pmbok as id, nome, 'Pmbok' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
-        " ,SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos  " +
+        " ,SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos,  " +
+        " objetivo, resultado " +
         " from projeto_pmbok " +
         " inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = id_projeto_pmbok " +
         " inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto " +

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { GrupoProjetoEditComponent } from '../grupo-projeto-edit/grupo-projeto-edit.component';
 import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi } from '../shared/sdk';
 

@@ -54,5 +54,9 @@
   "GerProj_ObjetivoResultado": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "GerProj_SistemaCrenca": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }
