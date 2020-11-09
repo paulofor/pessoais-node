@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 //import { NgxImgModule } from 'ngx-img';
 //import { FileDropModule } from 'ngx-file-drop';
@@ -48,6 +49,8 @@ import { ProgramacaoSemanalComponent } from './programacao-semanal/programacao-s
 import { DetalheDiaPassadoComponent } from './detalhe-dia-passado/detalhe-dia-passado.component';
 import { DetalheProjetoComponent } from './detalhe-projeto/detalhe-projeto.component';
 import { DetalheProjetoEditaComponent } from './detalhe-projeto-edita/detalhe-projeto-edita.component';
+import { MenuComponent } from './menu/menu.component';
+import { MenuMaterialComponent } from './menu-material/menu-material.component';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -65,6 +68,8 @@ registerLocaleData(localePt, 'pt-BR');
     DetalheDiaPassadoComponent,
     DetalheProjetoComponent,
     DetalheProjetoEditaComponent,
+    MenuComponent,
+    MenuMaterialComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,8 @@ registerLocaleData(localePt, 'pt-BR');
     ReactiveFormsModule,
     MatCheckboxModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [
     HttpClient, 
