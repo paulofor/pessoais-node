@@ -114,7 +114,8 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   entryComponents : [
     GrupoProjetoEditComponent,
-    DetalheProjetoEditaComponent
+    DetalheProjetoEditaComponent,
+  
   ],
   bootstrap: [AppComponent]
 })

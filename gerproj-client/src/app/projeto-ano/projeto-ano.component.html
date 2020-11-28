@@ -1,17 +1,30 @@
-<div *ngIf="listaProjeto">
-  <h4>{{ano}} ({{listaProjeto.length}})</h4>
 
-  <mat-card *ngFor="let item of listaProjeto; let i = index">
-    <mat-card-header>
-      <mat-card-title><a routerLink="/detalheProjeto/{{item.id}}">{{i+1}} - {{item.nome}}</a></mat-card-title>
-      <mat-card-subtitle>{{item.tempo}} ( {{item.percentual | number:'1.2-2'}} %)</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+<div class="dgc-painel" *ngIf="listaBase">
+
+  <div class="dgc-painel-header">
+    <span>{{ano}}</span> 
+    <span class="dgc-direita">{{listaBase.length}} projetos</span>
+  </div>
+  
+
+  <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+    <div class="dgc-card-header">
+      <span>
+        {{i+1}} - {{item.nome}}
+      </span>
+      <span class="dgc-direita">{{item.tempo}} ( {{item.percentual | number:'1.2-2'}} %)</span>
+    </div>
+    <div>
       <p>Objetivo: {{item.objetivo}}</p>
       <p>Resultado: {{item.resultado}}</p>
       <p>Crença: {{item.crenca}}</p>
-    </mat-card-content>
-  </mat-card>
+    </div>
+    <div class="dgc-card-comandos">
+      <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+    </div>
+  </div>
 
 
 </div>
+
+

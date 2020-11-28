@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BaseEditComponent } from '../base-component/base-edit-component';
 import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi, GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
 
 @Component({
@@ -7,23 +8,33 @@ import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi, GerProj_ProjetoPmbok, Ge
   templateUrl: './detalhe-projeto-edita.component.html',
   styleUrls: ['./detalhe-projeto-edita.component.css']
 })
-export class DetalheProjetoEditaComponent implements OnInit {
 
-  item : GerProj_ProjetoPmbok;
+
+export class DetalheProjetoEditaComponent extends BaseEditComponent {
+
+  //item : GerProj_ProjetoPmbok;
   listaGrupo: GerProj_GrupoProjeto[];
 
-  constructor(private dialog:MatDialogRef<DetalheProjetoEditaComponent>, 
-        @Inject(MAT_DIALOG_DATA) private data: any, private servico: GerProj_ProjetoPmbokApi, private srvGrupo:GerProj_GrupoProjetoApi) { }
+  constructor(protected dialog:MatDialogRef<DetalheProjetoEditaComponent>, 
+        @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: GerProj_ProjetoPmbokApi, protected srvGrupo:GerProj_GrupoProjetoApi) { 
+          super(dialog,data,servico)
+        }
 
+
+  montaCombos() {
+    this.srvGrupo.find()
+      .subscribe((result:GerProj_GrupoProjeto[]) => {
+        this.listaGrupo = result;
+      })
+  }
+
+  /*
   ngOnInit() {
     console.log('data:' , this.data);
     if (this.data) {
       this.item = this.data;
     }
-    this.srvGrupo.find()
-      .subscribe((result:GerProj_GrupoProjeto[]) => {
-        this.listaGrupo = result;
-      })
+    
   }
 
 
@@ -45,5 +56,6 @@ export class DetalheProjetoEditaComponent implements OnInit {
       });
     }
   }
+  */
 
 }
