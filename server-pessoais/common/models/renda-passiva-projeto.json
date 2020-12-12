@@ -1,0 +1,19 @@
+{
+  "name": "RendaPassivaProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "rendaPassiva": {
+      "type": "belongsTo",
+      "model": "RendaPassiva",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

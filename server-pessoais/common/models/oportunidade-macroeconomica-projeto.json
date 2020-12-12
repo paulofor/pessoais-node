@@ -1,0 +1,19 @@
+{
+  "name": "OportunidadeMacroeconomicaProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "oportunidadeMacroeconomica": {
+      "type": "belongsTo",
+      "model": "OportunidadeMacroeconomica",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

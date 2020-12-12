@@ -58,5 +58,29 @@
   "GerProj_SistemaCrenca": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "RendaPassiva": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "MercadoEscala": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "OportunidadeMacroeconomica": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "RendaPassivaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "MercadoEscalaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "OportunidadeMacroeconomicaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

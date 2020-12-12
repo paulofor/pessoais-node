@@ -1,0 +1,19 @@
+{
+  "name": "MercadoEscalaProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "mercadoEscala": {
+      "type": "belongsTo",
+      "model": "MercadoEscala",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

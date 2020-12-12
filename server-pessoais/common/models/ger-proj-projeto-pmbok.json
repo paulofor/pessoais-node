@@ -53,6 +53,21 @@
       "type": "belongsTo",
       "model": "GerProj_GrupoProjeto",
       "foreignKey": ""
+    },
+    "mercadoEscalaProjetos": {
+      "type": "hasMany",
+      "model": "MercadoEscalaProjeto",
+      "foreignKey": ""
+    },
+    "oportunidadeMacroeconomicaProjetos": {
+      "type": "hasMany",
+      "model": "OportunidadeMacroeconomicaProjeto",
+      "foreignKey": ""
+    },
+    "rendaPassivaProjetos": {
+      "type": "hasMany",
+      "model": "RendaPassivaProjeto",
+      "foreignKey": ""
     }
   },
   "acls": [],
