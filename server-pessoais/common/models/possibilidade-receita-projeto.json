@@ -1,0 +1,19 @@
+{
+  "name": "PossibilidadeReceitaProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "possibilidadeReceita": {
+      "type": "belongsTo",
+      "model": "PossibilidadeReceita",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

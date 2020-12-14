@@ -5,8 +5,12 @@ import { GrupoProjetoListComponent } from '../grupo-projeto-list/grupo-projeto-l
 
 
 import { HomeComponent } from '../home/home.component';
+import { MercadoEscalaListComponent } from '../mercado-escala-list/mercado-escala-list.component';
+import { OportunidadeMacroeconomicaListComponent } from '../oportunidade-macroeconomica-list/oportunidade-macroeconomica-list.component';
+import { PossibilidadeReceitaListComponent } from '../possibilidade-receita-list/possibilidade-receita-list.component';
 import { ProgramacaoSemanalComponent } from '../programacao-semanal/programacao-semanal.component';
 import { ProjetoAnoComponent } from '../projeto-ano/projeto-ano.component';
+import { RendaPassivaListComponent } from '../renda-passiva-list/renda-passiva-list.component';
 
 
 export const routes : Routes = [
@@ -20,6 +24,11 @@ export const routes : Routes = [
     { path: 'grupoProjeto' , component:GrupoProjetoListComponent},
 
     { path: 'detalheProjeto/:id' , component: DetalheProjetoComponent },
+
+    { path: 'possibilidadeReceita', component: PossibilidadeReceitaListComponent},
+    { path: 'oportunidadeMacroeconomica' , component: OportunidadeMacroeconomicaListComponent },
+    { path: 'rendaPassiva' , component: RendaPassivaListComponent },
+    { path: 'mercadoEscala' , component: MercadoEscalaListComponent },
 
     { path: '',          redirectTo: 'home', pathMatch: 'full' }
 ]

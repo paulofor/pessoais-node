@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 /* tslint:disable */
 /**
  * @module SocketDriver
@@ -8,7 +7,6 @@ import { Injectable } from "@angular/core";
  * The SocketDriver class is used for dependency injection swapping.
  * It will be provided using factory method from different sources.
  **/
-@Injectable()
 export class SocketDriver {
   connect(url: any, options: any) {}
 }

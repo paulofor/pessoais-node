@@ -51,6 +51,17 @@ import { DetalheProjetoComponent } from './detalhe-projeto/detalhe-projeto.compo
 import { DetalheProjetoEditaComponent } from './detalhe-projeto-edita/detalhe-projeto-edita.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuMaterialComponent } from './menu-material/menu-material.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { GrupoProjetoEscolhaComponent } from './grupo-projeto-escolha/grupo-projeto-escolha.component';
+import { PossibilidadeReceitaListComponent } from './possibilidade-receita-list/possibilidade-receita-list.component';
+import { RendaPassivaListComponent } from './renda-passiva-list/renda-passiva-list.component';
+import { MercadoEscalaListComponent } from './mercado-escala-list/mercado-escala-list.component';
+import { OportunidadeMacroeconomicaListComponent } from './oportunidade-macroeconomica-list/oportunidade-macroeconomica-list.component';
+import { RendaPassivaEditComponent } from './renda-passiva-edit/renda-passiva-edit.component';
+import { MercadoEscalaEditComponent } from './mercado-escala-edit/mercado-escala-edit.component';
+import { OportunidadeMacroeconomicaEditComponent } from './oportunidade-macroeconomica-edit/oportunidade-macroeconomica-edit.component';
+import { PossibilidadeReceitaEditComponent } from './possibilidade-receita-edit/possibilidade-receita-edit.component';
+
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -70,6 +81,15 @@ registerLocaleData(localePt, 'pt-BR');
     DetalheProjetoEditaComponent,
     MenuComponent,
     MenuMaterialComponent,
+    GrupoProjetoEscolhaComponent,
+    PossibilidadeReceitaListComponent,
+    RendaPassivaListComponent,
+    MercadoEscalaListComponent,
+    OportunidadeMacroeconomicaListComponent,
+    RendaPassivaEditComponent,
+    MercadoEscalaEditComponent,
+    OportunidadeMacroeconomicaEditComponent,
+    PossibilidadeReceitaEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +120,8 @@ registerLocaleData(localePt, 'pt-BR');
     MatCheckboxModule,
     FormsModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatChipsModule
   ],
   providers: [
     HttpClient, 
@@ -115,6 +136,7 @@ registerLocaleData(localePt, 'pt-BR');
   entryComponents : [
     GrupoProjetoEditComponent,
     DetalheProjetoEditaComponent,
+    GrupoProjetoEscolhaComponent
   
   ],
   bootstrap: [AppComponent]

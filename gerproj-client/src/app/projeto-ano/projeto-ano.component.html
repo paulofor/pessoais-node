@@ -15,11 +15,13 @@
       <span class="dgc-direita">{{item.tempo}} ( {{item.percentual | number:'1.2-2'}} %)</span>
     </div>
     <div>
-      <p>Objetivo: {{item.objetivo}}</p>
-      <p>Resultado: {{item.resultado}}</p>
-      <p>Crença: {{item.crenca}}</p>
+      <mat-chip-list aria-label="Fish selection">
+        <span>Objetivo</span>
+        <mat-chip color="primary" selected >Apoio a montagem de aplicação</mat-chip>
+      </mat-chip-list>
     </div>
     <div class="dgc-card-comandos">
+      <button mat-flat-button color="primary" (click)="dialogo1({'item':item})">Grupo</button>
       <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
     </div>
   </div>

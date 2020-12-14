@@ -7,6 +7,7 @@
 
  
 
+
  
 /*   Digicom Estilo   */
 /*****************************************************************************/
@@ -38,7 +39,7 @@ body {
 }
 .dgc-menu-logo {
   width: 200px;
-  line-height: 45px; /* igual hegith do dgc-menu */
+ line-height: 45px; /* igual hegith do dgc-menu */
   padding-left: 50px;
 }
 /* quadro de dados - precisa fazer scroll por baixo do menu */
@@ -110,16 +111,29 @@ body {
   margin-bottom: 8px;
   font-weight: 400;
 }
- 
+.dgc-card-detalhe {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.dgc-card-detalhe table {
+  width: 100%;
+}
+.dgc-card-detalhe tr {
+  border-bottom: solid 1px #ccc;
+}
+.dgc-card-detalhe td {
+  font-weight: 400;
+  padding-right: 12px;
+}
 .dgc-card-comandos {
   margin-top: 20px;
   text-align: end;
 }
- 
-.dgc-botao-comando {
+.dgc-card-comandos button {
    min-width: 60px;
    margin: 4px;
 }
+
 .dgc-direita {
   margin-left: auto;
 }
@@ -133,6 +147,8 @@ body {
 }
  
  
+
+
 
 
 

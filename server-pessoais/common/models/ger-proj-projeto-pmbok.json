@@ -68,6 +68,11 @@
       "type": "hasMany",
       "model": "RendaPassivaProjeto",
       "foreignKey": ""
+    },
+    "possibilidadeReceitaProjetos": {
+      "type": "hasMany",
+      "model": "PossibilidadeReceitaProjeto",
+      "foreignKey": ""
     }
   },
   "acls": [],

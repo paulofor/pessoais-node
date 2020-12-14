@@ -1,6 +1,10 @@
 /* tslint:disable */
 import {
-  GerProj_GrupoProjeto
+  GerProj_GrupoProjeto,
+  RendaPassivaProjeto,
+  MercadoEscalaProjeto,
+  OportunidadeMacroeconomicaProjeto,
+  PossibilidadeReceitaProjeto
 } from '../index';
 
 declare var Object: any;
@@ -11,10 +15,15 @@ export interface GerProj_ProjetoPmbokInterface {
   "ativo"?: string;
   "apelido"?: string;
   "tempoAlocadoSemana"?: string;
-  "grupoProjetoId"?: number;
   "objetivo"?: string;
   "resultado"?: string;
+  "crenca"?: string;
+  "grupoProjetoId"?: number;
   grupoProjeto?: GerProj_GrupoProjeto;
+  rendaPassivaProjetos?: RendaPassivaProjeto[];
+  mercadoEscalaProjetos?: MercadoEscalaProjeto[];
+  oportunidadeMacroeconomicaProjetos?: OportunidadeMacroeconomicaProjeto[];
+  possibilidadeReceitaProjetos?: PossibilidadeReceitaProjeto[];
 }
 
 export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
@@ -24,10 +33,15 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
   "ativo": string;
   "apelido": string;
   "tempoAlocadoSemana": string;
+  "objetivo": string;
+  "resultado": string;
+  "crenca": string;
   "grupoProjetoId": number;
-  "objetivo" : string;
-  "resultado" : string;
   grupoProjeto: GerProj_GrupoProjeto;
+  rendaPassivaProjetos: RendaPassivaProjeto[];
+  mercadoEscalaProjetos: MercadoEscalaProjeto[];
+  oportunidadeMacroeconomicaProjetos: OportunidadeMacroeconomicaProjeto[];
+  possibilidadeReceitaProjetos: PossibilidadeReceitaProjeto[];
   constructor(data?: GerProj_ProjetoPmbokInterface) {
     Object.assign(this, data);
   }
@@ -85,18 +99,22 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           name: 'tempoAlocadoSemana',
           type: 'string'
         },
+        "objetivo": {
+          name: 'objetivo',
+          type: 'string'
+        },
+        "resultado": {
+          name: 'resultado',
+          type: 'string'
+        },
+        "crenca": {
+          name: 'crenca',
+          type: 'string'
+        },
         "grupoProjetoId": {
           name: 'grupoProjetoId',
           type: 'number'
         },
-        "objetivo" : {
-          name: 'objetivo',
-          type: 'string'
-        },
-        "resultado" : {
-          name: 'resultado',
-          type: 'string'
-        }
       },
       relations: {
         grupoProjeto: {
@@ -106,6 +124,38 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           relationType: 'belongsTo',
                   keyFrom: 'grupoProjetoId',
           keyTo: 'id'
+        },
+        rendaPassivaProjetos: {
+          name: 'rendaPassivaProjetos',
+          type: 'RendaPassivaProjeto[]',
+          model: 'RendaPassivaProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
+        },
+        mercadoEscalaProjetos: {
+          name: 'mercadoEscalaProjetos',
+          type: 'MercadoEscalaProjeto[]',
+          model: 'MercadoEscalaProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
+        },
+        oportunidadeMacroeconomicaProjetos: {
+          name: 'oportunidadeMacroeconomicaProjetos',
+          type: 'OportunidadeMacroeconomicaProjeto[]',
+          model: 'OportunidadeMacroeconomicaProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
+        },
+        possibilidadeReceitaProjetos: {
+          name: 'possibilidadeReceitaProjetos',
+          type: 'PossibilidadeReceitaProjeto[]',
+          model: 'PossibilidadeReceitaProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
         },
       }
     }

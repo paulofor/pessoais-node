@@ -82,5 +82,13 @@
   "OportunidadeMacroeconomicaProjeto": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "PossibilidadeReceita": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "PossibilidadeReceitaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

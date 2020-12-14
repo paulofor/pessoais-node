@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { BaseListComponent } from '../base-component/base-list-component';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalheProjetoEditaComponent } from '../detalhe-projeto-edita/detalhe-projeto-edita.component';
+import { GrupoProjetoEscolhaComponent } from '../grupo-projeto-escolha/grupo-projeto-escolha.component';
 
 
 @Component({
@@ -36,5 +37,7 @@ export class ProjetoAnoComponent extends BaseListComponent implements OnInit {
     return DetalheProjetoEditaComponent;
   }
 
-
+  getDialog1() {
+    return GrupoProjetoEscolhaComponent;
+  }
 }

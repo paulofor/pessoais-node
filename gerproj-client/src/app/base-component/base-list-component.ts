@@ -35,15 +35,13 @@ export class BaseListComponent implements OnInit {
 
     getComponente():any {}
 
-    dialogo1(edicao?) {
+    dialogo1(dado?) {
         this.dialog.afterAllClosed.subscribe(result => {
             this.carregaTela();
         });
         this.dialog.open(this.getDialogo1(), {
             width: '800px',
-            data: {
-                item: edicao
-            }
+            data: dado
         });
     }
 

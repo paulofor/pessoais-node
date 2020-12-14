@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { BaseListComponent } from '../base-component/base-list-component';
 import { GrupoProjetoEditComponent } from '../grupo-projeto-edit/grupo-projeto-edit.component';
 import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi } from '../shared/sdk';
 
@@ -8,34 +9,19 @@ import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi } from '../shared/sdk';
   templateUrl: './grupo-projeto-list.component.html',
   styleUrls: ['./grupo-projeto-list.component.css']
 })
-export class GrupoProjetoListComponent implements OnInit {
+export class GrupoProjetoListComponent extends BaseListComponent {
 
   lista:GerProj_GrupoProjeto[];
 
-  constructor(private srv:GerProj_GrupoProjetoApi, private dialog:MatDialog) { }
+  constructor(protected dialog: MatDialog, protected srv:GerProj_GrupoProjetoApi) {
+    super(dialog,srv);
+   }
 
-  ngOnInit() {
-    this.carregaLista();
-  }
+ 
+ 
 
-  carregaLista() {
-    this.srv.find()
-      .subscribe((result:GerProj_GrupoProjeto[]) => {
-        this.lista = result;
-      })
-  }
-
-  openDialog(item?) {
-    this.dialog.afterAllClosed.subscribe(result => {
-      console.log('Dialog result: ${result}');
-      this.carregaLista();
-    });
-    this.dialog.open(GrupoProjetoEditComponent, {
-      width: '800px',
-      data: {
-        item: item
-      }
-    });
+  getComponente() {
+    return GrupoProjetoEditComponent;
   }
 
 }

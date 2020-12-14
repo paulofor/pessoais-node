@@ -45,7 +45,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
 import { SocketBrowser } from './sockets/socket.browser';
-
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
@@ -54,6 +53,15 @@ import { CtrlFin_ContaApi } from './services/custom/CtrlFin_Conta';
 import { GerProj_ProjetoPmbokApi } from './services/custom/GerProj_ProjetoPmbok';
 import { GerProj_GrupoProjetoApi } from './services/custom/GerProj_GrupoProjeto';
 import { GerProj_ObjetivoResultadoApi } from './services/custom/GerProj_ObjetivoResultado';
+import { GerProj_SistemaCrencaApi } from './services/custom/GerProj_SistemaCrenca';
+import { RendaPassivaApi } from './services/custom/RendaPassiva';
+import { MercadoEscalaApi } from './services/custom/MercadoEscala';
+import { OportunidadeMacroeconomicaApi } from './services/custom/OportunidadeMacroeconomica';
+import { RendaPassivaProjetoApi } from './services/custom/RendaPassivaProjeto';
+import { MercadoEscalaProjetoApi } from './services/custom/MercadoEscalaProjeto';
+import { OportunidadeMacroeconomicaProjetoApi } from './services/custom/OportunidadeMacroeconomicaProjeto';
+import { PossibilidadeReceitaApi } from './services/custom/PossibilidadeReceita';
+import { PossibilidadeReceitaProjetoApi } from './services/custom/PossibilidadeReceitaProjeto';
 /**
 * @module SDKBrowserModule
 * @description
@@ -76,7 +84,7 @@ export class SDKBrowserModule {
   static forRoot(internalStorageProvider: any = {
     provide: InternalStorage,
     useClass: CookieBrowser
-  }): ModuleWithProviders<SDKBrowserModule> {
+  }): ModuleWithProviders {
     return {
       ngModule  : SDKBrowserModule,
       providers : [
@@ -90,6 +98,15 @@ export class SDKBrowserModule {
         GerProj_ProjetoPmbokApi,
         GerProj_GrupoProjetoApi,
         GerProj_ObjetivoResultadoApi,
+        GerProj_SistemaCrencaApi,
+        RendaPassivaApi,
+        MercadoEscalaApi,
+        OportunidadeMacroeconomicaApi,
+        RendaPassivaProjetoApi,
+        MercadoEscalaProjetoApi,
+        OportunidadeMacroeconomicaProjetoApi,
+        PossibilidadeReceitaApi,
+        PossibilidadeReceitaProjetoApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
 

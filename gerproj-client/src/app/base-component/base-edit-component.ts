@@ -6,6 +6,7 @@ export class BaseEditComponent implements OnInit{
 
 
     item: any;
+    origem: any;
 
     constructor(protected dialogRef: MatDialogRef<any>
         , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: any,
@@ -16,6 +17,9 @@ export class BaseEditComponent implements OnInit{
   ngOnInit() {
     this.montaCombos();
     console.log("Parametro entrada", this.data);
+    if (this.data.origem) {
+      this.origem = this.data.origem;
+    }
     if (!this.data.item) {
       console.log("fluxo nova");
       this.item = this.criaItem();
@@ -25,7 +29,7 @@ export class BaseEditComponent implements OnInit{
       console.log('Item:', JSON.stringify(this.item));
     }
   }
-
+  
   onSubmit() {
     console.log('Model: ' + JSON.stringify(this.item));
     this.servico.upsert(this.item, (err, obj) => {
@@ -48,5 +52,4 @@ export class BaseEditComponent implements OnInit{
   montaCombos() {
     
   }
-
 }
