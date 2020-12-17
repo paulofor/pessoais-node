@@ -1,1 +1,28 @@
-<p>renda-passiva-list works!</p>
+<div class="dgc-painel" *ngIf="listaBase">
+
+    <div class="dgc-painel-header">
+      <span>Renda Passiva</span> 
+      <div class="dgc-direita">
+        <button mat-flat-button color="primary" (click)="edita()">Novo</button>
+      </div>
+  
+    </div>
+    
+  
+    <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+      <div class="dgc-card-header">
+        <div>
+            {{item.nome}}
+        </div>
+        <div>
+            {{item.descricao}}
+        </div>
+      </div>
+
+      <div class="dgc-card-comandos">
+        <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+      </div>
+    </div>
+  
+  
+  </div>

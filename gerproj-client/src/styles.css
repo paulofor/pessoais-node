@@ -14,7 +14,7 @@
 /* quadro geral */
 body {
   margin: 0px;
-}
+ }
  .dgc-geral {
   /* width: 100%; */
   font-size: 16px;
@@ -22,9 +22,9 @@ body {
   font-weight: normal;
   text-rendering: optimizeLegibility;
   background-color: aqua;
-}
-/* quadro do menu - precisa ficar fixo e se ajustar em largura*/
-.dgc-menu {
+ }
+ /* quadro do menu - precisa ficar fixo e se ajustar em largura*/
+ .dgc-menu {
   height: 45px;
   width: 100%;
   display: flex;
@@ -36,14 +36,14 @@ body {
   position: fixed;
   top: 0;
   left: 0
-}
-.dgc-menu-logo {
+ }
+ .dgc-menu-logo {
   width: 200px;
  line-height: 45px; /* igual hegith do dgc-menu */
   padding-left: 50px;
-}
-/* quadro de dados - precisa fazer scroll por baixo do menu */
-.dgc-principal {
+ }
+ /* quadro de dados - precisa fazer scroll por baixo do menu */
+ .dgc-principal {
   height: auto;
   min-height: calc(100vh - 64px);
   padding-top: 64px; /* quando não tem menu superior fica sem sentido */
@@ -51,31 +51,30 @@ body {
   background-color: #f3f2ef;
   margin-left: 0;
   margin-right: 0;
-}
-.dgc-principal a {
+ }
+ .dgc-principal a {
   text-decoration: none;
-}
-.dgc-principal a:link {
+ }
+ .dgc-principal a:link {
   color: #cd150c
-}
-.dgc-principal a:hover {
+ }
+ .dgc-principal a:hover {
   color: #f03018
-}
-.dgc-principal a:visited {
+ }
+ .dgc-principal a:visited {
   color: #cd150c;
-}
- 
-/*************************************************************************/
+ }
+ /*************************************************************************/
  .dgc-painel {
   background-color: #ffffff;
   padding: 16px;
   border-radius: 15px;
   margin: 16px;
   font-weight: 100;
-
-
-}
-.dgc-painel-header {
+  
+  
+ }
+ .dgc-painel-header {
    border-bottom: solid 1px #CCC;
    margin-bottom: 18px;
    display: flex;  /* precisa para o dgc-direita funcionar */
@@ -87,22 +86,21 @@ body {
    font-weight: 700;
    margin-right: 8px;
    margin-left: 8px;
-}
-.dgc-painel-principal {
+ }
+ .dgc-painel-principal {
   /* para colocar os cards em ordem de acordo com a largura */
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-}
-
-.dgc-card {
+ }
+  
+ .dgc-card {
   margin: 8px;
   border: solid 1px #ccc;
   padding: 8px;
   border-radius: 15px;
- 
-}
-.dgc-card-header {
+ }
+ .dgc-card-header {
   line-height: 1.2;
   letter-spacing: 1px;
   color: #000000;
@@ -110,45 +108,109 @@ body {
   /*text-transform: uppercase;  quando o nome é um objeto ou classe ? */
   margin-bottom: 8px;
   font-weight: 400;
-}
-.dgc-card-detalhe {
+ }
+ .dgc-card-detalhe {
   margin-top: 12px;
   margin-bottom: 12px;
-}
-.dgc-card-detalhe table {
+ }
+ .dgc-card-detalhe table {
   width: 100%;
-}
-.dgc-card-detalhe tr {
+ }
+ .dgc-card-detalhe tr {
   border-bottom: solid 1px #ccc;
-}
-.dgc-card-detalhe td {
+ }
+ .dgc-card-detalhe td {
   font-weight: 400;
   padding-right: 12px;
-}
-.dgc-card-comandos {
+ }
+ .dgc-card-comandos {
   margin-top: 20px;
   text-align: end;
-}
-.dgc-card-comandos button {
+ }
+ .dgc-card-comandos button {
    min-width: 60px;
    margin: 4px;
-}
-
-.dgc-direita {
-  margin-left: auto;
-}
-
-.dgc-imagem-tela-app {
+ }
+ .dgc-card-imagem {
+  margin-top: 0px;
+  margin-bottom: 32px;
+ }
+ .dgc-card-imagem img {
+  border: solid 1px #ccc;
   width: 240px;
   height: 360px;
   margin-left: auto;
   margin-right: auto;
   display: block;
+ }
+  
+ /*  Metricas */
+
+ .dgc-card-metrica-linha {
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  border: 1 solid #ccc;
+ }
+ .dgc-card-metrica-celula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-align: center;
+ }
+ 
+ .dgc-card-metrica-celula-label {
+  font-size: 12px;
+ }
+ .dgc-card-metrica-celula-valor {
+  font-size: 12px;
+ }
+  
+ .dgc-texto-grande {
+  max-height: 120px;
+  position: relative;
+  overflow: hidden;
+ }
+ .dgc-texto-grande .leia-mais { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+	
+  /* background-image: linear-gradient(to bottom, transparent, #ccc); */
+}
+  
+ .dgc-direita {
+  margin-left: auto;
+ }
+  
+
+.example-form {
+ min-width: 150px;
+ max-width: 500px;
+ width: 100%;
 }
  
+.example-full-width {
+ width: 100%;
+}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  
-
-
-
+ 
 
 
