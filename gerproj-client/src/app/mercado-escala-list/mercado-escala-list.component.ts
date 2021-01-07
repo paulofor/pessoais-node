@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BaseListComponent } from '../base-component/base-list-component';
+import { BaseListComponent } from '../base-list/base-list.component';
 import { MercadoEscalaEditComponent } from '../mercado-escala-edit/mercado-escala-edit.component';
 import { MercadoEscalaApi } from '../shared/sdk';
 

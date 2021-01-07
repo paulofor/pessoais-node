@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BaseListComponent } from '../base-component/base-list-component';
+import { BaseListComponent } from '../base-list/base-list.component';
+
 import { PossibilidadeReceitaEditComponent } from '../possibilidade-receita-edit/possibilidade-receita-edit.component';
 import { PossibilidadeReceitaApi } from '../shared/sdk';
 

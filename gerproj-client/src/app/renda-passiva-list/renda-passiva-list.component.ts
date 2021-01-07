@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BaseListComponent } from '../base-component/base-list-component';
+import { BaseListComponent } from '../base-list/base-list.component';
 import { RendaPassivaEditComponent } from '../renda-passiva-edit/renda-passiva-edit.component';
 import { RendaPassivaApi } from '../shared/sdk';
 

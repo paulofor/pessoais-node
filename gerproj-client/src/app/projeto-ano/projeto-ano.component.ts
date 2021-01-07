@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GerProj_ProjetoPmbokApi, GerProj_ProjetoPmbok } from '../shared/sdk';
 import { ActivatedRoute, Params } from '@angular/router';
-import { BaseListComponent } from '../base-component/base-list-component';
+import { BaseListComponent } from '../base-list/base-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalheProjetoEditaComponent } from '../detalhe-projeto-edita/detalhe-projeto-edita.component';
 import { GrupoProjetoEscolhaComponent } from '../grupo-projeto-escolha/grupo-projeto-escolha.component';
+import { RendaPassivaProjetoEscolhaComponent } from '../renda-passiva-projeto-escolha/renda-passiva-projeto-escolha.component';
 
 
 @Component({
@@ -37,7 +38,10 @@ export class ProjetoAnoComponent extends BaseListComponent implements OnInit {
     return DetalheProjetoEditaComponent;
   }
 
-  getDialog1() {
+  getDialogo1() {
     return GrupoProjetoEscolhaComponent;
+  }
+  getDialogo2() {
+    return RendaPassivaProjetoEscolhaComponent;
   }
 }

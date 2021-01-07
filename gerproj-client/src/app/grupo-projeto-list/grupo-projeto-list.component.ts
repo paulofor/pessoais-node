@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BaseListComponent } from '../base-component/base-list-component';
+import { BaseListComponent } from '../base-list/base-list.component';
+
 import { GrupoProjetoEditComponent } from '../grupo-projeto-edit/grupo-projeto-edit.component';
+import { GrupoProjetoEscolhaComponent } from '../grupo-projeto-escolha/grupo-projeto-escolha.component';
 import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi } from '../shared/sdk';
 
 @Component({
@@ -22,6 +24,10 @@ export class GrupoProjetoListComponent extends BaseListComponent {
 
   getComponente() {
     return GrupoProjetoEditComponent;
+  }
+
+  getDialogo1() {
+    return GrupoProjetoEscolhaComponent;
   }
 
 }

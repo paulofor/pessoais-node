@@ -85,7 +85,7 @@ export class SDKBrowserModule {
   static forRoot(internalStorageProvider: any = {
     provide: InternalStorage,
     useClass: CookieBrowser
-  }): ModuleWithProviders<any> {
+  }): any {
     return {
       ngModule  : SDKBrowserModule,
       providers : [
@@ -110,7 +110,7 @@ export class SDKBrowserModule {
         PossibilidadeReceitaProjetoApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
-
+ 
       ]
     };
   }

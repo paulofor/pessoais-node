@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BaseEditComponent } from '../base-component/base-edit-component';
+import { BaseEditComponent } from '../base-edit/base-edit.component';
+
 import { GerProj_GrupoProjeto, GerProj_GrupoProjetoApi, GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
 
 @Component({
@@ -26,6 +27,10 @@ export class DetalheProjetoEditaComponent extends BaseEditComponent {
       .subscribe((result:GerProj_GrupoProjeto[]) => {
         this.listaGrupo = result;
       })
+  }
+
+  criaItem() {
+    return new GerProj_GrupoProjeto();
   }
 
   /*

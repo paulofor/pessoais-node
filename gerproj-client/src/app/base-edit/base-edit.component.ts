@@ -1,18 +1,23 @@
-import { Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BaseLoopBackApi } from '../shared/sdk';
+
+@Component({
+  selector: 'app-base-edit',
+  templateUrl: './base-edit.component.html',
+  styleUrls: ['./base-edit.component.css']
+})
+export abstract class BaseEditComponent implements OnInit {
 
 
-export class BaseEditComponent implements OnInit{
+  item: any;
+  origem: any;
 
+  constructor(protected dialogRef: MatDialogRef<any>
+    , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: BaseLoopBackApi,
+  ) {
+  }
 
-    item: any;
-    origem: any;
-
-    constructor(protected dialogRef: MatDialogRef<any>
-        , @Inject(MAT_DIALOG_DATA) protected data: any, protected servico: any,
-      ) {
-      }
-    
 
   ngOnInit() {
     this.montaCombos();
@@ -29,7 +34,7 @@ export class BaseEditComponent implements OnInit{
       console.log('Item:', JSON.stringify(this.item));
     }
   }
-  
+
   onSubmit() {
     console.log('Model: ' + JSON.stringify(this.item));
     this.servico.upsert(this.item, (err, obj) => {
@@ -45,11 +50,10 @@ export class BaseEditComponent implements OnInit{
     this.dialogRef.close('Pizza!');
   }
 
-  criaItem() {
-      return null;
-  }
+  abstract criaItem();
 
   montaCombos() {
-    
+
   }
 }
+

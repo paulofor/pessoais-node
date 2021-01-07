@@ -61,6 +61,9 @@ import { RendaPassivaEditComponent } from './renda-passiva-edit/renda-passiva-ed
 import { MercadoEscalaEditComponent } from './mercado-escala-edit/mercado-escala-edit.component';
 import { OportunidadeMacroeconomicaEditComponent } from './oportunidade-macroeconomica-edit/oportunidade-macroeconomica-edit.component';
 import { PossibilidadeReceitaEditComponent } from './possibilidade-receita-edit/possibilidade-receita-edit.component';
+import { BaseEscolhaComponent } from './base-escolha/base-escolha.component';
+import { RendaPassivaProjetoEscolhaComponent } from './renda-passiva-projeto-escolha/renda-passiva-projeto-escolha.component';
+
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -90,6 +93,8 @@ registerLocaleData(localePt, 'pt-BR');
     MercadoEscalaEditComponent,
     OportunidadeMacroeconomicaEditComponent,
     PossibilidadeReceitaEditComponent,
+    BaseEscolhaComponent,
+    RendaPassivaProjetoEscolhaComponent
   ],
   imports: [
     BrowserModule,
@@ -136,7 +141,8 @@ registerLocaleData(localePt, 'pt-BR');
   entryComponents : [
     GrupoProjetoEditComponent,
     DetalheProjetoEditaComponent,
-    GrupoProjetoEscolhaComponent
+    GrupoProjetoEscolhaComponent,
+    PossibilidadeReceitaEditComponent
   
   ],
   bootstrap: [AppComponent]

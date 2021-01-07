@@ -1,0 +1,9 @@
+<h2 mat-dialog-title *ngIf="item && listaEscolha && listaEscolhidos">Renda Passiva - {{item.nome}}</h2>
+
+<mat-chip-list aria-label="Fish selection"  *ngFor="let item of listaEscolhidos">
+    <mat-chip>{{item.nome}}</mat-chip>
+</mat-chip-list>
+
+<mat-chip-list aria-label="Fish selection"  *ngFor="let item of listaEscolha">
+    <mat-chip>{{item.nome}}</mat-chip>
+</mat-chip-list>
