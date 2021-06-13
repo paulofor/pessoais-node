@@ -181,14 +181,22 @@ module.exports = function (Gerprojprojetopmbok) {
             var total = resultado.reduce((acumulador, item, indice, original) => {
             return acumulador += item.segundos;
             }, 0);
-            var resultado2 = resultado.map((item) => {
-                var perc = item.segundos / total;
-                item['percentual'] = perc * 100;
-                return item;
-            })
+           
 
             //console.log('Total' , total);
-            callback(err,resultado2);
+            callback(err,resultado.map((item) => {
+                var perc = item.segundos / total;
+                item['percentual'] = perc * 100;
+                let filtro = {'where' : {'gerProjProjetopmbokId' : item.id} }
+                
+                app.models.RendaPassivaProjeto.find(filtro, (erro,result) => {
+                    console.log('item:' , JSON.stringify(item));
+                //    console.log('result:' , JSON.stringify(result));
+                //    console.log('erro:' , JSON.stringify(erro));
+                    //item['rendaPassivaProjetos'] = result;
+                    return item;
+                })
+            }));
         });
 
     };
