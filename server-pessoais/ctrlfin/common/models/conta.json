@@ -1,0 +1,96 @@
+{
+  "name": "Conta",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "conta1"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "mysql": {
+        "columnName": "id_conta"
+      },
+      "id" : true
+    },
+    "fonte": {
+      "type": "string"
+    },
+    "aplicacao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "mensal": {
+      "type": "string"
+    },
+    "precoMes": {
+      "type": "number",
+      "mysql": {
+        "columnName": "preco_mes"
+      }
+    },
+    "nomeCripto": {
+      "type": "string",
+      "mysql": {
+        "columnName": "nome_cripto"
+      }
+    },
+    "ignoraSaldo": {
+      "type": "string",
+      "mysql": {
+        "columnName": "ignora_saldo"
+      }
+    },
+    "nomeCelular": {
+      "type": "string",
+      "mysql": {
+        "columnName": "nome_celular"
+      }
+    },
+    "pessoal": {
+      "type": "string"
+    },
+    "usuarioId": {
+      "type": "number",
+      "mysql": {
+        "columnName": "id_usuario_pa"
+      }
+    },
+    "movimentacaoCelular": {
+      "type": "string",
+      "mysql": {
+        "columnName": "movimentacao_celular"
+      }
+    },
+    "projecaoProporcional": {
+      "type": "string",
+      "mysql": {
+        "columnName": "projecao_proporcional"
+      }
+    },
+    "nomeConta": {
+      "type": "string",
+      "mysql": {
+        "columnName": "nome_conta"
+      }
+    },
+    "nomeSimplesCelular": {
+      "type": "string",
+      "mysql": {
+        "columnName": "nome_simples_celular"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
