@@ -26,6 +26,7 @@ export class BaseEscolhaComponent implements OnInit {
   }
   carregaEscolhidas() {
     let filtro = {'where' : {'gerProjProjetopmbokId' : this.item.id } , 'include' : 'rendaPassiva'}
+    console.log('filtro-escolhidos:' , filtro);
     this.srvRelacionamento.find(filtro)
       .subscribe((result) => {
         this.listaEscolhidos = result;

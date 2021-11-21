@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseEscolhaComponent } from '../base-escolha/base-escolha.component';
-import { RendaPassivaApi, RendaPassivaProjetoApi } from '../shared/sdk';
+import { RendaPassivaApi, RendaPassivaProjeto, RendaPassivaProjetoApi } from '../shared/sdk';
 
 @Component({
   selector: 'app-renda-passiva-projeto-escolha',
@@ -17,4 +17,14 @@ export class RendaPassivaProjetoEscolhaComponent extends BaseEscolhaComponent {
   }
 
  
+  insereItem(item) {
+    console.log('insereItem: ' , item);
+    let novo:RendaPassivaProjeto = new RendaPassivaProjeto();
+    novo.gerProjProjetopmbokId = this.item.id;
+    novo.rendaPassivaId = item.id;
+    this.srvRel.create(novo)
+      .subscribe((result) => {
+        this.carregaEscolhas();
+      })
+  }
 }

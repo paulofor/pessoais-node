@@ -1,9 +1,19 @@
+<div  *ngIf="!item || !listaEscolha || !listaEscolhidos">
+<mat-spinner></mat-spinner>
+</div>
+
 <h2 mat-dialog-title *ngIf="item && listaEscolha && listaEscolhidos">Renda Passiva - {{item.nome}}</h2>
 
-<mat-chip-list aria-label="Fish selection"  *ngFor="let item of listaEscolhidos">
-    <mat-chip>{{item.nome}}</mat-chip>
-</mat-chip-list>
+<div mat-dialog-content>
+    <mat-chip-list ariaOrientation="horizontal" aria-label="Fish selection2">
+        <mat-chip selected *ngFor="let item of listaEscolhidos">{{item.rendaPassiva.nome}}</mat-chip>
+    </mat-chip-list>
 
-<mat-chip-list aria-label="Fish selection"  *ngFor="let item of listaEscolha">
-    <mat-chip>{{item.nome}}</mat-chip>
-</mat-chip-list>
+    <mat-chip-list ariaOrientation="horizontal" aria-label="Fish selection1">
+        <mat-chip *ngFor="let item of listaEscolha" (click)="insereItem(item)">{{item.nome}}</mat-chip>
+    </mat-chip-list>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>

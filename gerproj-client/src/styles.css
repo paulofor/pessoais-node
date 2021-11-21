@@ -6,6 +6,21 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
  
+/* Itens Associados com Projetos ****/
+
+.btn-renda {
+  color: blueviolet;
+}
+.btn-oportunidade {
+  color: brown
+}
+.btn-receita {
+  color: green
+}
+.btn-escala {
+  color: blue
+}
+
 
  
 /*   Digicom Estilo   */
@@ -81,7 +96,7 @@ body {
    letter-spacing: 1px;
    color: #000000;
    text-transform: uppercase;
-   font-size: 160%;
+   font-size: 26px;
    font-weight: 700;
    margin-right: 8px;
    margin-left: 8px;
@@ -108,6 +123,22 @@ body {
   margin-bottom: 8px;
   font-weight: 400;
  }
+
+ /* estou usando essa nomeclatura para criar uma estrutura de mais fácil entendimento */
+ .dgc-card-header-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+ }
+ .dgc-card-header-subtitulo {
+  font-size: 12px;
+  font-weight: 200;
+ }
+
+
+
  .dgc-card-detalhe {
   margin-top: 12px;
   margin-bottom: 12px;
