@@ -38,5 +38,17 @@
   "Conta": {
     "dataSource": "mySql",
     "public": true
+  },
+  "EstimativaMes": {
+    "dataSource": "mySql",
+    "public": true
+  },
+  "Periodo": {
+    "dataSource": "mySql",
+    "public": true
+  },
+  "Movimentacao": {
+    "dataSource": "mySql",
+    "public": true
   }
 }

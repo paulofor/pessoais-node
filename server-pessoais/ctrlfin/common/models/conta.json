@@ -11,10 +11,10 @@
   "properties": {
     "id": {
       "type": "number",
+      "id": true,
       "mysql": {
         "columnName": "id_conta"
-      },
-      "id" : true
+      }
     },
     "fonte": {
       "type": "string"
