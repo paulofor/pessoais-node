@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Edita Movimentação</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="30" #valor [(ngModel)]="item.nomeConta" name="nomeConta" placeholder="Nome"
+        autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select #fonte [(ngModel)]="item.fonte" name="fonte" placeholder="Fonte">
+        <mat-option value="S">Sim</mat-option>
+        <mat-option value="N">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select #aplicacao [(ngModel)]="item.aplicacao" name="aplicacao" placeholder="Aplicação">
+        <mat-option value="S">Sim</mat-option>
+        <mat-option value="N">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select #mensal [(ngModel)]="item.mensal" name="mensal" placeholder="Mensal">
+        <mat-option value="S">Sim</mat-option>
+        <mat-option value="N">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select #projecaoProporcional [(ngModel)]="item.projecaoProporcional" name="projecaoProporcional" placeholder="Projeção Proporcional">
+        <mat-option value="S">Sim</mat-option>
+        <mat-option value="N">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select #ativo [(ngModel)]="item.ativo" name="ativo" placeholder="Ativo">
+        <mat-option value="S">Sim</mat-option>
+        <mat-option value="N">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

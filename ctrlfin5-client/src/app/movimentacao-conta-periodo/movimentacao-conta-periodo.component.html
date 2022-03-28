@@ -1,0 +1,50 @@
+<div class="main-content" >
+  <div class="container-fluid">
+
+    <div class="row" *ngIf="!(listaBase && itemBase)">
+      <span>aguarde...</span>
+    </div>
+
+
+    <div class="row" *ngIf="listaBase && itemBase">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">{{itemBase.nomeConta}}</h4>
+            <span class="dgc-direita">{{saldoMes}}</span>
+            <button class="btn btn-primary btn-sm " (click)="edita()">Novo</button>
+
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th width="10%">Período</th>
+                  <th width="10%">Dia</th>
+                  <th width="20%">Fonte</th>
+                  <th width="20%">Aplicação</th>
+                  <th width="20%">Valor</th>
+                  <th width="20%">Obs</th>
+                  <th width="5%"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let itemLista of listaBase">
+                  <td>{{itemLista.periodoAplicacao.apresentacao}}</td>
+                  <td>{{itemLista.dia}}</td>
+                  <td>{{itemLista.contaFonte.nomeConta}}</td>
+                  <td>{{itemLista.contaAplicacao.nomeConta}}</td>
+                  <td>{{itemLista.valor | number: '1.2-2'}}</td>
+                  <td>{{itemLista.comentario}}</td>
+                  <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(itemLista)">Edita</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

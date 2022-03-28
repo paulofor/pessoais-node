@@ -1,0 +1,42 @@
+<div class="main-content" *ngIf="listaBase">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Contas - Fonte e Aplicação</h4>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th width="20%">Nome</th>
+                  <th width="10%">Fonte</th>
+                  <th width="10%">Aplicacao</th>
+                  <th width="10%">Mensal</th>
+                  <th width="10%">Projeção Proporcional</th>
+                  <th width="10%">Ativa</th>
+                  <th width="20%">Preço Mês</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of listaBase">
+                  <td><a routerLink="/contaHist/{{item.id}}">{{item.nomeConta}}</a></td>
+                  <td>{{item.fonte}}</td>
+                  <td>{{item.aplicacao}}</td>
+                  <td>{{item.mensal}}</td>
+                  <td>{{item.projecaoProporcional}}</td>
+                  <td>{{item.ativo}}</td>
+                  <td>{{item.precoMes}}</td>
+                  <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Edita</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

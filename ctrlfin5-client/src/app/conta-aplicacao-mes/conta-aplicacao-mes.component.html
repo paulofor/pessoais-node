@@ -1,0 +1,33 @@
+<div class="main-content" >
+
+  <div class="card" *ngIf="!(listaBase && itemBase)">
+    <span>aguarde...</span>
+  </div>
+
+  <div class="card" *ngIf="listaBase && itemBase">
+    <div class="header">
+      <h4 class="title">{{itemBase.apresentacao}}</h4>
+      <span class="dgc-direita" *ngIf="totalMes">{{totalMes}}</span>
+    </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th width="50%">Conta</th>
+            <th width="50%">Valor</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaBase">
+            <td><a routerLink="/movimentacaoContaAplicacaoPeriodo/{{item.id}}/{{itemBase.id}}">{{item.nomeConta}}</a></td>
+            <td>{{ item.valor | number : '1.2-2'}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>

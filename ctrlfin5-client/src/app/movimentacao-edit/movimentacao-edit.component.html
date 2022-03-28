@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Edita Movimentação</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="10" #valor [(ngModel)]="item.valor" name="valor" placeholder="Valor 9.99" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Conta Aplicação" #id_conta_a [(ngModel)]="item.id_conta_a" name="id_conta_a">
+        <mat-option *ngFor="let conta of listaContaAplicacao" [value]="conta.id">
+          {{ conta.nomeConta }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Conta Fonte" #id_conta_f [(ngModel)]="item.id_conta_f" name="id_conta_f">
+        <mat-option *ngFor="let conta of listaContaFonte" [value]="conta.id">
+          {{ conta.nomeConta }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Período Aplicação" #id_periodo_a [(ngModel)]="item.id_periodo_a" name="id_periodo_a">
+        <mat-option *ngFor="let periodo of listaPeriodoAplicacao" [value]="periodo.id">
+          {{ periodo.apresentacao }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Período Fonte" #id_periodo_f [(ngModel)]="item.id_periodo_f" name="id_periodo_f">
+        <mat-option *ngFor="let periodo of listaPeriodoFonte" [value]="periodo.id">
+          {{ periodo.apresentacao }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="4" #dia [(ngModel)]="item.dia" name="dia" placeholder="Dia" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="120" #comentario [(ngModel)]="item.comentario" name="comentario" placeholder="Comentário" autocomplete="off" />
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput maxlength="5" #parcela [(ngModel)]="item.parcela" name="parcela" placeholder="Parcelas" autocomplete="off" />
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>
