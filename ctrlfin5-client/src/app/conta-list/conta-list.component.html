@@ -23,14 +23,14 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of listaBase">
-                  <td>{{item.nomeConta}}</td>
-                  <td>{{item.fonte}}</td>
-                  <td>{{item.aplicacao}}</td>
-                  <td>{{item.mensal}}</td>
-                  <td>{{item.projecaoProporcional}}</td>
-                  <td>{{item.ativo}}</td>
-                  <td>{{item.precoMes}}</td>
-                  <td></td>
+                  <td class="{{ativo(item)}}">{{item.nomeConta}}</td>
+                  <td class="{{ativo(item)}}">{{item.fonte}}</td>
+                  <td class="{{ativo(item)}}">{{item.aplicacao}}</td>
+                  <td class="{{ativo(item)}}">{{item.mensal}}</td>
+                  <td class="{{ativo(item)}}">{{item.projecaoProporcional}}</td>
+                  <td class="{{ativo(item)}}">{{item.ativa}}</td>
+                  <td class="{{ativo(item)}}">{{item.precoMes}}</td>
+                  <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Edita</button></td>
                 </tr>
               </tbody>
             </table>

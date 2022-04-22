@@ -271,6 +271,21 @@ body {
   margin-left: 12px;
   padding-top: 11px;
 }
+
+.confirmada {
+  font-weight: 400;
+}
+.nao-confirmada {
+  font-weight: 100;
+}
+
+.ativo {
+  font-weight: 400;
+}
+.inativo {
+  font-weight: 100;
+  color:darkcyan
+}
   
   
   

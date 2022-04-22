@@ -30,6 +30,19 @@ export class ContaListComponent extends BaseListComponent {
     }
   }
 
- 
+  ativo(item) {
+    if (item.ativa=='S') return 'ativo'
+    else return 'inativo'
+  }
 
+
+  carregaTela() {
+    console.log('Entrou em obtem tela');
+    this.srv.find(this.getFiltro())
+    .subscribe((result:Conta[]) => {
+        console.log('ContaListComponent: ' , result);
+        this.listaBase = result;
+        this.posCarregaLista();
+    })
+}
 }

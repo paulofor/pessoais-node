@@ -24,7 +24,7 @@ export class ContaFonteAplicacaoListComponent extends BaseListComponent {
 
   getFiltro() {
     return {
-      'where' : { 'and' : [ {'fonte' : 'S'} , {'aplicacao' : 'S'} , {'ativo' : 'S'} ]},
+      'where' : { 'and' : [ {'fonte' : 'S'} , {'aplicacao' : 'S'} , {'ativa' : 'S'} ]},
       'order' : 'nomeConta'
     }
   }

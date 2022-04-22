@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { MovimentacaoEditComponent } from '../movimentacao-edit/movimentacao-edit.component';
 import { Movimentacao, MovimentacaoApi } from '../shared/sdk';
 
 @Component({
@@ -11,7 +13,7 @@ export class PesquisaDiaComponent implements OnInit {
   data:Date
   listaMovimentacao: Movimentacao[];
 
-  constructor(private srv:MovimentacaoApi) {
+  constructor(protected dialog: MatDialog,private srv:MovimentacaoApi) {
 
    }
 
@@ -31,4 +33,24 @@ export class PesquisaDiaComponent implements OnInit {
         this.listaMovimentacao = resultado;
       })
   }
+
+  criaItem() {
+    return new Movimentacao();
+  }
+
+  getComponente() {
+    return MovimentacaoEditComponent;
+  }
+
+  edita(edicao?) {
+    this.dialog.afterAllClosed.subscribe(result => {
+        this.onSubmit();
+    });
+    this.dialog.open(this.getComponente(), {
+        width: '800px',
+        data: {
+            item: edicao
+        }
+    });
+}
 }

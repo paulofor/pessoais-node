@@ -5,7 +5,7 @@ export interface ContaInterface {
   "id"?: number;
   "fonte"?: string;
   "aplicacao"?: string;
-  "ativo"?: string;
+  "ativa"?: string;
   "descricao"?: string;
   "mensal"?: string;
   "precoMes"?: number;
@@ -24,7 +24,7 @@ export class Conta implements ContaInterface {
   "id": number;
   "fonte": string;
   "aplicacao": string;
-  "ativo": string;
+  "ativa": string;
   "descricao": string;
   "mensal": string;
   "precoMes": number;
@@ -82,8 +82,8 @@ export class Conta implements ContaInterface {
           name: 'aplicacao',
           type: 'string'
         },
-        "ativo": {
-          name: 'ativo',
+        "ativa": {
+          name: 'ativa',
           type: 'string'
         },
         "descricao": {

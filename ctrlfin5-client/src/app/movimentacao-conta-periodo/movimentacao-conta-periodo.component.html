@@ -11,7 +11,7 @@
         <div class="card">
           <div class="header">
             <h4 class="title">{{itemBase.nomeConta}}</h4>
-            <span class="dgc-direita">{{saldoMes}}</span>
+            <span class="dgc-direita">{{saldoMes |  number: '1.2-2'}}</span>
             <button class="btn btn-primary btn-sm " (click)="edita()">Novo</button>
 
           </div>
@@ -30,13 +30,13 @@
               </thead>
               <tbody>
                 <tr *ngFor="let itemLista of listaBase">
-                  <td>{{itemLista.periodoAplicacao.apresentacao}}</td>
-                  <td>{{itemLista.dia}}</td>
-                  <td>{{itemLista.contaFonte.nomeConta}}</td>
-                  <td>{{itemLista.contaAplicacao.nomeConta}}</td>
-                  <td>{{itemLista.valor | number: '1.2-2'}}</td>
-                  <td>{{itemLista.comentario}}</td>
-                  <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(itemLista)">Edita</button></td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.periodoAplicacao.apresentacao}}</td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.dia}}</td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.contaFonte.nomeConta}}</td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.contaAplicacao.nomeConta}}</td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.valor | number: '1.2-2'}}</td>
+                  <td class="{{confirma(itemLista)}}">{{itemLista.comentario}}</td>
+                  <td class="{{confirma(itemLista)}}" align="right"><button class="btn btn-primary btn-sm " (click)="edita(itemLista)">Edita</button></td>
                 </tr>
               </tbody>
             </table>

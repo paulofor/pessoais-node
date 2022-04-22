@@ -17,6 +17,11 @@ export class MovimentacaoContaPeriodoComponent extends BaseListItemComponent {
   saldoMes: number;
   periodo: Periodo;
 
+  confirma(item: any) {
+    if (item.confirmada=='S') return 'confirmada'
+    else return 'nao-confirmada';
+  }
+
   extraiListaBase(item: any) {
     this.route.params.subscribe((params: Params) => {
           let idPeriodo = params['idPeriodo'];

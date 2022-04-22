@@ -63,10 +63,18 @@ export class MovimentacaoEditComponent extends BaseEditComponent {
   preCria() {
     
   }
+
+  excluir() {
+    console.log('Exclusão ID' , this.item.id );
+    this.servico.deleteById(this.item.id)
+      .subscribe((result) => {
+        this.closeDialog();
+      })
+  }
   
   montaCombos() {
     var filtroA = {
-        'where' : { 'and' : [{'aplicacao' : 'S' }, {'ativo' : 'S'}] },
+        'where' : { 'and' : [{'aplicacao' : 'S' }, {'ativa' : 'S'}] },
         'order' : 'nomeConta'
     }
     this.srvConta.find(filtroA)
@@ -75,7 +83,7 @@ export class MovimentacaoEditComponent extends BaseEditComponent {
 
       })
     var filtroF = {
-        'where' : { 'and' : [{'fonte' : 'S' }, {'ativo' : 'S'}] },
+        'where' : { 'and' : [{'fonte' : 'S' }, {'ativa' : 'S'}] },
         'order' : 'nomeConta'
     }
     this.srvConta.find(filtroF)

@@ -22,7 +22,7 @@
     "aplicacao": {
       "type": "string"
     },
-    "ativo": {
+    "ativa": {
       "type": "string"
     },
     "descricao": {
