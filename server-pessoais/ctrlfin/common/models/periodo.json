@@ -92,6 +92,31 @@
         }
       ]
     },
+    "ObtemMaisRecentes": {
+      "accepts": [
+        {
+          "arg": "meses",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/obtemMaisRecentes",
+          "verb": "get"
+        }
+      ]
+    },
     "ObtemCorrente": {
       "accepts": [],
       "returns": [
@@ -106,6 +131,24 @@
       "http": [
         {
           "path": "/obtemCorrente",
+          "verb": "get"
+        }
+      ]
+    },
+    "ObtemProximo": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "proximo",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/obtemProximo",
           "verb": "get"
         }
       ]

@@ -40,7 +40,7 @@
     "public": true
   },
   "CtrlFin_Conta": {
-    "dataSource": "ctrlFinDS",
+    "dataSource": "gerProjDS",
     "public": true
   },
   "GerProj_ProjetoPmbok": {
@@ -88,6 +88,10 @@
     "public": true
   },
   "PossibilidadeReceitaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "GerProj_TempoTarefa": {
     "dataSource": "gerProjDS",
     "public": true
   }

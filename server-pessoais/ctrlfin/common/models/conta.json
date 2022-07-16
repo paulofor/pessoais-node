@@ -117,6 +117,26 @@
           "verb": "get"
         }
       ]
+    },
+    "ListaParaEstimativa" : {
+      "accepts": [
+        
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaParaEstimativa",
+          "verb": "get"
+        }
+      ]
     }
   }
 }

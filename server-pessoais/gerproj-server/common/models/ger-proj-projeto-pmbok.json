@@ -205,6 +205,42 @@
           "verb": "get"
         }
       ]
+    },
+    "ListaExecucaoHojePlanejada": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaExecucaoHojePlanejada",
+          "verb": "get"
+        }
+      ]
+    },
+    "ListaExecucaoHojeNaoPlanejada": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaExecucaoHojeNaoPlanejada",
+          "verb": "get"
+        }
+      ]
     }
   }
 }

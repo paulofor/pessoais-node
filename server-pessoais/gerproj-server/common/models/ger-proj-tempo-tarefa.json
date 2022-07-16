@@ -1,0 +1,35 @@
+{
+  "name": "GerProj_TempoTarefa",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "data": {
+      "type": "string"
+    },
+    "horaInicio": {
+      "type": "string"
+    },
+    "horaFim": {
+      "type": "string"
+    },
+    "tarefaId": {
+      "type": "number"
+    },
+    "usuarioId": {
+      "type": "number"
+    },
+    "iteracaoEntregaId": {
+      "type": "number"
+    },
+    "localTarefaId": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

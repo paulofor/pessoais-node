@@ -23,5 +23,24 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "ObtemCorrent": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "corrente",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/obtemCorrente",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

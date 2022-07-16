@@ -11,14 +11,5 @@
     "name": "gerProjDS",
     "user": "lojadigicom",
     "connector": "mysql"
-  },
-  "ctrlFinDS": {
-    "host": "mysql.lojadigicom.com.br",
-    "port": 3306,
-    "database": "lojadigicom01",
-    "password": "ctrlfin3",
-    "name": "ctrlFinDS",
-    "user": "lojadigicom01",
-    "connector": "mysql"
   }
 }
