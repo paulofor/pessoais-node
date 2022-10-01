@@ -14,6 +14,7 @@
                   <th width="20%">Período</th>
                   <th width="20%">Fonte</th>
                   <th width="20%">Aplicação</th>
+                  <th width="20%">Saldo</th>
                 </tr>
               </thead>
               <tbody>
@@ -21,6 +22,7 @@
                   <td><a routerLink="/movimentacaoContaPeriodo/{{conta.id}}/{{item.id_periodo}}">{{item.apresentacao}}</a></td>
                   <td>{{item.fonte}}</td>
                   <td>{{item.aplicacao}}</td>
+                  <td>{{ (item.fonte - item.aplicacao) | number:'1.2-2'}}</td>
                 </tr>
               </tbody>
             </table>

@@ -1,6 +1,6 @@
 //
 
-//export const BASE_URL = 'http://www.digicom.inf.br:21046'; // prod
+
 //export const BASE_URL = 'http://localhost:21032'; // local
 export const BASE_URL = 'http://vps-40d69db1.vps.ovh.ca:21032'; // ovh
 

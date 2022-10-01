@@ -9,16 +9,15 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EstimativaMes } from '../../models/EstimativaMes';
+import { GerProj_TempoTarefa } from '../../models/GerProj_TempoTarefa';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Conta } from '../../models/Conta';
 
 
 /**
- * Api services for the `EstimativaMes` model.
+ * Api services for the `GerProj_TempoTarefa` model.
  */
 @Injectable()
-export class EstimativaMesApi extends BaseLoopBackApi {
+export class GerProj_TempoTarefaApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -28,36 +27,6 @@ export class EstimativaMesApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Busca relação conta de belongsTo.
-   *
-   * @param {any} id EstimativaMes id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `EstimativaMes` object.)
-   * </em>
-   */
-  public getConta(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/EstimativaMes/:id/conta";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -73,13 +42,13 @@ export class EstimativaMesApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `EstimativaMes` object.)
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/EstimativaMes";
+    "/GerProj_TempoTarefas";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -92,7 +61,7 @@ export class EstimativaMesApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id EstimativaMes id
+   * @param {any} id GerProj_TempoTarefa id
    *
    * @param {object} data Request data.
    *
@@ -104,13 +73,13 @@ export class EstimativaMesApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `EstimativaMes` object.)
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/EstimativaMes/:id";
+    "/GerProj_TempoTarefas/:id";
     let _routeParams: any = {
       id: id
     };
@@ -127,9 +96,7 @@ export class EstimativaMesApi extends BaseLoopBackApi {
          * (The remote method definition does not provide any description.)
          * </em>
    *
-   * @param {object} data Request data.
-   *
-   *  - `idPeriodo` – `{number}` - 
+   * @param {number} idProjeto 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -137,59 +104,26 @@ export class EstimativaMesApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `EstimativaMes` object.)
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
    * </em>
    */
-  public CriaEstimativaPeriodo(idPeriodo: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
+  public MaisRecenteHojeProjeto(idProjeto: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/EstimativaMes/criaEstimativaPeriodo";
+    "/GerProj_TempoTarefas/maisRecenteHojeProjeto";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
-    if (typeof idPeriodo !== 'undefined' && idPeriodo !== null) _urlParams.idPeriodo = idPeriodo;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {object} data Request data.
-   *
-   *  - `idEstimativa` – `{number}` - 
-   *
-   *  - `valor` – `{number}` - 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `EstimativaMes` object.)
-   * </em>
-   */
-  public AlteraValor(idEstimativa: any = {}, valor: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/EstimativaMes/alteraValor";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof idEstimativa !== 'undefined' && idEstimativa !== null) _urlParams.idEstimativa = idEstimativa;
-    if (typeof valor !== 'undefined' && valor !== null) _urlParams.valor = valor;
+    if (typeof idProjeto !== 'undefined' && idProjeto !== null) _urlParams.idProjeto = idProjeto;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `EstimativaMes`.
+   * i.e. `GerProj_TempoTarefa`.
    */
   public getModelName() {
-    return "EstimativaMes";
+    return "GerProj_TempoTarefa";
   }
 }

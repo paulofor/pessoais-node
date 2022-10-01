@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DetalheDiaAtualComponent } from '../detalhe-dia-atual/detalhe-dia-atual.component';
 import { DetalheProjetoComponent } from '../detalhe-projeto/detalhe-projeto.component';
+import { ExecucaoDiaComponent } from '../execucao-dia/execucao-dia.component';
 import { GrupoProjetoListComponent } from '../grupo-projeto-list/grupo-projeto-list.component';
 
 
@@ -29,6 +30,7 @@ export const routes : Routes = [
     { path: 'oportunidadeMacroeconomica' , component: OportunidadeMacroeconomicaListComponent },
     { path: 'rendaPassiva' , component: RendaPassivaListComponent },
     { path: 'mercadoEscala' , component: MercadoEscalaListComponent },
+    { path: 'execucaoDia' , component: ExecucaoDiaComponent },
 
     { path: '',          redirectTo: 'home', pathMatch: 'full' }
 ]

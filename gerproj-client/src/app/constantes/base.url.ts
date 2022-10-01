@@ -1,5 +1,5 @@
 
-export const BASE_URL = 'http://www.digicom.inf.br:21016'; // prod
+export const BASE_URL = 'http://vps-40d69db1.vps.ovh.ca:21016'; // prod
 
 
 export const API_VERSION = 'api';

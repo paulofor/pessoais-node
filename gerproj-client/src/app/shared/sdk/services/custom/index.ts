@@ -14,5 +14,6 @@ export * from './MercadoEscalaProjeto';
 export * from './OportunidadeMacroeconomicaProjeto';
 export * from './PossibilidadeReceita';
 export * from './PossibilidadeReceitaProjeto';
+export * from './GerProj_TempoTarefa';
 export * from './SDKModels';
 export * from './logger.service';

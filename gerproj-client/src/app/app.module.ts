@@ -63,6 +63,7 @@ import { OportunidadeMacroeconomicaEditComponent } from './oportunidade-macroeco
 import { PossibilidadeReceitaEditComponent } from './possibilidade-receita-edit/possibilidade-receita-edit.component';
 import { BaseEscolhaComponent } from './base-escolha/base-escolha.component';
 import { RendaPassivaProjetoEscolhaComponent } from './renda-passiva-projeto-escolha/renda-passiva-projeto-escolha.component';
+import { ExecucaoDiaEditaTempoComponent } from './execucao-dia-edita-tempo/execucao-dia-edita-tempo.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -94,7 +95,8 @@ registerLocaleData(localePt, 'pt-BR');
     OportunidadeMacroeconomicaEditComponent,
     PossibilidadeReceitaEditComponent,
     BaseEscolhaComponent,
-    RendaPassivaProjetoEscolhaComponent
+    RendaPassivaProjetoEscolhaComponent,
+    ExecucaoDiaEditaTempoComponent
   ],
   imports: [
     BrowserModule,
@@ -142,7 +144,8 @@ registerLocaleData(localePt, 'pt-BR');
     GrupoProjetoEditComponent,
     DetalheProjetoEditaComponent,
     GrupoProjetoEscolhaComponent,
-    PossibilidadeReceitaEditComponent
+    PossibilidadeReceitaEditComponent,
+    ExecucaoDiaEditaTempoComponent
   
   ],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 <div>
   
+  <button mat-button routerLink="/execucaoDia">Execução Dia</button>
   <button mat-button routerLink="/rendaPassiva">Renda Passiva</button>
   <button mat-button routerLink="/oportunidadeMacroeconomica">Oportunidade Macroeconomica</button>
   <button mat-button routerLink="/possibilidadeReceita">Possibilidade de Receita</button>
@@ -10,6 +11,8 @@
   <button mat-button routerLink="/grupoProjeto">Grupo Projeto</button>
   <button mat-button [matMenuTriggerFor]="menu">Anos</button>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/projetoAno/2022">2022</button>
+    <button mat-menu-item routerLink="/projetoAno/2021">2021</button>
     <button mat-menu-item routerLink="/projetoAno/2020">2020</button>
     <button mat-menu-item routerLink="/projetoAno/2019">2019</button>
     <button mat-menu-item routerLink="/projetoAno/2018">2018</button>

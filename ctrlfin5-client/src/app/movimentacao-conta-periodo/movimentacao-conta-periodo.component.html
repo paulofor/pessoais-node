@@ -10,7 +10,9 @@
       <div class="col-md-12">
         <div class="card">
           <div class="header">
-            <h4 class="title">{{itemBase.nomeConta}}</h4>
+            <h4 class="title">{{itemBase.nomeConta}} - {{periodo.apresentacao}}</h4>
+            <span class="dgc-direita">Aplicacao: {{totalAplicacao |  number: '1.2-2'}}</span>
+            <span class="dgc-direita">Fonte: {{totalFonte |  number: '1.2-2'}}</span>
             <span class="dgc-direita">{{saldoMes |  number: '1.2-2'}}</span>
             <button class="btn btn-primary btn-sm " (click)="edita()">Novo</button>
 

@@ -13,8 +13,9 @@
       <table class="table table-hover table-striped">
         <thead>
           <tr>
-            <th width="50%">Conta</th>
-            <th width="50%">Valor</th>
+            <th width="30%">Conta</th>
+            <th width="20%">Valor</th>
+            <th width="20%">Valor</th>
             <th></th>
           </tr>
         </thead>
@@ -22,6 +23,7 @@
           <tr *ngFor="let item of listaBase">
             <td><a routerLink="/movimentacaoContaAplicacaoPeriodo/{{item.id}}/{{itemBase.id}}">{{item.nomeConta}}</a></td>
             <td>{{ item.valor | number : '1.2-2'}}</td>
+            <td>{{ item.valorEstimativa | number : '1.2-2'}}</td>
             <td></td>
           </tr>
         </tbody>

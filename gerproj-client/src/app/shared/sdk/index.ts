@@ -63,6 +63,7 @@ import { MercadoEscalaProjetoApi } from './services/custom/MercadoEscalaProjeto'
 import { OportunidadeMacroeconomicaProjetoApi } from './services/custom/OportunidadeMacroeconomicaProjeto';
 import { PossibilidadeReceitaApi } from './services/custom/PossibilidadeReceita';
 import { PossibilidadeReceitaProjetoApi } from './services/custom/PossibilidadeReceitaProjeto';
+import { GerProj_TempoTarefaApi } from './services/custom/GerProj_TempoTarefa';
 /**
 * @module SDKBrowserModule
 * @description
@@ -85,7 +86,7 @@ export class SDKBrowserModule {
   static forRoot(internalStorageProvider: any = {
     provide: InternalStorage,
     useClass: CookieBrowser
-  }): any {
+  }) {
     return {
       ngModule  : SDKBrowserModule,
       providers : [
@@ -108,9 +109,10 @@ export class SDKBrowserModule {
         OportunidadeMacroeconomicaProjetoApi,
         PossibilidadeReceitaApi,
         PossibilidadeReceitaProjetoApi,
+        GerProj_TempoTarefaApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
- 
+
       ]
     };
   }

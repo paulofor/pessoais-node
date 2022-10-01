@@ -16,6 +16,8 @@ export class MovimentacaoContaPeriodoComponent extends BaseListItemComponent {
 
   saldoMes: number;
   periodo: Periodo;
+  totalAplicacao: number;
+  totalFonte: number;
 
   confirma(item: any) {
     if (item.confirmada=='S') return 'confirmada'
@@ -45,14 +47,24 @@ export class MovimentacaoContaPeriodoComponent extends BaseListItemComponent {
 
   calculaSaldoMes() {
     let saldo = 0;
+    let totalAplicacao = 0;
+    let totalFonte = 0;
     for (let i=0;i<this.listaBase.length;i++) {
       let movimentacao = this.listaBase[i];
-      if (movimentacao.id_conta_a==this.itemBase.id) 
+      if (movimentacao.id_conta_a==this.itemBase.id) {
         saldo-=movimentacao.valor;
-      if (movimentacao.id_conta_f==this.itemBase.id)
+        totalAplicacao=movimentacao.valor;
+      } 
+        
+      if (movimentacao.id_conta_f==this.itemBase.id) {
         saldo+=movimentacao.valor;
+        totalFonte+=movimentacao.valor;
+      }
+        
     }
     this.saldoMes = saldo;
+    this.totalAplicacao = totalAplicacao;
+    this.totalFonte = totalFonte;
   }
 
   constructor(public route: ActivatedRoute,protected dialog: MatDialog, protected srvMovimentacao:MovimentacaoApi, 
@@ -66,11 +78,11 @@ export class MovimentacaoContaPeriodoComponent extends BaseListItemComponent {
 
   getFiltroLista(idConta, idPeriodo) {
     return {
-      'where' : { 'and' : [
-          {'or' : [{'id_periodo_f' : idPeriodo} , {'id_periodo_a' : idPeriodo }]} , 
-          {'or' : [{'id_conta_f' : idConta} , {'id_conta_a' : idConta }]}
+      'where' : { 'or' : [
+          {'and' : [{'id_periodo_f' : idPeriodo} , {'id_conta_f' : idConta }]} , 
+          {'and' : [{'id_periodo_a' : idPeriodo} , {'id_conta_a' : idConta }]}
         ] },
-      'order' : ['id_periodo_a', 'dia'],
+      'order' : ['id_periodo_a desc', 'dia desc'],
       'include' : ['contaAplicacao' , 'contaFonte' , 'periodoAplicacao' , 'periodoAplicacao']
     }
   }

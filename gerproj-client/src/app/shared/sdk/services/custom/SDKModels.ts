@@ -15,6 +15,7 @@ import { MercadoEscalaProjeto } from '../../models/MercadoEscalaProjeto';
 import { OportunidadeMacroeconomicaProjeto } from '../../models/OportunidadeMacroeconomicaProjeto';
 import { PossibilidadeReceita } from '../../models/PossibilidadeReceita';
 import { PossibilidadeReceitaProjeto } from '../../models/PossibilidadeReceitaProjeto';
+import { GerProj_TempoTarefa } from '../../models/GerProj_TempoTarefa';
 
 export interface Models { [name: string]: any }
 
@@ -37,6 +38,7 @@ export class SDKModels {
     OportunidadeMacroeconomicaProjeto: OportunidadeMacroeconomicaProjeto,
     PossibilidadeReceita: PossibilidadeReceita,
     PossibilidadeReceitaProjeto: PossibilidadeReceitaProjeto,
+    GerProj_TempoTarefa: GerProj_TempoTarefa,
     
   };
 

@@ -12,13 +12,12 @@ export class MovimentacaoContaAplicacaoPeriodoComponent extends MovimentacaoCont
 
   getFiltroLista(idConta, idPeriodo) {
     return {
-      'where' : { 'and' : [
-          {'or' : [{'id_periodo_a' : idPeriodo }]} , 
-          {'or' : [{'id_conta_a' : idConta }]}
+      'where' : { 'or' : [
+          {'and' : [{'id_periodo_f' : idPeriodo} , {'id_conta_f' : idConta }]} , 
+          {'and' : [{'id_periodo_a' : idPeriodo} , {'id_conta_a' : idConta }]}
         ] },
-      'order' : ['id_periodo_a', 'dia'],
+      'order' : ['id_periodo_a desc', 'dia desc'],
       'include' : ['contaAplicacao' , 'contaFonte' , 'periodoAplicacao' , 'periodoAplicacao']
     }
   }
-
 }

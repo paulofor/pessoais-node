@@ -47,7 +47,7 @@ export class LoggerService {
   }
 
   profileEnd() {
-    
+   
   }
 
   time(arg: string) {

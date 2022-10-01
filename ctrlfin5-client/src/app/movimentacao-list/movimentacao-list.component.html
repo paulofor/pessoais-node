@@ -23,12 +23,17 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of listaBase">
-                  <td>{{item.dia}}</td>
-                  <td>{{item.contaFonte.nomeConta}}</td>
-                  <td>{{item.contaAplicacao.nomeConta}}</td>
-                  <td>{{item.periodoFonte.apresentacao}}</td>
-                  <td>{{item.periodoAplicacao.apresentacao}}</td>
-                  <td align="right">{{ getValorFormatado(item) }}</td>
+                  <td *ngIf="item.dia">{{item.dia}}</td>
+                  <td *ngIf="!item.dia">-</td>
+                  <td *ngIf="item.contaFonte">{{item.contaFonte.nomeConta}}</td>
+                  <td *ngIf="!item.contaFonte">-</td>
+                  <td *ngIf="item.contaAplicacao">{{item.contaAplicacao.nomeConta}}</td>
+                  <td *ngIf="!item.contaAplicacao">-</td>
+                  <td *ngIf="item.periodoFonte">{{item.periodoFonte.apresentacao}}</td>
+                  <td *ngIf="!item.periodoFonte">-</td>
+                  <td *ngIf="item.periodoAplicacao">{{item.periodoAplicacao.apresentacao}}</td>
+                  <td *ngIf="!item.periodoAplicacao">-</td>
+                   <td align="right">{{ getValorFormatado(item) }}</td>
                   <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Edita</button></td>
                   <td align="right"><button class="btn btn-primary btn-sm " (click)="confirmaItem(item)">Confirma</button></td>
                 </tr>

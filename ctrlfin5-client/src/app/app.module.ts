@@ -42,6 +42,7 @@ import { ContaAplicacaoMovimentacaoMesComponent } from './conta-aplicacao-movime
 import { MovimentacaoContaPeriodoComponent } from './movimentacao-conta-periodo/movimentacao-conta-periodo.component';
 import { PesquisaDiaComponent } from './pesquisa-dia/pesquisa-dia.component';
 import { MovimentacaoContaAplicacaoPeriodoComponent } from './movimentacao-conta-aplicacao-periodo/movimentacao-conta-aplicacao-periodo.component';
+import { EstimativaEditaComponent } from './estimativa-edita/estimativa-edita.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -65,7 +66,8 @@ registerLocaleData(localePt, 'pt-BR');
     ContaAplicacaoMovimentacaoMesComponent,
     MovimentacaoContaPeriodoComponent,
     PesquisaDiaComponent,
-    MovimentacaoContaAplicacaoPeriodoComponent
+    MovimentacaoContaAplicacaoPeriodoComponent,
+    EstimativaEditaComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,8 @@ registerLocaleData(localePt, 'pt-BR');
   bootstrap: [AppComponent],
   entryComponents : [
     MovimentacaoEditComponent,
-    ContaEditComponent
+    ContaEditComponent,
+    EstimativaEditaComponent
   ]
 })
 export class AppModule { }

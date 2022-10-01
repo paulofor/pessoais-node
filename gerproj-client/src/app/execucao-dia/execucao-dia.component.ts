@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
+import { MatDialog } from '@angular/material/dialog';
+import { ExecucaoDiaEditaTempoComponent } from '../execucao-dia-edita-tempo/execucao-dia-edita-tempo.component';
+import { GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi, GerProj_TempoTarefaApi } from '../shared/sdk';
 
 @Component({
   selector: 'app-execucao-dia',
@@ -8,9 +10,10 @@ import { GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
 })
 export class ExecucaoDiaComponent implements OnInit {
 
-  lista: GerProj_ProjetoPmbok[];
+  listaBase: GerProj_ProjetoPmbok[];
+  totalDia: any;
 
-  constructor(private srv:GerProj_ProjetoPmbokApi) { 
+  constructor(protected dialog: MatDialog,private srv:GerProj_ProjetoPmbokApi, private srvTempoTarefa:GerProj_TempoTarefaApi) { 
 
   }
 
@@ -18,12 +21,42 @@ export class ExecucaoDiaComponent implements OnInit {
     this.carregaLista();
   }
 
+  getComponente() {
+    return ExecucaoDiaEditaTempoComponent;
+  }
+
   carregaLista() {
-    this.srv.DetalheDia()
+    this.srv.ListaExecucaoHojePlanejada()
       .subscribe((result:GerProj_ProjetoPmbok[]) => {
         console.log('ResultDia:' , result);
-        this.lista = result;
+        this.listaBase = result;
+        
+      });
+    this.srv.TotalDiaCorrente()
+      .subscribe((result) => {
+        console.log('TotalDia: ' , result)
+        this.totalDia = result;
       })
   }
+
+  classeRestante(item) {
+    if (item.seg_restante>0) return 'dgc-vermelho'
+    else return '';
+  }
+
+  edita(edicao?) {
+    console.log('BaseList.edita (data.item=' + edicao + ')');
+    this.dialog.afterAllClosed.subscribe(result => {
+        this.carregaLista();
+    });
+    let componente = this.getComponente();
+    console.log('componente:' , componente)
+    this.dialog.open(componente, {
+        width: '800px',
+        data: {
+            item: edicao
+        }
+    });
+}
 
 }
