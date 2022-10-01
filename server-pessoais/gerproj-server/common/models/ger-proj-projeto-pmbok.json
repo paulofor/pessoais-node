@@ -77,6 +77,24 @@
   },
   "acls": [],
   "methods": {
+    "TotalDiaCorrente": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/totalDiaCorrente",
+          "verb": "get"
+        }
+      ]
+    },
     "TempoAno": {
       "accepts": [
         {
