@@ -56,6 +56,87 @@
           "verb": "get"
         }
       ]
+    },
+    "AtualizaMaisRecenteProjeto": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "tempo",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaMaisRecenteProjeto",
+          "verb": "post"
+        }
+      ]
+    },
+    "IniciarTarefaProjeto": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "tempo",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/iniciarTarefaProjeto",
+          "verb": "post"
+        }
+      ]
+    },
+    "AtrasarTarefaProjeto": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "minuto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "tempo",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atrasarTarefaProjeto",
+          "verb": "post"
+        }
+      ]
     }
   }
 }

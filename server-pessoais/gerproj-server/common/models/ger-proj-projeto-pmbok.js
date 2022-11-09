@@ -208,17 +208,18 @@ module.exports = function (Gerprojprojetopmbok) {
 
 
     Gerprojprojetopmbok.ListaExecucaoHojePlanejada = function(callback) {
-        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, sec_to_time(sum(seg)) tempo_executado, " +
+        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, executando, sec_to_time(sum(seg)) tempo_executado, " +
                 " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, " +
-                " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante " +
+                " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante, " +
+                " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo " +
                 " from " +
                 " ( " +
-                " select id_projeto_pmbok, nome, apelido, tempo_previsto,  " +
+                " select id_projeto_pmbok, nome, apelido, executando, tempo_previsto,  " +
                 " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, " +
                 " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim " +
                 " from " +
                 " ( " +
-                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, tempo_previsto " +
+                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, tempo_previsto " +
                 " from alocacao_tempo2 tempo " +
                 " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa " +
                 " where tempo_previsto <> '00:00:00' " +
@@ -240,8 +241,10 @@ module.exports = function (Gerprojprojetopmbok) {
                 " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega " + 
                 " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) " +
                 " ) as tab2 " +
-                " group by id_projeto_pmbok, nome, apelido, tempo_previsto"
+                " group by id_projeto_pmbok, nome, apelido, tempo_previsto, executando " +
+                " order by seg_restante desc, id_projeto_pmbok";
         let ds = Gerprojprojetopmbok.dataSource;
+        console.log('SQL: ' , sql);
         ds.connector.query(sql,callback);
     }
 

@@ -45,6 +45,9 @@
     },
     "crenca": {
       "type": "string"
+    },
+    "executando" : {
+      "type" : "number"
     }
   },
   "validations": [],
