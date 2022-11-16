@@ -153,49 +153,58 @@ module.exports = function (Gerprojprojetopmbok) {
 
 
     Gerprojprojetopmbok.TotalDiaCorrente = function(callback) {
-        let sql = " select " + 
-            " sum(seg_previsto) segPrevisto, sum(seg_executado) segExecutado, " + 
-            " sum(seg_restante) segFaltando, " + 
-            " sec_to_time(sum(seg_previsto)) tempoPrevisto, sec_to_time(sum(seg_executado)) tempoExecutado,  " + 
-            " sec_to_time(sum(seg_restante)) tempoFaltando " + 
-            " from  ( " + 
-            " select id_projeto_pmbok, nome, apelido, tempo_previsto, sec_to_time(sum(seg)) tempo_executado, " + 
-            " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, " + 
-            " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante , time_to_sec(tempo_previsto) as seg_previsto, " + 
-            " sum(seg) seg_executado " + 
-            " from " + 
-            " ( " + 
-            " select id_projeto_pmbok, nome, apelido, tempo_previsto,  " + 
-            " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, " + 
-            " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim " + 
-            " from " + 
-            " ( " + 
-            " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, tempo_previsto " +  
-            " from alocacao_tempo2 tempo " + 
-            " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa " +  
-            " where tempo_previsto <> '00:00:00' " + 
-            " and id_dia_semana_gp =  " + 
-            " ( " + 
-            " select " +   
-            " CASE " + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 " + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 " + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 " + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 " + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 " + 
-            " ELSE 6 " + 
-            " END  " + 
-            " ) " + 
-            " ) as tab " +  
-            " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  " + 
-            " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto " + 
-            " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  " + 
-            " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) " +  
-            " ) as tab2 " + 
-            " group by id_projeto_pmbok, nome, apelido, tempo_previsto " + 
-            " ) as tab3";
+        let sql = "\n select \n" + 
+            " sum(seg_previsto) segPrevisto, sum(seg_executado) segExecutado, \n" + 
+            " sum(seg_restante) segFaltando, \n" + 
+            " sec_to_time(sum(seg_previsto)) tempoPrevisto, sec_to_time(sum(seg_executado)) tempoExecutado,  \n" + 
+            " sec_to_time(sum(seg_restante)) tempoFaltando ,\n" + 
+            " sum(seg_restante_simples1) segFaltandoPlanejado , \n " +
+            " sec_to_time(sum(seg_restante_simples1)) as tempoFaltandoPlanejado \n " +
+            " from  ( \n" + 
+            " select id_projeto_pmbok, nome, apelido, tempo_previsto, sec_to_time(sum(seg)) tempo_executado, \n" + 
+            " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" + 
+            " (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) seg_restante , \n " +
+            " case \n " +
+            " when (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) > 0 then  (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) \n " + 
+            " else 0 \n " +
+            " end seg_restante_simples1, \n " +
+            " (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) seg_restante_simples2 , \n " +
+            " time_to_sec(tempo_previsto) as seg_previsto, \n" + 
+            " sum(seg) seg_executado \n" + 
+            " from \n" + 
+            " ( \n" + 
+            " select id_projeto_pmbok, nome, apelido, tempo_previsto,  \n" + 
+            " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, \n" + 
+            " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim \n" + 
+            " from \n" + 
+            " ( \n" + 
+            " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, tempo_previsto \n" +  
+            " from alocacao_tempo2 tempo \n" + 
+            " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa \n" +  
+            " where tempo_previsto <> '00:00:00' \n" + 
+            " and id_dia_semana_gp =  \n" + 
+            " ( \n" + 
+            " select \n" +   
+            " CASE \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 \n" + 
+            " ELSE 6 \n" + 
+            " END  \n" + 
+            " ) \n" + 
+            " ) as tab \n" +  
+            " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  \n" + 
+            " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto \n" + 
+            " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  \n" + 
+            " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) \n" +  
+            " ) as tab2 \n" + 
+            " group by id_projeto_pmbok, nome, apelido, tempo_previsto \n" + 
+            " ) as tab3 \n";
         
         let ds = Gerprojprojetopmbok.dataSource;
+        console.log(sql);
         ds.connector.query(sql,(err,result) => {
             console.log('err:' , err);
             console.log('result:', result);
