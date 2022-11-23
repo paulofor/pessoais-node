@@ -159,7 +159,9 @@ module.exports = function (Gerprojprojetopmbok) {
             " sec_to_time(sum(seg_previsto)) tempoPrevisto, sec_to_time(sum(seg_executado)) tempoExecutado,  \n" + 
             " sec_to_time(sum(seg_restante)) tempoFaltando ,\n" + 
             " sum(seg_restante_simples1) segFaltandoPlanejado , \n " +
-            " sec_to_time(sum(seg_restante_simples1)) as tempoFaltandoPlanejado \n " +
+            " sec_to_time(sum(seg_restante_simples1)) as tempoFaltandoPlanejado, \n " +
+            " sum(seg_previsto) - sum(seg_restante_simples1) as segExecutadoPlanejado, \n " +
+            " sec_to_time(sum(seg_previsto) - sum(seg_restante_simples1)) as tempoExecutadoPlanejado \n " +
             " from  ( \n" + 
             " select id_projeto_pmbok, nome, apelido, tempo_previsto, sec_to_time(sum(seg)) tempo_executado, \n" + 
             " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" + 
@@ -186,11 +188,11 @@ module.exports = function (Gerprojprojetopmbok) {
             " ( \n" + 
             " select \n" +   
             " CASE \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 1 hour))=0 THEN 1 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 1 hour))=1 THEN 2 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 1 hour))=2 THEN 3 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 1 hour))=3 THEN 4 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 1 hour))=4 THEN 5 \n" + 
             " ELSE 6 \n" + 
             " END  \n" + 
             " ) \n" + 
@@ -198,7 +200,7 @@ module.exports = function (Gerprojprojetopmbok) {
             " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  \n" + 
             " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto \n" + 
             " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  \n" + 
-            " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) \n" +  
+            " and date(date_sub(tempo_tarefa.hora_inicio,interval 1 hour)) = date(DATE_SUB(now(),interval 1 hour)) \n" +  
             " ) as tab2 \n" + 
             " group by id_projeto_pmbok, nome, apelido, tempo_previsto \n" + 
             " ) as tab3 \n";
@@ -217,43 +219,49 @@ module.exports = function (Gerprojprojetopmbok) {
 
 
     Gerprojprojetopmbok.ListaExecucaoHojePlanejada = function(callback) {
-        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, executando, sec_to_time(sum(seg)) tempo_executado, " +
-                " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, " +
-                " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante, " +
-                " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo " +
-                " from " +
-                " ( " +
-                " select id_projeto_pmbok, nome, apelido, executando, tempo_previsto,  " +
-                " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, " +
-                " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim " +
-                " from " +
-                " ( " +
-                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, tempo_previsto " +
-                " from alocacao_tempo2 tempo " +
-                " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa " +
-                " where tempo_previsto <> '00:00:00' " +
-                " and id_dia_semana_gp =  " +
-                " ( " +
-                " select  " +
-                " CASE " +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 " +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 " +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 " +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 " +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 " +
-                " ELSE 6 " +
-                " END  " +
-                " ) " +
-                " ) as tab " +
-                " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  " +
-                " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto  " +
-                " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega " + 
-                " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) " +
-                " ) as tab2 " +
-                " group by id_projeto_pmbok, nome, apelido, tempo_previsto, executando " +
-                " order by seg_restante desc, id_projeto_pmbok";
+        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, executando, sec_to_time(sum(seg)) tempo_executado, \n" +
+                " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" +
+                " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante, \n" +
+                " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo, \n" +
+                " descricao as entregaDescricao \n " +
+                " from \n" +
+                " # tab2 \n " +
+                " ( \n" +
+                " select id_projeto_pmbok, nome, apelido, executando, tempo_previsto,  \n" +
+                " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, \n" +
+                " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim, \n" +
+                "  entrega_projeto.* \n" +
+                " from \n" +
+                " ( \n" +
+                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, tempo_previsto \n" +
+                " from alocacao_tempo2 tempo \n" +
+                " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa \n" +
+                " where tempo_previsto <> '00:00:00' \n" +
+                " and id_dia_semana_gp =  \n" +
+                " ( \n" +
+                " select  \n" +
+                " CASE \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 1 hour))=0 THEN 1 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 1 hour))=1 THEN 2 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 1 hour))=2 THEN 3 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 1 hour))=3 THEN 4 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 1 hour))=4 THEN 5 \n" +
+                " ELSE 6 \n" +
+                " END  \n" +
+                " ) \n" +
+                " ) as tab \n" +
+                " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  \n" +
+                " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto  \n" +
+                " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega \n" + 
+                " and date(date_sub(tempo_tarefa.hora_inicio,interval 1 hour)) = date(DATE_SUB(now(),interval 1 hour)) \n" +
+                " where concluida = 'N' and numero_iteracao = 1 \n" +
+                " order by ordenacao \n" +
+                " \n " +
+                " ) as tab2 \n" +
+                " group by id_projeto_pmbok, nome, apelido, tempo_previsto, executando \n" +
+                " order by seg_restante desc, id_projeto_pmbok \n";
         let ds = Gerprojprojetopmbok.dataSource;
-        console.log('SQL: ' , sql);
+        console.log(sql);
         ds.connector.query(sql,callback);
     }
 
@@ -303,7 +311,7 @@ module.exports = function (Gerprojprojetopmbok) {
         "  inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
         "  inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto " +
         "  inner join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = iteracao_entrega.id_iteracao_entrega " +
-        "  where date_format(hora_inicio,'%Y-%m-%d') = date_format(date_sub(now(),interval 2 hour),'%Y-%m-%d') " +
+        "  where date_format(hora_inicio,'%Y-%m-%d') = date_format(date_sub(now(),interval 1 hour),'%Y-%m-%d') " +
         "  and tempo_tarefa.hora_inicio <> tempo_tarefa.hora_fim " +
         "  and date_format(hora_inicio,'%H') > '02' " +
         "  order by hora_inicio ";
