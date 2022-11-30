@@ -48,6 +48,9 @@
     },
     "executando" : {
       "type" : "number"
+    },
+    "tempoCompleto" : {
+      "type" : "number"
     }
   },
   "validations": [],
@@ -224,6 +227,74 @@
         {
           "path": "/programacaoSemanal",
           "verb": "get"
+        }
+      ]
+    },
+    "LigaDesligaTempoCompleto": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/ligaDesligaTempoCompleto",
+          "verb": "post"
+        }
+      ]
+    },
+    "LigaDesligaExecutando": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/ligaDesligaExecutando",
+          "verb": "post"
+        }
+      ]
+    },
+    "FinalizaDia": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/finalizaDia",
+          "verb": "post"
         }
       ]
     },

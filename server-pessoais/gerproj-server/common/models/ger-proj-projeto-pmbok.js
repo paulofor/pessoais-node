@@ -149,6 +149,41 @@ group by id_projeto_pmbok, nome, apelido, tempo_previsto
 
 module.exports = function (Gerprojprojetopmbok) {
 
+    Gerprojprojetopmbok.FinalizaDia = function(callback) {
+        let sql = "update projeto_pmbok " +
+            " set tempoCompleto = 0," +
+            " executando = 0 ";
+        let ds =  Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql,callback);
+        
+    }
+
+
+    Gerprojprojetopmbok.LigaDesligaTempoCompleto = function(idProjeto,callback) {
+        let sql1 = "update projeto_pmbok  " +
+            " set tempoCompleto = tempoCompleto + 1  "  +
+            " where id_projeto_pmbok = " + idProjeto; 
+        let sql2 = "update projeto_pmbok " +
+            " set tempoCompleto = 0 " +
+            " where id_projeto_pmbok = " + idProjeto + " and tempoCompleto = 2"
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql1, (err,result) => {
+            ds.connector.query(sql2, callback);
+        })
+    }
+
+    Gerprojprojetopmbok.LigaDesligaExecutando = function(idProjeto,callback) {
+        let sql1 = "update projeto_pmbok  " +
+            " set executando = executando + 1  "  +
+            " where id_projeto_pmbok = " + idProjeto; 
+        let sql2 = "update projeto_pmbok " +
+            " set executando = 0 " +
+            " where id_projeto_pmbok = " + idProjeto + " and executando = 2"
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql1, (err,result) => {
+            ds.connector.query(sql2, callback);
+        })
+    }
 
 
 
