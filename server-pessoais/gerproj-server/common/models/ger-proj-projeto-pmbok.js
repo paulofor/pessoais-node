@@ -191,18 +191,18 @@ module.exports = function (Gerprojprojetopmbok) {
         let sql = "\n select \n" + 
             " sum(seg_previsto) segPrevisto, sum(seg_executado) segExecutado, \n" + 
             " sum(seg_restante) segFaltando, \n" + 
-            " sec_to_time(sum(seg_previsto)) tempoPrevisto, sec_to_time(sum(seg_executado)) tempoExecutado,  \n" + 
+            " sec_to_time(sum(seg_previsto)) tempoPrevisto, tempoCompleto, sec_to_time(sum(seg_executado)) tempoExecutado,  \n" + 
             " sec_to_time(sum(seg_restante)) tempoFaltando ,\n" + 
             " sum(seg_restante_simples1) segFaltandoPlanejado , \n " +
             " sec_to_time(sum(seg_restante_simples1)) as tempoFaltandoPlanejado, \n " +
             " sum(seg_previsto) - sum(seg_restante_simples1) as segExecutadoPlanejado, \n " +
             " sec_to_time(sum(seg_previsto) - sum(seg_restante_simples1)) as tempoExecutadoPlanejado \n " +
             " from  ( \n" + 
-            " select id_projeto_pmbok, nome, apelido, tempo_previsto, sec_to_time(sum(seg)) tempo_executado, \n" + 
+            " select id_projeto_pmbok, nome, apelido, tempo_previsto, tempoCompleto, sec_to_time(sum(seg)) tempo_executado,  \n" + 
             " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" + 
             " (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) seg_restante , \n " +
             " case \n " +
-            " when (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) > 0 then  (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) \n " + 
+            " when ( (tempoCompleto=1) or (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) > 0) then  (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) \n " + 
             " else 0 \n " +
             " end seg_restante_simples1, \n " +
             " (time_to_sec(tempo_previsto)) - coalesce(sum(seg),0) seg_restante_simples2 , \n " +
@@ -210,12 +210,12 @@ module.exports = function (Gerprojprojetopmbok) {
             " sum(seg) seg_executado \n" + 
             " from \n" + 
             " ( \n" + 
-            " select id_projeto_pmbok, nome, apelido, tempo_previsto,  \n" + 
+            " select id_projeto_pmbok, nome, apelido, tempo_previsto,  tempoCompleto, \n" + 
             " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, \n" + 
             " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim \n" + 
             " from \n" + 
             " ( \n" + 
-            " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, tempo_previsto \n" +  
+            " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.tempoCompleto, tempo_previsto \n" +  
             " from alocacao_tempo2 tempo \n" + 
             " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa \n" +  
             " where tempo_previsto <> '00:00:00' \n" + 
@@ -237,7 +237,7 @@ module.exports = function (Gerprojprojetopmbok) {
             " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  \n" + 
             " and date(date_sub(tempo_tarefa.hora_inicio,interval 1 hour)) = date(DATE_SUB(now(),interval 1 hour)) \n" +  
             " ) as tab2 \n" + 
-            " group by id_projeto_pmbok, nome, apelido, tempo_previsto \n" + 
+            " group by id_projeto_pmbok, nome, apelido, tempo_previsto, tempoCompleto \n" + 
             " ) as tab3 \n";
         
         let ds = Gerprojprojetopmbok.dataSource;
@@ -254,7 +254,7 @@ module.exports = function (Gerprojprojetopmbok) {
 
 
     Gerprojprojetopmbok.ListaExecucaoHojePlanejada = function(callback) {
-        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, executando, sec_to_time(sum(seg)) tempo_executado, \n" +
+        let sql = " select id_projeto_pmbok, nome, apelido, tempo_previsto, executando, tempoCompleto, sec_to_time(sum(seg)) tempo_executado, \n" +
                 " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" +
                 " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante, \n" +
                 " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo, \n" +
@@ -262,13 +262,13 @@ module.exports = function (Gerprojprojetopmbok) {
                 " from \n" +
                 " # tab2 \n " +
                 " ( \n" +
-                " select id_projeto_pmbok, nome, apelido, executando, tempo_previsto,  \n" +
+                " select id_projeto_pmbok, nome, apelido, executando, tempoCompleto, tempo_previsto,  \n" +
                 " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, \n" +
                 " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim, \n" +
                 "  entrega_projeto.* \n" +
                 " from \n" +
                 " ( \n" +
-                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, tempo_previsto \n" +
+                " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, projeto.tempoCompleto, tempo_previsto \n" +
                 " from alocacao_tempo2 tempo \n" +
                 " inner join projeto_pmbok projeto on projeto.id_projeto_pmbok = tempo.id_projeto_pmbok_pa \n" +
                 " where tempo_previsto <> '00:00:00' \n" +
@@ -293,7 +293,7 @@ module.exports = function (Gerprojprojetopmbok) {
                 " order by ordenacao \n" +
                 " \n " +
                 " ) as tab2 \n" +
-                " group by id_projeto_pmbok, nome, apelido, tempo_previsto, executando \n" +
+                " group by id_projeto_pmbok, nome, apelido, tempo_previsto, executando, tempoCompleto \n" +
                 " order by seg_restante desc, id_projeto_pmbok \n";
         let ds = Gerprojprojetopmbok.dataSource;
         console.log(sql);
