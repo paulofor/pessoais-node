@@ -1,0 +1,60 @@
+{
+  "name": "GerProj_IteracaoEntrega",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "iteracao_entrega"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id_iteracao_entrega"
+      }
+    },
+    "dataInicio": {
+      "type": "date",
+      "mysql": {
+        "columnName": "data_inicio"
+      }
+    },
+    "numeroIteracao": {
+      "type": "number",
+      "mysql": {
+        "columnName": "numero_iteracao"
+      }
+    },
+    "dataFinal": {
+      "type": "date",
+      "mysql": {
+        "columnName": "data_final"
+      }
+    },
+    "horas": {
+      "type": "number"
+    },
+    "tempoConsumido": {
+      "type": "string",
+      "mysql": {
+        "columnName": "tempo_consumido"
+      }
+    },
+    "concluida": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "gerProjEntregaprojetos": {
+      "type": "belongsTo",
+      "model": "GerProj_EntregaProjeto",
+      "foreignKey": "id_entrega_projeto_ra"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

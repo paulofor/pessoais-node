@@ -46,11 +46,11 @@
     "crenca": {
       "type": "string"
     },
-    "executando" : {
-      "type" : "number"
+    "executando": {
+      "type": "number"
     },
-    "tempoCompleto" : {
-      "type" : "number"
+    "tempoCompleto": {
+      "type": "number"
     }
   },
   "validations": [],

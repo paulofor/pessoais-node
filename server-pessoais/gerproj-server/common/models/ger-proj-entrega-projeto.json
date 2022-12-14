@@ -1,0 +1,51 @@
+{
+  "name": "GerProj_EntregaProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "entrega_projeto"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id_entrega_projeto"
+      }
+    },
+    "ordenacao": {
+      "type": "number"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "dataCriacao": {
+      "type": "date",
+      "mysql": {
+        "columnName": "data_criacao"
+      }
+    },
+    "folha": {
+      "type": "string"
+    },
+    "tempoTotal": {
+      "type": "string",
+      "mysql": {
+        "columnName": "tempo_total"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "gerProjProjetopmbok": {
+      "type": "belongsTo",
+      "model": "GerProj_ProjetoPmbok",
+      "foreignKey": "id_projeto_pmbok_ee"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

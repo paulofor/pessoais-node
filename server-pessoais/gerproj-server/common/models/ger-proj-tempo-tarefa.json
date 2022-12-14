@@ -3,33 +3,61 @@
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "mysql": {
+      "table": "tempo_tarefa"
+    }
   },
   "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id_tempo_tarefa"
+      }
+    },
     "data": {
-      "type": "string"
+      "type": "date"
     },
     "horaInicio": {
-      "type": "string"
+      "type": "date",
+      "mysql": {
+        "columnName": "hora_inicio"
+      }
     },
     "horaFim": {
-      "type": "string"
+      "type": "date",
+      "mysql": {
+        "columnName": "hora_fim"
+      }
     },
     "tarefaId": {
-      "type": "number"
+      "type": "number",
+      "mysql": {
+        "columnName": "id_tarefa_cp"
+      }
     },
     "usuarioId": {
-      "type": "number"
-    },
-    "iteracaoEntregaId": {
-      "type": "number"
+      "type": "number",
+      "mysql": {
+        "columnName": "id_usuario_p"
+      }
     },
     "localTarefaId": {
-      "type": "number"
+      "type": "number",
+      "mysql": {
+        "columnName": "id_local_tarefa_fe"
+      }
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "gerProjIteracaoentrega": {
+      "type": "belongsTo",
+      "model": "GerProj_IteracaoEntrega",
+      "foreignKey": "id_iteracao_entrega_cp"
+    }
+  },
   "acls": [],
   "methods": {
     "MaisRecenteHojeProjeto": {

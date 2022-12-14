@@ -11,13 +11,22 @@
   "properties": {
     "id": {
       "type": "number",
-      "id": true
+      "id": true,
+      "mysql": {
+        "columnName": "id_dia_semana"
+      }
     },
     "nome": {
       "type": "string"
     },
     "tempo": {
       "type": "string"
+    },
+    "usuarioId" : {
+      "type" : "number",
+      "mysql": {
+        "columnName": "id_usuario_p"
+      }
     }
   },
   "validations": [],

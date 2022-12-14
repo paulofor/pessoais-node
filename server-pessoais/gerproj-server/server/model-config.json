@@ -94,5 +94,13 @@
   "GerProj_TempoTarefa": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "GerProj_IteracaoEntrega": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "GerProj_EntregaProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }
