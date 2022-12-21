@@ -1,0 +1,39 @@
+{
+  "name": "GerProj_AlocacaoTempo",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "alocacao_tempo2"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "mysql": {
+        "columnName": "id_alocacao_tempo"
+      }
+    },
+    "tempoPrevisto": {
+      "type": "date",
+      "mysql": {
+        "columnName": "tempo_previsto"
+      }
+    },
+    "tempoPrevistoStr" : {
+      "type" : "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "diaSemana": {
+      "type": "belongsTo",
+      "model": "DiaSemana",
+      "foreignKey": "id_dia_semana_gp"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

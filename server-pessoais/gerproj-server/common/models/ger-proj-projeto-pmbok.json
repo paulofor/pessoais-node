@@ -51,6 +51,15 @@
     },
     "tempoCompleto": {
       "type": "number"
+    },
+    "usuarioId": {
+      "type": "number",
+      "mysql": {
+        "columnName": "id_usuario_p"
+      }
+    },
+    "percentualTempoAlocado" : {
+      "type" : "number"
     }
   },
   "validations": [],
@@ -79,6 +88,16 @@
       "type": "hasMany",
       "model": "PossibilidadeReceitaProjeto",
       "foreignKey": ""
+    },
+    "gerProjAlocacaotempos": {
+      "type": "hasMany",
+      "model": "GerProj_AlocacaoTempo",
+      "foreignKey": "id_projeto_pmbok_pa"
+    },
+    "gerProjEntregaprojetos": {
+      "type": "hasMany",
+      "model": "GerProj_EntregaProjeto",
+      "foreignKey": "id_projeto_pmbok_ee"
     }
   },
   "acls": [],
@@ -154,6 +173,25 @@
         {
           "path": "/tempoMes",
           "verb": "get"
+        }
+      ]
+    },
+    "CalculaTempoProjetos": {
+      "accepts": [
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object'",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/calculaTempoProjetos",
+          "verb": "post"
         }
       ]
     },

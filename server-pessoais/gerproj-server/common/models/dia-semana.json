@@ -22,15 +22,21 @@
     "tempo": {
       "type": "string"
     },
-    "usuarioId" : {
-      "type" : "number",
+    "usuarioId": {
+      "type": "number",
       "mysql": {
         "columnName": "id_usuario_p"
       }
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "gerProjAlocacaotempos": {
+      "type": "hasMany",
+      "model": "GerProj_AlocacaoTempo",
+      "foreignKey": "id_dia_semana_gp"
+    }
+  },
   "acls": [],
   "methods": {
     "ObtemCorrent": {

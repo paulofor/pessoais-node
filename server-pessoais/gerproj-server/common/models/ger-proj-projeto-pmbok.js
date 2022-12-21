@@ -451,6 +451,26 @@ module.exports = function (Gerprojprojetopmbok) {
 
     };
 
+    Gerprojprojetopmbok.CalculaTempoProjetos = function(callback) {
+        let sql = "update projeto_pmbok " +
+            " set tempo_alocado_semana = (select sec_to_time(sum(time_to_sec(tempo_previsto))) from alocacao_tempo2 " +
+            " where alocacao_tempo2.id_projeto_pmbok_pa = projeto_pmbok.id_projeto_pmbok) " +
+            " where ativo = 'S' and id_usuario_p = 1";
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql, (err,result) => {
+            let sqlTotal = "select sum(time_to_sec(tempo_alocado_semana)) as total " +
+                    " from projeto_pmbok where ativo = 'S' and id_usuario_p = 1";
+            ds.connector.query(sqlTotal, (err,resultTotal) => {
+                let total = resultTotal[0].total;
+                let sqlPercentual = "update projeto_pmbok " +
+                    " set percentualTempoAlocado = (select (time_to_sec(tempo_alocado_semana) / " + total + ") * 100) " +
+                    " where ativo = 'S' and id_usuario_p = 1";
+                ds.connector.query(sqlPercentual, callback)
+            })
+        })
+    }
+
+
     /**
     * 
     * @param {number} mes 
