@@ -20,7 +20,7 @@
       "type": "string"
     },
     "tempo": {
-      "type": "string"
+      "type": "date"
     },
     "usuarioId": {
       "type": "number",

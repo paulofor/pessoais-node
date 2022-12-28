@@ -35,5 +35,24 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "AtualizaListaComProjeto": {
+      "accepts": [
+        {
+          "arg": "lista",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaListaComProjeto",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
