@@ -22,8 +22,8 @@
         "columnName": "tempo_previsto"
       }
     },
-    "tempoPrevistoStr" : {
-      "type" : "string"
+    "tempoPrevistoStr": {
+      "type": "string"
     }
   },
   "validations": [],

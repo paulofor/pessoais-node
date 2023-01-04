@@ -58,8 +58,8 @@
         "columnName": "id_usuario_p"
       }
     },
-    "percentualTempoAlocado" : {
-      "type" : "number"
+    "percentualTempoAlocado": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -98,6 +98,11 @@
       "type": "hasMany",
       "model": "GerProj_EntregaProjeto",
       "foreignKey": "id_projeto_pmbok_ee"
+    },
+    "gerProjProdutoestrategico": {
+      "type": "belongsTo",
+      "model": "GerProj_ProdutoEstrategico",
+      "foreignKey": "id_produto_estrategico_ra"
     }
   },
   "acls": [],
@@ -177,8 +182,7 @@
       ]
     },
     "CalculaTempoProjetos": {
-      "accepts": [
-      ],
+      "accepts": [],
       "returns": [
         {
           "arg": "saida",

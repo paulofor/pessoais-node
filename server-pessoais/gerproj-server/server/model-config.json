@@ -106,5 +106,9 @@
   "GerProj_AlocacaoTempo": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "GerProj_ProdutoEstrategico": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }
