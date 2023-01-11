@@ -44,6 +44,11 @@
       "type": "belongsTo",
       "model": "GerProj_ProjetoPmbok",
       "foreignKey": "id_projeto_pmbok_ee"
+    },
+    "gerProjIteracaoentregas": {
+      "type": "hasMany",
+      "model": "GerProj_IteracaoEntrega",
+      "foreignKey": "id_entrega_projeto_ra"
     }
   },
   "acls": [],

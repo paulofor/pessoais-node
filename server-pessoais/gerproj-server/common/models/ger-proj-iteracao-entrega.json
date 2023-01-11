@@ -34,8 +34,11 @@
         "columnName": "data_final"
       }
     },
-    "horas": {
-      "type": "number"
+    "tempoPrevisto": {
+      "type": "date",
+      "mysql": {
+        "columnName": "horas"
+      }
     },
     "tempoConsumido": {
       "type": "string",
@@ -44,7 +47,19 @@
       }
     },
     "concluida": {
-      "type": "number"
+      "type": "string"
+    },
+    "dataInicioReal": {
+      "type": "date",
+      "mysql": {
+        "columnName": "data_inicio_real"
+      }
+    },
+    "dataFinalReal": {
+      "type": "date",
+      "mysql": {
+        "columnName": "date_final_real"
+      }
     }
   },
   "validations": [],
