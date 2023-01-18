@@ -60,6 +60,18 @@
       "mysql": {
         "columnName": "date_final_real"
       }
+    },
+    "tempoRestante": {
+      "type": "date",
+      "mysql": {
+        "columnName": "tempo_restante"
+      }
+    },
+    "semanaRestante" : {
+      "type": "number",
+      "mysql": {
+        "columnName": "semana_restante"
+      }
     }
   },
   "validations": [],

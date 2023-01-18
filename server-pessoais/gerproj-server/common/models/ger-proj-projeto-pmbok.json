@@ -107,6 +107,24 @@
   },
   "acls": [],
   "methods": {
+    "AtualizaConsumo": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaConsumo",
+          "verb": "post"
+        }
+      ]
+    },
     "TotalDiaCorrente": {
       "accepts": [],
       "returns": [
