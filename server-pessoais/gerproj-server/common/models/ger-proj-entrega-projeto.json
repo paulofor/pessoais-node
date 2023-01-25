@@ -36,6 +36,9 @@
       "mysql": {
         "columnName": "tempo_total"
       }
+    },
+    "destino": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -52,5 +55,81 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "SobeItem": {
+      "accepts": [
+        {
+          "arg": "idEntrega",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/sobeItem",
+          "verb": "post"
+        }
+      ]
+    },
+    "DesceItem": {
+      "accepts": [
+        {
+          "arg": "idEntrega",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/desceItem",
+          "verb": "post"
+        }
+      ]
+    },
+    "CriaEntrega": {
+      "accepts": [
+        {
+          "arg": "entrega",
+          "type": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/criaEntrega",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

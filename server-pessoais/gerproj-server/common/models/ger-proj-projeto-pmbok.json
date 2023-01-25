@@ -103,6 +103,11 @@
       "type": "belongsTo",
       "model": "GerProj_ProdutoEstrategico",
       "foreignKey": "id_produto_estrategico_ra"
+    },
+    "gerProjEntregaProjetoAtual": {
+      "type": "belongsTo",
+      "model": "GerProj_EntregaProjeto",
+      "foreignKey": "id_entrega_projeto_atual"
     }
   },
   "acls": [],
@@ -165,6 +170,50 @@
         {
           "path": "/tempoAno",
           "verb": "get"
+        }
+      ]
+    },
+    "AtualizaAtual": {
+      "accepts": [
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaAtual",
+          "verb": "post"
+        }
+      ]
+    },
+    "LigaDesligaProjeto": {
+      "accepts": [
+        {
+          "arg": "idProjeto",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/ligaDesligaProjeto",
+          "verb": "post"
         }
       ]
     },

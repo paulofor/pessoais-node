@@ -150,6 +150,32 @@ group by id_projeto_pmbok, nome, apelido, tempo_previsto
 module.exports = function (Gerprojprojetopmbok) {
 
 
+    Gerprojprojetopmbok.LigaDesligaProjeto = function(idProjeto, callback) {
+        //console.log('id:' , idIteracao);
+        let ds = Gerprojprojetopmbok.dataSource;
+        Gerprojprojetopmbok.findById(idProjeto, (err,result) => {
+            //console.log('Err:' , err);
+            let novo = (result.ativo=='S'?'N':'S');
+            let sql = "update projeto_pmbok set ativo = '" + novo + "' where id_projeto_pmbok = " + idProjeto;
+            ds.connector.query(sql, callback);    
+            });
+    }
+
+    Gerprojprojetopmbok.AtualizaAtual = function(callback) {
+        let sql = "update projeto_pmbok " +
+            " set id_entrega_projeto_atual = ( " +
+            " select id_entrega_projeto from entrega_projeto " +
+            " inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto " +
+            " where entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
+            " and iteracao_entrega.concluida = 'N' " +
+            " order by ordenacao asc " +
+            " limit 1) ";
+        let ds = Gerprojprojetopmbok.dataSource;
+        ds.connector.query(sql,callback);
+    }
+
+
+
     Gerprojprojetopmbok.AtualizaConsumo = function(callback) {
         let sql = "update iteracao_entrega " +
                 " set tempo_consumido = ( " +

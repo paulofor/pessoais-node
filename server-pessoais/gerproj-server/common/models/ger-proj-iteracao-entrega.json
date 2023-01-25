@@ -35,7 +35,7 @@
       }
     },
     "tempoPrevisto": {
-      "type": "date",
+      "type": "string",
       "mysql": {
         "columnName": "horas"
       }
@@ -67,7 +67,7 @@
         "columnName": "tempo_restante"
       }
     },
-    "semanaRestante" : {
+    "semanaRestante": {
       "type": "number",
       "mysql": {
         "columnName": "semana_restante"
@@ -83,5 +83,31 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "LigaDesliga": {
+      "accepts": [
+        {
+          "arg": "idIteracao",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/listaDesliga",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
