@@ -157,8 +157,16 @@ module.exports = function (Gerprojprojetopmbok) {
             //console.log('Err:' , err);
             let novo = (result.ativo=='S'?'N':'S');
             let sql = "update projeto_pmbok set ativo = '" + novo + "' where id_projeto_pmbok = " + idProjeto;
-            ds.connector.query(sql, callback);    
-            });
+            if (novo=="N") {
+                let sql2 = "update alocacao_tempo2 set tempo_previsto = 0, tempoPrevistoStr = '00:00:00' " +
+                    " where id_projeto_pmbok_pa = " + idProjeto;
+                ds.connector.query(sql2,(err,result) => {
+                    ds.connector.query(sql, callback);
+                })
+            } else {
+                ds.connector.query(sql, callback);     
+            }
+        });
     }
 
     Gerprojprojetopmbok.AtualizaAtual = function(callback) {
@@ -190,12 +198,17 @@ module.exports = function (Gerprojprojetopmbok) {
             " inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
             " where iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto) ";
         let sql4 = "update iteracao_entrega " +
-            " set data_final = date_add(now(), interval ceil(semana_restante) week) "
+            " set data_final = date_add(now(), interval ceil(semana_restante) week) ";
+        let sql5 = "update iteracao_entrega " +
+            " set percentualConsumido = (time_to_sec(tempo_consumido) / time_to_sec(horas)) * 100, " +
+            " percentualRestante = (time_to_sec(tempo_restante) / time_to_sec(horas)) * 100";
         let ds = Gerprojprojetopmbok.dataSource;
         ds.connector.query(sql,(err,result) => {
             ds.connector.query(sql2,(err1,result1) => {
                     ds.connector.query(sql3,(err2,result2)=> {
-                        ds.connector.query(sql4,callback);
+                        ds.connector.query(sql4,(err3,result3) => {
+                            ds.connector.query(sql5,callback);
+                        });
                     });
             });
         });
@@ -231,7 +244,7 @@ module.exports = function (Gerprojprojetopmbok) {
             " where id_projeto_pmbok = " + idProjeto; 
         let sql2 = "update projeto_pmbok " +
             " set executando = 0 " +
-            " where id_projeto_pmbok = " + idProjeto + " and executando = 2"
+            " where id_projeto_pmbok = " + idProjeto + " and executando = 2";
         let ds = Gerprojprojetopmbok.dataSource;
         ds.connector.query(sql1, (err,result) => {
             ds.connector.query(sql2, callback);
@@ -311,14 +324,16 @@ module.exports = function (Gerprojprojetopmbok) {
                 " sec_to_time(time_to_sec(tempo_previsto) - sum(seg)) tempo_restante, \n" +
                 " time_to_sec(tempo_previsto) - coalesce(sum(seg),0) seg_restante, \n" +
                 " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo, \n" +
-                " descricao as entregaDescricao \n " +
+                " descricao as entregaDescricao, \n " +
+                " data_previsao_planejada, tempo_restante as tempoRestanteTotal, percentualConsumido, \n" +
+                " objetivo as entregaObjetivo \n" +
                 " from \n" +
                 " # tab2 \n " +
                 " ( \n" +
                 " select id_projeto_pmbok, nome, apelido, executando, tempoCompleto, tempo_previsto,  \n" +
                 " time_to_sec(tempo_tarefa.hora_fim) - time_to_sec(tempo_tarefa.hora_inicio) as seg, \n" +
                 " tempo_tarefa.hora_inicio, tempo_tarefa.hora_fim, \n" +
-                "  entrega_projeto.* \n" +
+                "  entrega_projeto.* , iteracao_entrega.* \n" +
                 " from \n" +
                 " ( \n" +
                 " select projeto.id_projeto_pmbok, projeto.nome, projeto.apelido, projeto.executando, projeto.tempoCompleto, tempo_previsto \n" +

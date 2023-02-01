@@ -72,6 +72,12 @@
       "mysql": {
         "columnName": "semana_restante"
       }
+    },
+    "percentualConsumido": {
+      "type": "number"
+    },
+    "percentualRestante": {
+      "type": "number"
     }
   },
   "validations": [],

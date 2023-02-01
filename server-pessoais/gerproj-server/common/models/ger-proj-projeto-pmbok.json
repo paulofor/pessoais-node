@@ -174,8 +174,7 @@
       ]
     },
     "AtualizaAtual": {
-      "accepts": [
-      ],
+      "accepts": [],
       "returns": [
         {
           "arg": "saida",

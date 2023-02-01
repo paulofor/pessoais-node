@@ -37,6 +37,9 @@
         "columnName": "tempo_total"
       }
     },
+    "objetivo": {
+      "type": "string"
+    },
     "destino": {
       "type": "string"
     }
@@ -106,7 +109,7 @@
         }
       ]
     },
-    "CriaEntrega": {
+    "AtualizaEntrega": {
       "accepts": [
         {
           "arg": "entrega",
@@ -126,7 +129,7 @@
       "description": "",
       "http": [
         {
-          "path": "/criaEntrega",
+          "path": "/atualizaEntrega",
           "verb": "post"
         }
       ]

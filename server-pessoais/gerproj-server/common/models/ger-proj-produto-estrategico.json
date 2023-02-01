@@ -27,7 +27,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "gerProjProjetopmboks": {
+      "type": "hasMany",
+      "model": "GerProj_ProjetoPmbok",
+      "foreignKey": "id_produto_estrategico_ra"
+    }
+  },
   "acls": [],
   "methods": {}
 }

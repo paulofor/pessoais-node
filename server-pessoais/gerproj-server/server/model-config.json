@@ -110,5 +110,9 @@
   "GerProj_ProdutoEstrategico": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "PlataformaDigital": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }
