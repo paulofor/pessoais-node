@@ -164,7 +164,9 @@ module.exports = function (Gerprojprojetopmbok) {
                     ds.connector.query(sql, callback);
                 })
             } else {
-                ds.connector.query(sql, callback);     
+                app.models.GerProj_AlocacaoTempo.CriaParaProjeto(idProjeto,(err,result) => {
+                    ds.connector.query(sql, callback);    
+                })
             }
         });
     }
@@ -444,9 +446,9 @@ module.exports = function (Gerprojprojetopmbok) {
             ' order by tempo desc ';
         */
 
-       let sql = " select * " + 
-        " from " +
-        " ( " +
+       let sql = " select * \n" + 
+        " from \n" +
+        " ( \n" +
         " (select id_sistema as id, nome, 'Sistema' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
         " , SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos, " +
         " '-' as objetivo, '-' as resultado " +
@@ -479,7 +481,7 @@ module.exports = function (Gerprojprojetopmbok) {
         " union all " +
         " (select id_projeto_pmbok as id, nome, 'Pmbok' as tipo, SEC_TO_TIME(SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio))) as tempo " +
         " ,SUM(TIME_TO_SEC(hora_fim) - TIME_TO_SEC(hora_inicio)) as segundos,  " +
-        " objetivo, resultado " +
+        " projeto_pmbok.objetivo, resultado " +
         " from projeto_pmbok " +
         " inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = id_projeto_pmbok " +
         " inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto " +
@@ -489,32 +491,36 @@ module.exports = function (Gerprojprojetopmbok) {
         " group by id_projeto_pmbok, nome) " +
         " ) as tab order by tempo desc";
        
-        //console.log('sql:' + sql);
+        console.log('sql:' + sql);
 
         let ds = Gerprojprojetopmbok.dataSource;
         ds.connector.query(sql, (err,resultado) => {
-            //console.log('err', err);
+            console.log('err', err);
             //let tempoTotal = resultado.reduce((total, item) => { total + 1 });
 
             var total = resultado.reduce((acumulador, item, indice, original) => {
-            return acumulador += item.segundos;
+                return acumulador += item.segundos;
             }, 0);
            
 
             //console.log('Total' , total);
-            callback(err,resultado.map((item) => {
+
+            let saida = resultado.map((item) => {
                 var perc = item.segundos / total;
                 item['percentual'] = perc * 100;
                 let filtro = {'where' : {'gerProjProjetopmbokId' : item.id} }
                 
                 app.models.RendaPassivaProjeto.find(filtro, (erro,result) => {
                     console.log('item:' , JSON.stringify(item));
-                //    console.log('result:' , JSON.stringify(result));
-                //    console.log('erro:' , JSON.stringify(erro));
-                    //item['rendaPassivaProjetos'] = result;
                     return item;
                 })
-            }));
+            })
+            callback(err,resultado.map((item) => {
+                var perc = item.segundos / total;
+                item['percentual'] = perc * 100;
+                return item;
+            }))
+            
         });
 
     };

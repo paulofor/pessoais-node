@@ -4,6 +4,25 @@ var app = require('../../server/server');
 
 module.exports = function(Gerprojalocacaotempo) {
 
+
+    Gerprojalocacaotempo.CriaParaProjeto = function(idProjeto,callback) {
+        let sql = "select * from alocacao_tempo2 where id_projeto_pmbok_pa = " + idProjeto;
+        let ds = Gerprojalocacaotempo.dataSource;
+        ds.connector.query(sql,(err,result) => {
+            if (result.length==0) {
+                let sql2 = " insert into alocacao_tempo2 (tempo_previsto,tempoPrevistoStr,id_projeto_pmbok_pa,id_dia_semana_gp) " +
+                    " select '00:00:00' as tempo_previsto, '00:00:00' as tempoPrevistoStr, " + idProjeto + " as id_projeto_pmbok_pa, " +
+                    " id_dia_semana as id_dia_semana_gp " +
+                    " from dia_semana " +
+                    " where id_usuario_p = 1 ";
+                ds.connector.query(sql2,callback)
+            } else {
+                callback(null,{});
+            }
+        })
+    }
+
+
     Gerprojalocacaotempo.AtualizaListaComProjeto = function(lista,callback) {
         //console.log('Recebi a lista' , lista);
         //var listaProcesso2 = listaVersaoRecurso.lista;

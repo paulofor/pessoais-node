@@ -5,19 +5,15 @@ var app = require('../../server/server');
 module.exports = function(Gerprojentregaprojeto) {
 
 
+    Gerprojentregaprojeto.FechaEntrega = function(idEntrega, callback) {
+        let sql = "update iteracao_entrega set date_final_real = now(), concluida = 'S' where numero_iteracao = 1 and id_entrega_projeto_ra =  " + idEntrega;
+        let ds = Gerprojentregaprojeto.dataSource;
+        ds.connector.query(sql,callback);
+    }
+
+
  
 
-
-    Gerprojentregaprojeto.LigaDesliga = function(idEntrega, callback) {
-        console.log('id:' , idEntrega);
-        let ds = Gerprojentregaprojeto.dataSource;
-        Gerprojentregaprojeto.findById(idEntrega, (err,result) => {
-            console.log('Err:' , err);
-            let novo = (result.concluida=='S'?'N':'S');
-            let sql = "update entrega_projeto set concluida = '" + novo + "' ";
-            ds.connector.query(sql, callback);
-        })
-    }
 
     Gerprojentregaprojeto.SobeItem = function(idEntrega, callback) {
         let ds = Gerprojentregaprojeto.dataSource;

@@ -24,6 +24,12 @@
     },
     "ativo": {
       "type": "string"
+    },
+    "segundoConsumido" : {
+      "type" : "number"
+    },
+    "tempoConsumido" : {
+      "type" : "date"
     }
   },
   "validations": [],
@@ -35,5 +41,24 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "AtualizaConsumoProdutoProjeto": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaConsumoProdutoProjeto",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

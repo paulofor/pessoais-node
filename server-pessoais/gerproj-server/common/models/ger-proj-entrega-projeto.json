@@ -59,6 +59,31 @@
   },
   "acls": [],
   "methods": {
+    "FechaEntrega": {
+      "accepts": [
+        {
+          "arg": "idEntrega",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/fechaEntrega",
+          "verb": "post"
+        }
+      ]
+    },
     "SobeItem": {
       "accepts": [
         {

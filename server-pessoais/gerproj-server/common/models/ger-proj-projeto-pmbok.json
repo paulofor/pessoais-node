@@ -60,6 +60,18 @@
     },
     "percentualTempoAlocado": {
       "type": "number"
+    },
+    "segundoConsumido" : {
+      "type" : "number"
+    },
+    "tempoConsumido" : {
+      "type" : "date"
+    },
+    "primeiraData" : {
+      "type" : "date"
+    },
+    "ultimaData" : {
+      "type" : "date"
     }
   },
   "validations": [],
