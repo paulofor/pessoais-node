@@ -5,6 +5,38 @@ var app = require('../../server/server');
 module.exports = function(Gerprojentregaprojeto) {
 
 
+    /*
+    Gerprojentregaprojeto.AtualizaAtual = function(callback) {
+        let sql = "select * from " +
+            " ( " +
+            " select " +
+            " ( " +
+            " select id_entrega_projeto from entrega_projeto  " +
+            " inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto " +
+            " where entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
+            " and concluida = 'N' and numero_iteracao = 1 " +
+            " order by ordenacao limit 1) as id_entrega  " +
+            " from projeto_pmbok " +
+            " ) tab  " +
+            " where id_entrega is not null";
+        let ds = Gerprojentregaprojeto.dataSource;
+        ds.connector.query(sql,(err,result) => {
+            let listaId = [];
+            for (let i=0;i<result.length;i++) {
+                listaId.push(result[i].id_entrega)
+            }
+            let lista = listaId.join(",");
+            let sql2 = "update entrega_projeto set atual = 0";
+            ds.connector.query(sql2,(err2,result2) => {
+                let sql3 = "update entrega_projeto set atual = 1 where id_entrega_projeto in (" + lista + ")";
+                console.log(sql3);
+                ds.connector.query(sql3,callback);
+            })
+        });
+    }
+    */
+
+
     Gerprojentregaprojeto.FechaEntrega = function(idEntrega, callback) {
         let sql = "update iteracao_entrega set date_final_real = now(), concluida = 'S' where numero_iteracao = 1 and id_entrega_projeto_ra =  " + idEntrega;
         let ds = Gerprojentregaprojeto.dataSource;

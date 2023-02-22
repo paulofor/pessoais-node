@@ -1,0 +1,107 @@
+{
+  "name": "EntregaProjetoFoto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dataFoto": {
+      "type": "date",
+      "id" : true
+    },
+    "projetoId": {
+      "type": "number",
+      "id" : true
+    },
+    "projetoNome": {
+      "type": "string"
+    },
+    "produtoEstrategicoId": {
+      "type": "number"
+    },
+    "usuarioId": {
+      "type": "number"
+    },
+    "projetoTempoAlocadoSemana": {
+      "type": "string"
+    },
+    "projetoObjetivo": {
+      "type": "string"
+    },
+    "projetoPercentualTempoAlocado": {
+      "type": "number"
+    },
+    "entregaProjetoAtualId": {
+      "type": "number"
+    },
+    "projetoSegundoConsumido": {
+      "type": "number"
+    },
+    "projetoTempoConsumido": {
+      "type": "string"
+    },
+    "entregaOrdenacao": {
+      "type": "number"
+    },
+    "entregaDescricao": {
+      "type": "string"
+    },
+    "entregaDataCriacao": {
+      "type": "date"
+    },
+    "entregaObjetivo": {
+      "type": "string"
+    },
+    "entregaDestino": {
+      "type": "string"
+    },
+    "iteracaoDataPrevisao": {
+      "type": "date"
+    },
+    "iteracaoTempoAlocado": {
+      "type": "string"
+    },
+    "iteracaoTempoConsumido": {
+      "type": "string"
+    },
+    "iteracaoTempoRestante": {
+      "type": "string"
+    },
+    "iteracaoSemanaRestante": {
+      "type": "number"
+    },
+    "iteracaoPercentualConsumido": {
+      "type": "number"
+    },
+    "iteracaoPercentualRestante": {
+      "type": "number"
+    },
+    "versaoAtual": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "CriaFoto": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/criaFoto",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

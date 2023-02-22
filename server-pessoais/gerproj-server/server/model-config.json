@@ -114,5 +114,9 @@
   "PlataformaDigital": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "EntregaProjetoFoto": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

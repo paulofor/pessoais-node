@@ -54,7 +54,7 @@
         }
       ]
     },
-    "CriaParaProjeto" : {
+    "CriaParaProjeto": {
       "accepts": [
         {
           "arg": "idProjeto",
