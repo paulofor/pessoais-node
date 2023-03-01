@@ -328,7 +328,7 @@ module.exports = function (Gerprojprojetopmbok) {
                 " time_to_sec(now()) - time_to_sec(max(hora_fim)) intervalo_tempo, \n" +
                 " descricao as entregaDescricao, \n " +
                 " data_previsao_planejada, tempo_restante as tempoRestanteTotal, percentualConsumido, \n" +
-                " objetivo as entregaObjetivo, horas as tempoTotal, tempo_consumido as tempoConsumido \n" +
+                " objetivo as entregaObjetivo, horas as tempoTotal, tempo_consumido as tempoConsumido, data_final as dataFinal \n" +
                 " from \n" +
                 " # tab2 \n " +
                 " ( \n" +
