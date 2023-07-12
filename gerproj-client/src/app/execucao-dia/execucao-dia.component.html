@@ -1,9 +1,10 @@
 <div class="dgc-painel" *ngIf="listaBase">
 
-  <div class="dgc-painel-header">
-    <span>Previsto: {{totalDia.tempoPrevisto}}   Executado: {{totalDia.tempoExecutado}}</span>
+  <div class="dgc-painel-header" *ngIf="totalDia">
+    <span>Previsto: {{totalDia.tempoPrevisto}}   Executado: {{totalDia.tempoExecutadoPlanejado}} 
+      ( {{ ((totalDia.segExecutadoPlanejado/totalDia.segPrevisto) * 100) | number: '1.0-0' }}% )</span>
     <div class="dgc-direita">
-      <button mat-flat-button color="primary" (click)="edita()">Novo</button>
+      <span class="dgc-vermelho">({{totalDia.tempoFaltandoPlanejado}})</span>
     </div>
 
   </div>
@@ -13,20 +14,39 @@
 
     <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
       <div class="dgc-card-header">
-        {{item.nome}}
+        <a routerLink="/detalheProjeto/{{item.id_projeto_pmbok}}">{{item.nome}}</a>
+        <div class="dgc-direita" *ngIf="(item.seg_restante<0)">
+          <img height="28" width="28" src="assets/img/check.jpg" />
+        </div>
       </div>
    
       <div class="dgc-card-detalhe">
         <div>Previsto: {{item.tempo_previsto}} </div>
-        <div>
+        <div *ngIf="(item.tempoCompleto==0)">
           <span>Executado: {{item.tempo_executado}} -  </span>
           <span class="{{classeRestante(item)}}">({{item.tempo_restante}})</span>
+        </div>
+        <div *ngIf="(item.tempoCompleto==1)">
+          <span>Executado: {{item.tempo_executado}}</span>
+        </div>
+      </div>
+
+      <div class="dgc-card-detalhe">
+        <img height="24" width="24" src="assets/img/servico-de-entrega-ao-domicilio.png" />
+        <div class="gerpoj-entrega-corrente-nome">{{item.entregaDescricao}}</div>
+        <div class="gerproj-entrega-corrente-objetivo">{{item.entregaObjetivo}}</div>
+        <div class="gerproj-entrega-corrente-tempo">{{item.tempoConsumido}} ({{item.percentualConsumido| number : '1.1-1'}}%) de {{item.tempoTotal}} =&gt;  
+          <span class="gerproj-entrega-corrente-previsao">{{item.dataFinal | date : 'dd-MM-yyy' : 'UTC'}}</span>
         </div>
       </div>
 
 
       <div class="dgc-card-comandos">
-        <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+        <button mat-stroked-button color="warn" *ngIf="(item.tempoCompleto==0)" (click)="completo(item)">Completo</button>
+        <button mat-stroked-button color="accent" *ngIf="(item.tempoCompleto==1)" (click)="completo(item)">Completo</button>
+        <button mat-flat-button color="accent" *ngIf="(item.executando==1)" (click)="atualiza(item)">Atualizar</button>
+        <button mat-flat-button color="primary" *ngIf="(item.executando==1)" (click)="atrasa(item)">2 minutos</button>
+        <button mat-flat-button color="primary" (click)="iniciar(item)">Iniciar</button>
       </div>
     </div>
   </div>

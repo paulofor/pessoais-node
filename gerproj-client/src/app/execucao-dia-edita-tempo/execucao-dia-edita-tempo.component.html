@@ -1,17 +1,15 @@
-<h2 mat-dialog-title>Projeto: {{item.nome}}</h2>
+<h2 *ngIf="item" mat-dialog-title>Projeto: {{item.nome}}</h2>
 
 <form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
     <div height="250px">
       <mat-form-field class="example-full-width">
-        <textarea matInput maxlength="250" #objetivo [(ngModel)]="item.objetivo" name="objetivo"
-          placeholder="Objetivo"></textarea>
+        <input matInput maxlength="200" datetime="HH:mm:ss" #hora_inicio [(ngModel)]="item.horaInicio" name="hora_inicio" placeholder="Inicial" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <textarea matInput maxlength="250" #resultado [(ngModel)]="item.resultado" name="resultado"
-          placeholder="Resultado"></textarea>
+        <input matInput maxlength="200" datetime="HH:mm:ss" #hora_fim [(ngModel)]="item.horaFim" name="hora_fim" placeholder="Atual" />
       </mat-form-field>
 
      

@@ -1,26 +1,31 @@
 /* tslint:disable */
+import {
+  GerProj_IteracaoEntrega
+} from '../index';
 
 declare var Object: any;
 export interface GerProj_TempoTarefaInterface {
-  "data"?: string;
-  "horaInicio"?: string;
-  "horaFim"?: string;
+  "id"?: number;
+  "data"?: Date;
+  "horaInicio"?: Date;
+  "horaFim"?: Date;
   "tarefaId"?: number;
   "usuarioId"?: number;
-  "iteracaoEntregaId"?: number;
   "localTarefaId"?: number;
-  "id"?: number;
+  "id_iteracao_entrega_cp"?: number;
+  gerProjIteracaoentrega?: GerProj_IteracaoEntrega;
 }
 
 export class GerProj_TempoTarefa implements GerProj_TempoTarefaInterface {
-  "data": string;
-  "horaInicio": string;
-  "horaFim": string;
+  "id": number;
+  "data": Date;
+  "horaInicio": Date;
+  "horaFim": Date;
   "tarefaId": number;
   "usuarioId": number;
-  "iteracaoEntregaId": number;
   "localTarefaId": number;
-  "id": number;
+  "id_iteracao_entrega_cp": number;
+  gerProjIteracaoentrega: GerProj_IteracaoEntrega;
   constructor(data?: GerProj_TempoTarefaInterface) {
     Object.assign(this, data);
   }
@@ -54,17 +59,21 @@ export class GerProj_TempoTarefa implements GerProj_TempoTarefaInterface {
       path: 'GerProj_TempoTarefas',
       idName: 'id',
       properties: {
+        "id": {
+          name: 'id',
+          type: 'number'
+        },
         "data": {
           name: 'data',
-          type: 'string'
+          type: 'Date'
         },
         "horaInicio": {
           name: 'horaInicio',
-          type: 'string'
+          type: 'Date'
         },
         "horaFim": {
           name: 'horaFim',
-          type: 'string'
+          type: 'Date'
         },
         "tarefaId": {
           name: 'tarefaId',
@@ -74,20 +83,24 @@ export class GerProj_TempoTarefa implements GerProj_TempoTarefaInterface {
           name: 'usuarioId',
           type: 'number'
         },
-        "iteracaoEntregaId": {
-          name: 'iteracaoEntregaId',
-          type: 'number'
-        },
         "localTarefaId": {
           name: 'localTarefaId',
           type: 'number'
         },
-        "id": {
-          name: 'id',
+        "id_iteracao_entrega_cp": {
+          name: 'id_iteracao_entrega_cp',
           type: 'number'
         },
       },
       relations: {
+        gerProjIteracaoentrega: {
+          name: 'gerProjIteracaoentrega',
+          type: 'GerProj_IteracaoEntrega',
+          model: 'GerProj_IteracaoEntrega',
+          relationType: 'belongsTo',
+                  keyFrom: 'id_iteracao_entrega_cp',
+          keyTo: 'id'
+        },
       }
     }
   }

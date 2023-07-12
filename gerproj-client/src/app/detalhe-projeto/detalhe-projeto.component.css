@@ -1,0 +1,24 @@
+.dgc-card {
+    width: 460px;
+}
+.dgc-principal-card {
+    width: 100% !important;
+}
+
+.item-concluido {
+    color: rgb(167, 165, 165);
+}
+
+
+.item-futuro {
+    color: rgb(151, 150, 150);
+}
+
+.dgc-label {
+    display: inline-block;
+    width: 100px;
+}
+.dgc-valor {
+    display: inline-block;
+    width: 100px;
+}

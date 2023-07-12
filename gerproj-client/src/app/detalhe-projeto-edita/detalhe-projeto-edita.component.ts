@@ -33,6 +33,26 @@ export class DetalheProjetoEditaComponent extends BaseEditComponent {
     return new GerProj_GrupoProjeto();
   }
 
+  onSubmit() {
+    if (!this.item.id) {
+      this.servico.create(this.item, (err, obj) => {
+        console.log("Erro:" + err.message);
+      }).subscribe((e: any) => {
+        console.log(JSON.stringify(e));
+        this.dialog.close()
+      });
+    } else {
+      delete this.item['grupoProjeto'];
+      this.servico.updateAttributes(this.item.id, this.item, (err, obj) => {
+        console.log("Erro:" + err.message);
+      }).subscribe((e: any) => {
+        console.log(JSON.stringify(e));
+        this.dialog.close();
+      });
+    }
+  }
+
+
   /*
   ngOnInit() {
     console.log('data:' , this.data);

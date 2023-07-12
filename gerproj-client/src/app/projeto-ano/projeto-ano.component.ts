@@ -24,9 +24,6 @@ export class ProjetoAnoComponent extends BaseListComponent implements OnInit {
 
   carregaTela() {
     this.route.params.subscribe((params: Params) => {
-      let filtro = { 'include' : 
-                  {'relation': 'rendaPassivaProjetos' , 'scope' : {'include' : 'rendaPassiva'}} 
-                }
       this.ano = params['id'];
       this.srv.TempoAno(this.ano)
       .subscribe((lista:GerProj_ProjetoPmbok[]) => {

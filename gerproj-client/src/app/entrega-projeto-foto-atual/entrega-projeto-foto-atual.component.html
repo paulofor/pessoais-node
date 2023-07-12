@@ -1,0 +1,29 @@
+<div class="dgc-painel" *ngIf="listaBase">
+
+    <div class="dgc-painel-header">
+        <span>{{listaBase[0].dataFoto | date : 'dd/MM/yyyy' : 'UTC'}}</span>
+    </div>
+    <div *ngIf="listaBase" class="dgc-painel-principal">
+
+        <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+
+            <div class="dgc-card-header">
+                <div>
+                    <a routerLink="/detalheProjeto/{{item.projetoId}}">{{item.projetoNome}} ({{item.projetoTempoAlocadoSemana}})</a>
+                </div>
+            </div>
+            <div class="dgc-card-header">
+                <div>
+                    {{item.iteracaoDataPrevisao | date : 'dd/MM/yyyy'}}
+                </div>
+            </div>
+            <div class="dgc-card-detalhe">
+                <div class="btn-escala">{{item.entregaDescricao}}</div>
+                <div class="dgc-definicao-acompanhamento">{{item.entregaObjetivo}}</div>
+                <div class="btn-escala">{{item.iteracaoTempoConsumido}} ({{item.iteracaoPercentualConsumido| number : '1.1-1'}}%) de {{item.iteracaoTempoAlocado}} </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

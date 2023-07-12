@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GerProj_TempoTarefa } from '../../models/GerProj_TempoTarefa';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { GerProj_IteracaoEntrega } from '../../models/GerProj_IteracaoEntrega';
 
 
 /**
@@ -27,6 +28,36 @@ export class GerProj_TempoTarefaApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
+  }
+
+  /**
+   * Busca relação gerProjIteracaoentrega de belongsTo.
+   *
+   * @param {any} id GerProj_TempoTarefa id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
+   * </em>
+   */
+  public getGerProjIteracaoentrega(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/GerProj_TempoTarefas/:id/gerProjIteracaoentrega";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
   }
 
   /**
@@ -115,6 +146,99 @@ export class GerProj_TempoTarefaApi extends BaseLoopBackApi {
     let _postBody: any = {};
     let _urlParams: any = {};
     if (typeof idProjeto !== 'undefined' && idProjeto !== null) _urlParams.idProjeto = idProjeto;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `idProjeto` – `{number}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
+   * </em>
+   */
+  public AtualizaMaisRecenteProjeto(idProjeto: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/GerProj_TempoTarefas/atualizaMaisRecenteProjeto";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof idProjeto !== 'undefined' && idProjeto !== null) _urlParams.idProjeto = idProjeto;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `idProjeto` – `{number}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
+   * </em>
+   */
+  public IniciarTarefaProjeto(idProjeto: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/GerProj_TempoTarefas/iniciarTarefaProjeto";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof idProjeto !== 'undefined' && idProjeto !== null) _urlParams.idProjeto = idProjeto;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `idProjeto` – `{number}` - 
+   *
+   *  - `minuto` – `{number}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `GerProj_TempoTarefa` object.)
+   * </em>
+   */
+  public AtrasarTarefaProjeto(idProjeto: any = {}, minuto: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/GerProj_TempoTarefas/atrasarTarefaProjeto";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof idProjeto !== 'undefined' && idProjeto !== null) _urlParams.idProjeto = idProjeto;
+    if (typeof minuto !== 'undefined' && minuto !== null) _urlParams.minuto = minuto;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }

@@ -44,26 +44,41 @@ module.exports = function(Gerprojentregaprojeto) {
     }
 
 
- 
+    Gerprojentregaprojeto.TrocaProjetoEntrega = function(idEntrega,idProjetoNov, callback) {
+        Gerprojentregaprojeto.findById(idEntrega, (err,result) => {
+            let sql1 = "update entrega_projeto set ordencao = ordencao - 1 where "
+        })
+    }
 
 
     Gerprojentregaprojeto.SobeItem = function(idEntrega, callback) {
+        //console.log('subindo item: ' , idEntrega);
         let ds = Gerprojentregaprojeto.dataSource;
         Gerprojentregaprojeto.findById(idEntrega, (err,result) => {
-            let sql = "update entrega_projeto set ordenacao = ordenacao - 1 where ordenacao = " + (result.ordenacao + 1);
+            //console.log(result);
+            //console.log('err1-sobe: ' , err);
+            let sql = "update entrega_projeto set ordenacao = ordenacao - 1 where ordenacao = " + (result.ordenacao + 1)  +
+                "  and id_projeto_pmbok_ee = " + result.id_projeto_pmbok_ee;
             ds.connector.query(sql, (err,result) => {
-             let sql2 = "update entrega_projeto set ordenacao = ordenacao + 1 where id_entrega_projeto = " + result.id_entrega_projeto;
+             //console.log('err2-sobe: ' , err);                   
+             let sql2 = "update entrega_projeto set ordenacao = ordenacao + 1 where id_entrega_projeto = " + idEntrega;
              ds.connector.query(sql2,callback);
             })
          })
     }
 
     Gerprojentregaprojeto.DesceItem = function(idEntrega, callback) {
+        //console.log('descendo item: ' , idEntrega);
         let ds = Gerprojentregaprojeto.dataSource;
         Gerprojentregaprojeto.findById(idEntrega, (err,result) => {
-           let sql = "update entrega_projeto set ordenacao = ordenacao + 1 where ordenacao = " + (result.ordenacao - 1);
-           ds.connector.query(sql, (err,result) => {
-            let sql2 = "update entrega_projeto set ordenacao = ordenacao - 1 where id_entrega_projeto = " + result.id_entrega_projeto;
+            //console.log('entrega:' , result);
+            //console.log('err1-desce: ' , err);
+            let sql = "update entrega_projeto set ordenacao = ordenacao + 1 where ordenacao = " + (result.ordenacao - 1) +
+                "  and id_projeto_pmbok_ee = " + result.id_projeto_pmbok_ee;
+            //console.log('sql: ' , sql);
+            ds.connector.query(sql, (err,result) => {
+            //console.log('err2-desce: ' , err);
+            let sql2 = "update entrega_projeto set ordenacao = ordenacao - 1 where id_entrega_projeto = " + idEntrega;
             ds.connector.query(sql2,callback);
            })
         })
@@ -89,6 +104,27 @@ module.exports = function(Gerprojentregaprojeto) {
                 })
             })
         }
+    }
+
+
+    Gerprojentregaprojeto.AtualizaEntregaProjeto = function(entrega,callback) {
+        Gerprojentregaprojeto.findById(entrega.id, (err,entregaAnterior) => {
+            if (entrega.id_projeto_pmbok_ee!=entregaAnterior.id_projeto_pmbok_ee) {
+                // Processar a troca.
+                let sqlOrdenacaoAnterior = "update entrega_projeto set ordencao = ordenacao - 1 where ordenacao > " + entregaAnterior.ordenacao + " and " +
+                    " id_projeto_pmbok_ee = " + entregaAnterior.id_projeto_pmbok_ee;
+                console.log('sqlOrdenacaoAnterior:' , sqlOrdenacaoAnterior);
+                ds.connector.query(sqlOrdenacaoAnterior, (err,result) => {
+                    let sqlNovaOrdenacao = "select max(ordenacao) + 1 as nova from entrega_projeto where id_projeto_pmbok_ee = " + entrega.id_projeto_pmbok_ee;
+                    ds.connector.query(sqlNovaOrdenacao, (err1,result1) => {
+                        
+                    })
+                })
+            }
+        })
+
+
+       
     }
     
 };

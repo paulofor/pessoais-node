@@ -1,0 +1,84 @@
+<div class="dgc-painel" >
+
+  <form  *ngIf="projetoComPlano && listaDiaSemana" (ngSubmit)="onSubmit()" >,
+
+    <div id="chart">
+      <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [grid]="chartOptions.grid"
+      [stroke]="chartOptions.stroke"
+      [title]="chartOptions.title"
+    ></apx-chart>
+    </div>
+
+
+
+    <div class="card">
+      <div class="header">
+        <h4 class="title">Semana</h4>
+      </div>
+  
+      <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th width="28%">Projeto</th>
+              <th width="10%">Total Tempo</th>
+              <ng-container *ngFor="let dia of listaDiaSemana">
+                <th width="7%">{{dia.nome}}</th>
+              </ng-container>
+              <th width="5%"></th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <ng-container *ngFor="let dia of listaDiaSemana">
+                <td style='font-weight:bold;text-align:center;'>{{dia.tempo }}</td>
+              </ng-container>
+              <td></td>
+            </tr>
+            <tr *ngFor="let item of projetoComPlano;let i = index;">
+
+              <td>
+                <a routerLink="/detalheProjeto/{{item.id}}" class="gerproj-projeto-nome">{{(i+1)}} - {{item.nome}}</a>
+                <div *ngIf="item.gerProjEntregaProjetoAtual" class="gerpoj-entrega-corrente-nome">{{item.gerProjEntregaProjetoAtual.descricao}}
+                  <img height="16" width="16" src="assets/img/servico-de-entrega-ao-domicilio.png" />
+                </div>
+                <div *ngIf="item.gerProjEntregaProjetoAtual" class="gerproj-entrega-corrente-objetivo">{{item.gerProjEntregaProjetoAtual.objetivo}}</div>
+                <div *ngIf="item.gerProjEntregaProjetoAtual" class="gerproj-entrega-corrente-tempo">
+                  {{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].tempoConsumido}} ({{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].percentualConsumido| number : '1.1-1'}}%) de {{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].tempoPrevisto}} =&gt;  
+                  <span class="gerproj-entrega-corrente-previsao">{{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].dataFinal | date : 'dd-MM-yyy' : 'UTC'}}</span>
+                </div>
+              </td>
+
+              <td style='font-weight:bold;text-align:center;'>{{item.tempoAlocadoSemana}} ({{item.percentualTempoAlocado | number : '1.1-1'}}%)</td>
+              <td style='text-align:center;' *ngFor="let coluna of item.gerProjAlocacaotempos">
+                <mat-form-field style="width: 80px; ">
+                  <input [(ngModel)]="coluna.tempoPrevistoStr" matInput maxlength="8" size="8" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+              </td>
+              <td>
+                <button mat-button  color="warn" (click)="removeItem(item)">Desligar</button>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+  
+      </div>
+  
+    </div>
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+  </form>
+
+
+</div>
+

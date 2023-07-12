@@ -1,0 +1,28 @@
+{
+  "name": "RotinaDia",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "horariosTexto": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "faseEstiloRotina": {
+      "type": "belongsTo",
+      "model": "FaseEstiloRotina",
+      "foreignKey": ""
+    },
+    "tipoRotinaDia": {
+      "type": "belongsTo",
+      "model": "TipoRotinaDia",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,26 +1,89 @@
+<div class="dgc-painel" *ngIf="item">
+  
+  <div class="dgc-painel-header" *ngIf="item">
+    {{item.nome}}(#{{item.id}})
+    <a class="dgc-direita dgc-link" routerLink="/projetoPorProdutoEstrategico/{{item.gerProjProdutoestrategico.id}}">
+      {{item.gerProjProdutoestrategico.nome}}
+    </a>
+  </div>
 
-<div class="main-content" *ngIf="item">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="header">
-            <h4 class="title">{{item.nome}}</h4>
-            <button (click)="edita()" class="btn btn-sm btn-primary">Alterar</button>
-          </div>
-          <div class="content">
-            <p>Objetivo:</p>
-            <p>{{item.objetivo}}</p>
-            <p>Resultado:</p>
-            <p>{{item.resultado}}</p>
-            <p>Crença:</p>
-            <p>{{item.crenca}}</p>
-            <p>Grupo:</p>
-            <p>{{(item.grupoProjeto ? item.grupoProjeto.nome : '-')}}</p>
-          </div>
-        </div>
+  <div class="dgc-painel-principal">
+
+
+    <div class="dgc-card dgc-principal-card"  >
+      <div class="dgc-label-definicao">Objetivo do Projeto:</div>
+      <div>{{item.objetivo}}</div>
+      <div class="dgc-card-comandos">
+        <button mat-flat-button color="primary" (click)="editaProjeto()">Editar</button>
+        <button mat-flat-button color="primary" (click)="atualizaConsumo()">Calcular Consumo</button>
+        <button mat-flat-button color="primary" (click)="editaEntrega()">Criar Entrega</button>
+      </div>
+    </div>
+
+    <div class="dgc-card {{obtemTipo(entrega)}}" *ngFor="let entrega of item.gerProjEntregaprojetos">
+      <div class="dgc-card-header">
+        {{entrega.descricao}}  (#{{entrega.id}})
+        <span class="dgc-direita">{{entrega.ordenacao}}</span>
       </div>
 
+      <div class="dgc-card-detalhe">
+        <div class="dgc-label-definicao">Objetivo:</div>
+        <div>{{entrega.objetivo}}</div>
+      </div>
+
+      <div class="dgc-card-detalhe">
+        <div class="dgc-label-definicao">Destino:</div>
+        <div>{{entrega.destino}}</div>
+      </div>
+
+
+      <div class="dgc-card-detalhe">
+        Concluida: {{entrega.gerProjIteracaoentregas[0].concluida}} - Atual: {{entrega.atual}}
+      </div>
+
+     
+
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Consumido</span>{{entrega.gerProjIteracaoentregas[0].tempoConsumido}} ({{entrega.gerProjIteracaoentregas[0].percentualConsumido | number: '1.1-1'}}%)
+      </div>
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Alocado:</span>
+        <span class="dgc-valor">{{entrega.gerProjIteracaoentregas[0].tempoPrevisto}}</span>
+      </div>
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Restante</span>{{entrega.gerProjIteracaoentregas[0].tempoRestante}} ({{entrega.gerProjIteracaoentregas[0].percentualRestante | number: '1.1-1'}}%)
+      </div>
+
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Semanas</span>{{entrega.gerProjIteracaoentregas[0].semanaRestante}}
+      </div>
+
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Início</span>{{entrega.gerProjIteracaoentregas[0].dataInicioReal | date: 'dd/MM/yyyy' : 'UTC'}}
+      </div>
+
+
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Previsão</span>{{entrega.gerProjIteracaoentregas[0].dataFinal | date: 'dd/MM/yyyy' : 'UTC'}}
+      </div>
+
+      <div class="dgc-card-detalhe">
+        <span class="dgc-label">Final</span>{{entrega.gerProjIteracaoentregas[0].dataFinalReal | date: 'dd/MM/yyyy' : 'UTC'}}
+      </div>
+
+      <div class="dgc-card-comandos">
+      
+        <button mat-flat-button color="primary" (click)="desceItem(entrega)">Desce</button>
+        <button mat-flat-button color="primary" (click)="sobeItem(entrega)">Sobe</button>
+        <button mat-flat-button color="primary" (click)="ligaDesliga(entrega.gerProjIteracaoentregas[0].id)">Liga/Desliga</button>
+        <button mat-flat-button color="primary" (click)="editaEntrega(entrega)">Entrega</button>
+        <button mat-flat-button color="primary" (click)="editaProjeto(entrega)">Projeto</button>
+        <button mat-flat-button color="primary" (click)="edita(entrega.gerProjIteracaoentregas[0])">Tempo</button>
+        <button mat-flat-button color="warn" *ngIf="entrega.atual" (click)="finaliza(entrega.id)">Fecha</button>
+
+      </div>
     </div>
   </div>
+
+
 </div>

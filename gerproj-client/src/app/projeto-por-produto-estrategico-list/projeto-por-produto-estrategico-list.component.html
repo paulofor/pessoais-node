@@ -1,0 +1,32 @@
+<div class="dgc-painel" *ngIf="principal">
+
+    <div class="dgc-painel-header">
+        <span>{{principal.nome}} ({{listaBase.length}})</span>
+        <div class="dgc-direita">
+            <button mat-flat-button color="primary" (click)="edita({'origem' : principal })">Novo</button>
+        </div>
+    </div>
+
+    <div class="dgc-painel-principal" *ngIf="principal">
+        <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+            <div class="dgc-card-header-titulo">
+                <a routerLink="/detalheProjeto/{{item.id}}">{{item.nome}}</a>
+            </div>
+            <div class="dgc-card-header-detalhe">
+                Ativo: {{item.ativo}}
+            </div>
+            <div class="dgc-card-header-detalhe">
+                Consumo: {{item.tempoConsumido}} ({{item.segundoConsumido}})
+            </div>
+            <div class="dgc-card-header-detalhe">
+                {{item.primeiraData | date: 'dd/MM/yyyy' : 'UTC'}} - {{item.ultimaData | date: 'dd/MM/yyyy' : 'UTC'}}
+            </div>
+            <div class="dgc-card-comandos">
+                <button mat-flat-button color="primary" (click)="ligaDesliga(item)">Liga/Desliga</button>
+                <button mat-flat-button color="primary" (click)="edita({'item':item , 'origem' : principal})">Alterar</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

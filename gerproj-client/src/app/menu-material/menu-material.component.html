@@ -1,16 +1,45 @@
 <div>
-  
-  <button mat-button routerLink="/execucaoDia">Execução Dia</button>
-  <button mat-button routerLink="/rendaPassiva">Renda Passiva</button>
-  <button mat-button routerLink="/oportunidadeMacroeconomica">Oportunidade Macroeconomica</button>
-  <button mat-button routerLink="/possibilidadeReceita">Possibilidade de Receita</button>
-  <button mat-button routerLink="/mercadoEscala">Mercado com Escala</button>
 
-  <button mat-button routerLink="/detalheDiaAtual">Hoje</button>
-  <button mat-button routerLink="/programacaoSemanal">Semanal</button>
-  <button mat-button routerLink="/grupoProjeto">Grupo Projeto</button>
-  <button mat-button [matMenuTriggerFor]="menu">Anos</button>
-  <mat-menu #menu="matMenu">
+  <button mat-button [matMenuTriggerFor]="menuDiario">Diário</button>
+  <mat-menu #menuDiario="matMenu">
+    <button mat-button routerLink="/execucaoDia">Execução</button>
+    <button mat-button routerLink="/tempoTarefa">Períodos</button>
+    <button mat-button routerLink="/detalheDiaAtual">Histórico</button>
+  </mat-menu>
+
+
+  <button mat-button [matMenuTriggerFor]="menuPlanejamento">Planejamento</button>
+  <mat-menu #menuPlanejamento="matMenu">
+    <button mat-button routerLink="/planoSemanal">Tempos</button>
+    <button mat-button routerLink="/programacaoSemanal">Semanal Lista</button>
+    <button mat-button routerLink="/entregaProjetoFotoAtual">Foto</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menuEstilo">Estilo de Vida</button>
+  <mat-menu #menuEstilo="matMenu">
+    <button mat-button routerLink="/faseEstiloRotina">Fases</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menuNovos">Novos</button>
+  <mat-menu #menuNovos="matMenu">
+    <button mat-button routerLink="/rendaPassiva">Renda Passiva</button>
+    <button mat-button routerLink="/oportunidadeMacroeconomica">Oportunidade Macroeconomica</button>
+    <button mat-button routerLink="/possibilidadeReceita">Possibilidade de Receita</button>
+    <button mat-button routerLink="/mercadoEscala">Mercado com Escala</button>
+  </mat-menu>
+
+
+  
+
+  <button mat-button [matMenuTriggerFor]="menuProdutos">Produtos</button>
+  <mat-menu #menuProdutos="matMenu">
+    <button mat-button routerLink="/grupoProjeto">Grupo Projeto</button>
+    <button mat-button routerLink="/produtoEstrategico">Produto Estratégico (tradicional)</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menuAnos">Anos</button>
+  <mat-menu #menuAnos="matMenu">
+    <button mat-menu-item routerLink="/projetoAno/2023">2023</button>
     <button mat-menu-item routerLink="/projetoAno/2022">2022</button>
     <button mat-menu-item routerLink="/projetoAno/2021">2021</button>
     <button mat-menu-item routerLink="/projetoAno/2020">2020</button>
@@ -27,4 +56,5 @@
     <button mat-menu-item routerLink="/projetoAno/2009">2009</button>
     <button mat-menu-item routerLink="/projetoAno/2008">2008</button>
   </mat-menu>
+
 </div>

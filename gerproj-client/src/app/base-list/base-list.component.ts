@@ -21,7 +21,7 @@ export class BaseListComponent implements OnInit {
   carregaTela() {
       this.srv.find(this.getFiltro())
       .subscribe((result:any[]) => {
-          //console.log('result: ' , result);
+          console.log('result: ' , result);
           this.listaBase = result;
       })
   }

@@ -64,6 +64,25 @@ import { PossibilidadeReceitaEditComponent } from './possibilidade-receita-edit/
 import { BaseEscolhaComponent } from './base-escolha/base-escolha.component';
 import { RendaPassivaProjetoEscolhaComponent } from './renda-passiva-projeto-escolha/renda-passiva-projeto-escolha.component';
 import { ExecucaoDiaEditaTempoComponent } from './execucao-dia-edita-tempo/execucao-dia-edita-tempo.component';
+import { TempoTarefaDiaListaComponent } from './tempo-tarefa-dia-lista/tempo-tarefa-dia-lista.component';
+import { TempoTarefaDiaEditaComponent } from './tempo-tarefa-dia-edita/tempo-tarefa-dia-edita.component';
+import { PlanoSemanalComponent } from './plano-semanal/plano-semanal.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { EntregaEditaComponent } from './entrega-edita/entrega-edita.component';
+import { IteracaoEntregaEditaComponent } from './iteracao-entrega-edita/iteracao-entrega-edita.component';
+import { ProdutoEstrategicoListComponent } from './produto-estrategico-list/produto-estrategico-list.component';
+import { ProdutoEstrategicoEditComponent } from './produto-estrategico-edit/produto-estrategico-edit.component';
+import { ProjetoPorProdutoEstrategicoListComponent } from './projeto-por-produto-estrategico-list/projeto-por-produto-estrategico-list.component';
+import { BaseItemComListaComponent } from './base-item-com-lista/base-item-com-lista.component';
+import { ProjetoEditaComponent } from './projeto-edita/projeto-edita.component';
+import { EntregaProjetoFotoAtualComponent } from './entrega-projeto-foto-atual/entrega-projeto-foto-atual.component';
+import { TrocaProjetoEntregaComponent } from './troca-projeto-entrega/troca-projeto-entrega.component';
+import { EntregaProjetoEditaComponent } from './entrega-projeto-edita/entrega-projeto-edita.component';
+import { TipoRotinaListaComponent } from './tipo-rotina-lista/tipo-rotina-lista.component';
+import { RotinaDiaEditaComponent } from './rotina-dia-edita/rotina-dia-edita.component';
+import { FaseEstiloRotinaListComponent } from './fase-estilo-rotina-list/fase-estilo-rotina-list.component';
+import { FaseEstiloRotinaEditComponent } from './fase-estilo-rotina-edit/fase-estilo-rotina-edit.component';
+
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -96,7 +115,24 @@ registerLocaleData(localePt, 'pt-BR');
     PossibilidadeReceitaEditComponent,
     BaseEscolhaComponent,
     RendaPassivaProjetoEscolhaComponent,
-    ExecucaoDiaEditaTempoComponent
+    ExecucaoDiaEditaTempoComponent,
+    TempoTarefaDiaListaComponent,
+    TempoTarefaDiaEditaComponent,
+    PlanoSemanalComponent,
+    EntregaEditaComponent,
+    IteracaoEntregaEditaComponent,
+    ProdutoEstrategicoListComponent,
+    ProdutoEstrategicoEditComponent,
+    ProjetoPorProdutoEstrategicoListComponent,
+    BaseItemComListaComponent,
+    ProjetoEditaComponent,
+    EntregaProjetoFotoAtualComponent,
+    TrocaProjetoEntregaComponent,
+    EntregaProjetoEditaComponent,
+    TipoRotinaListaComponent,
+    RotinaDiaEditaComponent,
+    FaseEstiloRotinaListComponent,
+    FaseEstiloRotinaEditComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +164,8 @@ registerLocaleData(localePt, 'pt-BR');
     FormsModule,
     MatButtonModule,
     MatMenuModule,
-    MatChipsModule
+    MatChipsModule,
+    NgApexchartsModule
   ],
   providers: [
     HttpClient, 
@@ -145,7 +182,10 @@ registerLocaleData(localePt, 'pt-BR');
     DetalheProjetoEditaComponent,
     GrupoProjetoEscolhaComponent,
     PossibilidadeReceitaEditComponent,
-    ExecucaoDiaEditaTempoComponent
+    ExecucaoDiaEditaTempoComponent,
+    EntregaEditaComponent,
+    IteracaoEntregaEditaComponent,
+    ProjetoEditaComponent
   
   ],
   bootstrap: [AppComponent]

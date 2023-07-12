@@ -64,6 +64,15 @@ import { OportunidadeMacroeconomicaProjetoApi } from './services/custom/Oportuni
 import { PossibilidadeReceitaApi } from './services/custom/PossibilidadeReceita';
 import { PossibilidadeReceitaProjetoApi } from './services/custom/PossibilidadeReceitaProjeto';
 import { GerProj_TempoTarefaApi } from './services/custom/GerProj_TempoTarefa';
+import { GerProj_IteracaoEntregaApi } from './services/custom/GerProj_IteracaoEntrega';
+import { GerProj_EntregaProjetoApi } from './services/custom/GerProj_EntregaProjeto';
+import { GerProj_AlocacaoTempoApi } from './services/custom/GerProj_AlocacaoTempo';
+import { GerProj_ProdutoEstrategicoApi } from './services/custom/GerProj_ProdutoEstrategico';
+import { PlataformaDigitalApi } from './services/custom/PlataformaDigital';
+import { EntregaProjetoFotoApi } from './services/custom/EntregaProjetoFoto';
+import { TipoRotinaDiaApi } from './services/custom/TipoRotinaDia';
+import { RotinaDiaApi } from './services/custom/RotinaDia';
+import { FaseEstiloRotinaApi } from './services/custom/FaseEstiloRotina';
 /**
 * @module SDKBrowserModule
 * @description
@@ -110,9 +119,17 @@ export class SDKBrowserModule {
         PossibilidadeReceitaApi,
         PossibilidadeReceitaProjetoApi,
         GerProj_TempoTarefaApi,
+        GerProj_IteracaoEntregaApi,
+        GerProj_EntregaProjetoApi,
+        GerProj_AlocacaoTempoApi,
+        GerProj_ProdutoEstrategicoApi,
+        PlataformaDigitalApi,
+        EntregaProjetoFotoApi,
+        TipoRotinaDiaApi,
+        RotinaDiaApi,
+        FaseEstiloRotinaApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
-
       ]
     };
   }

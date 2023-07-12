@@ -20,7 +20,7 @@ export abstract class BaseEditComponent implements OnInit {
 
 
   ngOnInit() {
-    this.montaCombos();
+    
     console.log("Parametro entrada", this.data);
     if (this.data.origem) {
       this.origem = this.data.origem;
@@ -28,15 +28,17 @@ export abstract class BaseEditComponent implements OnInit {
     if (!this.data.item) {
       console.log("fluxo nova");
       this.item = this.criaItem();
+      this.montaCombos();
     } else {
       console.log('fluxo altera');
       this.item = this.data.item;
+      this.montaCombos();
       console.log('Item:', JSON.stringify(this.item));
     }
   }
 
   onSubmit() {
-    console.log('Model: ' + JSON.stringify(this.item));
+    console.log('Submit(item): ' + JSON.stringify(this.item));
     this.servico.upsert(this.item, (err, obj) => {
       console.log("Erro:" + err.message);
     }).subscribe((e: any) => {

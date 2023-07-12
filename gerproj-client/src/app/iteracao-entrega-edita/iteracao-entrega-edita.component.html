@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Entrega:</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+    <mat-dialog-content>
+        <div height="250px">
+            <mat-form-field class="example-full-width">
+                <input matInput maxlength="200" datetime="HH:mm:ss" #tempoPrevisto [(ngModel)]="item.tempoPrevisto"
+                    name="tempoPrevisto" placeholder="Tempo Alocado" />
+            </mat-form-field>
+
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button>Salvar</button>
+        <button mat-raised-button mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+
+</form>

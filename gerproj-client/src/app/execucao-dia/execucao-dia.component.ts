@@ -44,6 +44,33 @@ export class ExecucaoDiaComponent implements OnInit {
     else return '';
   }
 
+  iniciar(item) {
+    this.srvTempoTarefa.IniciarTarefaProjeto(item.id_projeto_pmbok)
+    .subscribe((result) => {
+      this.carregaLista();
+    })
+  }
+
+  atualiza(item) {
+    this.srvTempoTarefa.AtualizaMaisRecenteProjeto(item.id_projeto_pmbok)
+      .subscribe((result) => {
+        this.carregaLista();
+      })
+  }
+  atrasa(item) {
+    this.srvTempoTarefa.AtrasarTarefaProjeto(item.id_projeto_pmbok,2)
+      .subscribe((result) => {
+        this.carregaLista();
+      })
+  }
+
+  completo(item) {
+    this.srv.LigaDesligaTempoCompleto(item.id_projeto_pmbok)
+      .subscribe((result) => {
+        this.carregaLista();
+      })
+  }
+
   edita(edicao?) {
     console.log('BaseList.edita (data.item=' + edicao + ')');
     this.dialog.afterAllClosed.subscribe(result => {

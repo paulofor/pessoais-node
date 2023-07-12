@@ -1,0 +1,23 @@
+<div class="dgc-painel" *ngIf="listaBase">
+
+    <div class="dgc-painel-header">
+      <span>Tempo Tarefas</span>
+    </div>
+  
+    <div class="dgc-painel-principal">
+      <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+        <div class="dgc-card-detalhe-subtitulo">
+            {{item.horaInicio | date: 'HH:mm' : 'UTC' }} - {{item.horaFim | date: 'HH:mm' : 'UTC'}}
+          </div>
+          <div class="dgc-card-detalhe">
+            {{item.gerProjIteracaoentrega.gerProjEntregaprojetos.gerProjProjetopmbok.nome}}
+          </div>
+    
+        <div class="dgc-card-comandos">
+          <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>

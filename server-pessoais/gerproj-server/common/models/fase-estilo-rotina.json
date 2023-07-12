@@ -1,0 +1,32 @@
+{
+  "name": "FaseEstiloRotina",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "dataInicial": {
+      "type": "date"
+    },
+    "dataFinal": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "rotinaDia": {
+      "type": "hasMany",
+      "model": "RotinaDia",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

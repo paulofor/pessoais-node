@@ -4,7 +4,10 @@ import {
   RendaPassivaProjeto,
   MercadoEscalaProjeto,
   OportunidadeMacroeconomicaProjeto,
-  PossibilidadeReceitaProjeto
+  PossibilidadeReceitaProjeto,
+  GerProj_EntregaProjeto,
+  GerProj_AlocacaoTempo,
+  GerProj_ProdutoEstrategico
 } from '../index';
 
 declare var Object: any;
@@ -18,12 +21,26 @@ export interface GerProj_ProjetoPmbokInterface {
   "objetivo"?: string;
   "resultado"?: string;
   "crenca"?: string;
+  "executando"?: number;
+  "tempoCompleto"?: number;
+  "usuarioId"?: number;
+  "percentualTempoAlocado"?: number;
+  "segundoConsumido"?: number;
+  "tempoConsumido"?: Date;
+  "primeiraData"?: Date;
+  "ultimaData"?: Date;
   "grupoProjetoId"?: number;
+  "id_entrega_projeto_atual"?: number;
+  "id_produto_estrategico_ra"?: number;
   grupoProjeto?: GerProj_GrupoProjeto;
   rendaPassivaProjetos?: RendaPassivaProjeto[];
   mercadoEscalaProjetos?: MercadoEscalaProjeto[];
   oportunidadeMacroeconomicaProjetos?: OportunidadeMacroeconomicaProjeto[];
   possibilidadeReceitaProjetos?: PossibilidadeReceitaProjeto[];
+  gerProjEntregaprojetos?: GerProj_EntregaProjeto[];
+  gerProjEntregaProjetoAtual?: GerProj_EntregaProjeto;
+  gerProjAlocacaotempos?: GerProj_AlocacaoTempo[];
+  gerProjProdutoestrategico?: GerProj_ProdutoEstrategico;
 }
 
 export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
@@ -36,12 +53,26 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
   "objetivo": string;
   "resultado": string;
   "crenca": string;
+  "executando": number;
+  "tempoCompleto": number;
+  "usuarioId": number;
+  "percentualTempoAlocado": number;
+  "segundoConsumido": number;
+  "tempoConsumido": Date;
+  "primeiraData": Date;
+  "ultimaData": Date;
   "grupoProjetoId": number;
+  "id_entrega_projeto_atual": number;
+  "id_produto_estrategico_ra": number;
   grupoProjeto: GerProj_GrupoProjeto;
   rendaPassivaProjetos: RendaPassivaProjeto[];
   mercadoEscalaProjetos: MercadoEscalaProjeto[];
   oportunidadeMacroeconomicaProjetos: OportunidadeMacroeconomicaProjeto[];
   possibilidadeReceitaProjetos: PossibilidadeReceitaProjeto[];
+  gerProjEntregaprojetos: GerProj_EntregaProjeto[];
+  gerProjEntregaProjetoAtual: GerProj_EntregaProjeto;
+  gerProjAlocacaotempos: GerProj_AlocacaoTempo[];
+  gerProjProdutoestrategico: GerProj_ProdutoEstrategico;
   constructor(data?: GerProj_ProjetoPmbokInterface) {
     Object.assign(this, data);
   }
@@ -111,8 +142,48 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           name: 'crenca',
           type: 'string'
         },
+        "executando": {
+          name: 'executando',
+          type: 'number'
+        },
+        "tempoCompleto": {
+          name: 'tempoCompleto',
+          type: 'number'
+        },
+        "usuarioId": {
+          name: 'usuarioId',
+          type: 'number'
+        },
+        "percentualTempoAlocado": {
+          name: 'percentualTempoAlocado',
+          type: 'number'
+        },
+        "segundoConsumido": {
+          name: 'segundoConsumido',
+          type: 'number'
+        },
+        "tempoConsumido": {
+          name: 'tempoConsumido',
+          type: 'Date'
+        },
+        "primeiraData": {
+          name: 'primeiraData',
+          type: 'Date'
+        },
+        "ultimaData": {
+          name: 'ultimaData',
+          type: 'Date'
+        },
         "grupoProjetoId": {
           name: 'grupoProjetoId',
+          type: 'number'
+        },
+        "id_entrega_projeto_atual": {
+          name: 'id_entrega_projeto_atual',
+          type: 'number'
+        },
+        "id_produto_estrategico_ra": {
+          name: 'id_produto_estrategico_ra',
           type: 'number'
         },
       },
@@ -156,6 +227,38 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'gerProjProjetopmbokId'
+        },
+        gerProjEntregaprojetos: {
+          name: 'gerProjEntregaprojetos',
+          type: 'GerProj_EntregaProjeto[]',
+          model: 'GerProj_EntregaProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'id_projeto_pmbok_ee'
+        },
+        gerProjEntregaProjetoAtual: {
+          name: 'gerProjEntregaProjetoAtual',
+          type: 'GerProj_EntregaProjeto',
+          model: 'GerProj_EntregaProjeto',
+          relationType: 'belongsTo',
+                  keyFrom: 'id_entrega_projeto_atual',
+          keyTo: 'id'
+        },
+        gerProjAlocacaotempos: {
+          name: 'gerProjAlocacaotempos',
+          type: 'GerProj_AlocacaoTempo[]',
+          model: 'GerProj_AlocacaoTempo',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'id_projeto_pmbok_pa'
+        },
+        gerProjProdutoestrategico: {
+          name: 'gerProjProdutoestrategico',
+          type: 'GerProj_ProdutoEstrategico',
+          model: 'GerProj_ProdutoEstrategico',
+          relationType: 'belongsTo',
+                  keyFrom: 'id_produto_estrategico_ra',
+          keyTo: 'id'
         },
       }
     }

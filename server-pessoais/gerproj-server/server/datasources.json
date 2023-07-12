@@ -3,11 +3,20 @@
     "name": "db",
     "connector": "memory"
   },
-  "gerProjDS": {
+  "gerProjDSold": {
     "host": "mysql.lojadigicom.com.br",
     "port": 3306,
     "database": "lojadigicom",
     "password": "gerproj",
+    "name": "gerProjDSold",
+    "user": "lojadigicom",
+    "connector": "mysql"
+  },
+   "gerProjDS": {
+    "host": "d555d.vps-kinghost.net",
+    "port": 3306,
+    "database": "lojadigicom",
+    "password": "GerProj2004$",
     "name": "gerProjDS",
     "user": "lojadigicom",
     "connector": "mysql"

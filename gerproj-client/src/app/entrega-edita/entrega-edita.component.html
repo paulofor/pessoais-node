@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Entrega</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+    <mat-dialog-content>
+        <div height="250px">
+
+            <mat-form-field class="example-full-width">
+                <input matInput maxlength="150" #descricao [(ngModel)]="item.descricao"
+                    name="descricao" placeholder="Nome da Entrega" autocomplete="off"/>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width">
+                <input matInput maxlength="250" #destino [(ngModel)]="item.destino"
+                    name="destino" placeholder="Destino" autocomplete="off"/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput maxlength="250" #objetivo [(ngModel)]="item.objetivo"
+                    name="objetivo" placeholder="Objetivo" autocomplete="off"/>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width">
+                <mat-select placeholder="Projeto" #id_projeto_pmbok_ee [(ngModel)]="item.id_projeto_pmbok_ee" name="id_projeto_pmbok_ee">
+                    <mat-option *ngFor="let projeto of listaProjeto" [value]="projeto.id_projeto_pmbok">
+                    {{ projeto.nome }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button>Salvar</button>
+        <button mat-raised-button mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+
+</form>

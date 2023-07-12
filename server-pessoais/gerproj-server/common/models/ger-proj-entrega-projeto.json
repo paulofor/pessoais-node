@@ -59,6 +59,37 @@
   },
   "acls": [],
   "methods": {
+    "TrocaProjetoEntrega": {
+      "accepts": [
+        {
+          "arg": "idEntrega",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "idProjetoNovo",
+          "type": "number",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/trocaProjetoEntrega",
+          "verb": "post"
+        }
+      ]
+    },
     "FechaEntrega": {
       "accepts": [
         {
@@ -155,6 +186,31 @@
       "http": [
         {
           "path": "/atualizaEntrega",
+          "verb": "post"
+        }
+      ]
+    },
+    "AtualizaEntregaProjeto": {
+      "accepts": [
+        {
+          "arg": "entrega",
+          "type": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaEntregaProjeto",
           "verb": "post"
         }
       ]

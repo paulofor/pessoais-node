@@ -6,30 +6,30 @@
     <span class="dgc-direita">{{listaBase.length}} projetos</span>
   </div>
   
+  <div class="dgc-painel-principal">
+    <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
+      <div class="dgc-card-header">
+        <span>
+          <a routerLink="/detalheProjeto/{{item.id}}">{{i+1}} - {{item.nome}}</a>
+        </span>
+        <span class="dgc-direita">{{item.tempo}} ( {{item.percentual | number:'1.2-2'}} %)</span>
+      </div>
+   
+      <!--
+      <div class="dgc-card-comandos">
+        <button mat-stroked-button color="primary" (click)="dialogo1({'item':item})">Receita</button>
+        <button mat-stroked-button color="primary" (click)="dialogo1({'item':item})">Oportunidade</button>
+        <button mat-stroked-button color="primary" (click)="dialogo2({'item':item})">Renda</button>
+  
+        <button mat-flat-button color="primary" (click)="dialogo1({'item':item})">Grupo</button>
+        <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+      </div>
+      -->
 
-  <div class="dgc-card" *ngFor="let item of listaBase; let i = index">
-    <div class="dgc-card-header">
-      <span>
-        {{i+1}} - {{item.nome}}
-      </span>
-      <span class="dgc-direita">{{item.tempo}} ( {{item.percentual | number:'1.2-2'}} %)</span>
     </div>
-    <div>
-      <mat-chip-list aria-label="Fish selection">
-        <span>Objetivo</span>
-        <mat-chip color="primary" selected >Apoio a montagem de aplicação</mat-chip>
-      </mat-chip-list>
-    </div>
-    <div class="dgc-card-comandos">
-      <button mat-stroked-button color="primary" (click)="dialogo1({'item':item})">Receita</button>
-      <button mat-stroked-button color="primary" (click)="dialogo1({'item':item})">Oportunidade</button>
-      <button mat-stroked-button color="primary" (click)="dialogo2({'item':item})">Renda</button>
-
-      <button mat-flat-button color="primary" (click)="dialogo1({'item':item})">Grupo</button>
-      <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
-    </div>
+  
   </div>
-
+  
 
 </div>
 

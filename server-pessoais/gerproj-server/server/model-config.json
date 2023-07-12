@@ -118,5 +118,17 @@
   "EntregaProjetoFoto": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "TipoRotinaDia": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "RotinaDia": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "FaseEstiloRotina": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

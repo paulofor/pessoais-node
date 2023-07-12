@@ -8,11 +8,11 @@
   "properties": {
     "dataFoto": {
       "type": "date",
-      "id" : true
+      "id": true
     },
     "projetoId": {
       "type": "number",
-      "id" : true
+      "id": true
     },
     "projetoNome": {
       "type": "string"

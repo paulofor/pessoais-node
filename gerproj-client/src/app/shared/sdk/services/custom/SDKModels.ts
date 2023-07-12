@@ -16,6 +16,15 @@ import { OportunidadeMacroeconomicaProjeto } from '../../models/OportunidadeMacr
 import { PossibilidadeReceita } from '../../models/PossibilidadeReceita';
 import { PossibilidadeReceitaProjeto } from '../../models/PossibilidadeReceitaProjeto';
 import { GerProj_TempoTarefa } from '../../models/GerProj_TempoTarefa';
+import { GerProj_IteracaoEntrega } from '../../models/GerProj_IteracaoEntrega';
+import { GerProj_EntregaProjeto } from '../../models/GerProj_EntregaProjeto';
+import { GerProj_AlocacaoTempo } from '../../models/GerProj_AlocacaoTempo';
+import { GerProj_ProdutoEstrategico } from '../../models/GerProj_ProdutoEstrategico';
+import { PlataformaDigital } from '../../models/PlataformaDigital';
+import { EntregaProjetoFoto } from '../../models/EntregaProjetoFoto';
+import { TipoRotinaDia } from '../../models/TipoRotinaDia';
+import { RotinaDia } from '../../models/RotinaDia';
+import { FaseEstiloRotina } from '../../models/FaseEstiloRotina';
 
 export interface Models { [name: string]: any }
 
@@ -39,6 +48,15 @@ export class SDKModels {
     PossibilidadeReceita: PossibilidadeReceita,
     PossibilidadeReceitaProjeto: PossibilidadeReceitaProjeto,
     GerProj_TempoTarefa: GerProj_TempoTarefa,
+    GerProj_IteracaoEntrega: GerProj_IteracaoEntrega,
+    GerProj_EntregaProjeto: GerProj_EntregaProjeto,
+    GerProj_AlocacaoTempo: GerProj_AlocacaoTempo,
+    GerProj_ProdutoEstrategico: GerProj_ProdutoEstrategico,
+    PlataformaDigital: PlataformaDigital,
+    EntregaProjetoFoto: EntregaProjetoFoto,
+    TipoRotinaDia: TipoRotinaDia,
+    RotinaDia: RotinaDia,
+    FaseEstiloRotina: FaseEstiloRotina,
     
   };
 
