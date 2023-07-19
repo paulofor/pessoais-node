@@ -8,7 +8,7 @@ module.exports = function(Gerprojtempotarefa) {
     inner join iteracao_entrega on id_iteracao_entrega = id_iteracao_entrega_cp
     inner join entrega_projeto on id_entrega_projeto = iteracao_entrega.id_entrega_projeto_ra
     where entrega_projeto.id_projeto_pmbok_ee = 409
-    and tempo_tarefa.DATA = date( DATE_SUB(NOW(), INTERVAL 2 HOUR))
+    and tempo_tarefa.DATA = date( DATE_SUB(NOW(), INTERVAL 1 hour))
     order by hora_inicio desc
     limit 1
 
@@ -54,7 +54,7 @@ module.exports = function(Gerprojtempotarefa) {
             " inner join iteracao_entrega on id_iteracao_entrega = id_iteracao_entrega_cp " +
             " inner join entrega_projeto on id_entrega_projeto = iteracao_entrega.id_entrega_projeto_ra " +
             " where entrega_projeto.id_projeto_pmbok_ee = " + idProjeto +
-            " and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 2 hour)) " +
+            " and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 1 hour)) " +
             " order by DATA, hora_inicio desc " +
             " limit 1";
         let ds = Gerprojtempotarefa.dataSource;
@@ -76,7 +76,7 @@ module.exports = function(Gerprojtempotarefa) {
             " inner join iteracao_entrega on id_iteracao_entrega = id_iteracao_entrega_cp " +
             " inner join entrega_projeto on id_entrega_projeto = iteracao_entrega.id_entrega_projeto_ra " +
             " where entrega_projeto.id_projeto_pmbok_ee = " + idProjeto +
-            //" and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 2 hour)) " +
+            //" and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 1 hour)) " +
             " and tempo_tarefa.DATA = date(now()) " +
             " order by DATA, hora_inicio desc " +
             " limit 1";
@@ -98,7 +98,7 @@ module.exports = function(Gerprojtempotarefa) {
             " inner join iteracao_entrega on id_iteracao_entrega = id_iteracao_entrega_cp " +
             " inner join entrega_projeto on id_entrega_projeto = iteracao_entrega.id_entrega_projeto_ra " +
             " where entrega_projeto.id_projeto_pmbok_ee = " + idProjeto +
-            " and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 2 hour)) " +
+            " and tempo_tarefa.DATA = date( DATE_SUB(NOW(), interval 1 hour)) " +
             " order by hora_inicio desc " +
             " limit 1";
         let ds = Gerprojtempotarefa.dataSource;
