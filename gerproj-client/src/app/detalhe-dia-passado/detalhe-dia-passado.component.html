@@ -1,8 +1,9 @@
 
   <div class="dgc-card-header">
-    <span>{{data}}</span>
-    <span *ngIf="(anos>1)" class="dgc-direita">{{anos}} anos</span>
-    <span *ngIf="(anos==1)" class="dgc-direita">{{anos}} ano</span>
+    <span>{{data}} -&nbsp;</span>
+    <span *ngIf="(anos>1)"> {{anos}} anos</span>
+    <span *ngIf="(anos==1)">{{anos}} ano</span>
+    <span class="dgc-direita">{{tempoTotal}}</span>
   </div>
   <div *ngIf="lista" class="content table-responsive table-full-width">
     <table class="table table-hover table-striped">

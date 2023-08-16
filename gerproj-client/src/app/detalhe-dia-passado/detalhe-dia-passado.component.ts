@@ -12,12 +12,35 @@ export class DetalheDiaPassadoComponent implements OnInit {
   lista: GerProj_ProjetoPmbok[];
   data:string;
   anos: number;
+  tempoTotal
 
   constructor(private srv: GerProj_ProjetoPmbokApi) { }
 
   ngOnInit() {
     this.carrega();
   }
+
+
+
+
+// Função para converter um tempo no formato HH:mm:ss para segundos
+tempoParaSegundos(tempo) {
+  const [horas, minutos, segundos] = tempo.split(':').map(Number);
+  return horas * 3600 + minutos * 60 + segundos;
+}
+
+// Função para converter segundos para o formato HH:mm:ss
+segundosParaTempo(segundos) {
+  const horas = Math.floor(segundos / 3600);
+  segundos %= 3600;
+  const minutos = Math.floor(segundos / 60);
+  segundos %= 60;
+  return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+}
+
+
+
+
 
   carrega() {
     let hoje = new Date();
@@ -56,6 +79,13 @@ export class DetalheDiaPassadoComponent implements OnInit {
         console.log('Dia:' , dia, '  Mes:', mes, ' Ano:' ,this.ano);
         console.log('resultado:' , resultado);
         this.lista = resultado;
+        // Somar os tempos em segundos
+        let totalSegundos = 0;
+        for (const item of this.lista) {
+          totalSegundos += this.tempoParaSegundos(item['tempo']);
+        }
+        // Converter a soma de segundos de volta para o formato de tempo
+        this.tempoTotal = this.segundosParaTempo(totalSegundos);
       })
   }
 

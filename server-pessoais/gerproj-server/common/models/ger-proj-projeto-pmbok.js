@@ -199,17 +199,47 @@ module.exports = function (Gerprojprojetopmbok) {
             " from projeto_pmbok " +
             " inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
             " where iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto) ";
+
+        sql3 = "UPDATE iteracao_entrega " +
+            "SET semana_restante = " +
+            "CASE WHEN " +
+            "(SELECT time_to_sec(tempo_alocado_semana) " +
+            " FROM projeto_pmbok " +
+            " INNER JOIN entrega_projeto ON entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
+            " WHERE iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto) <> 0 " +
+            "THEN time_to_sec(tempo_restante) / " +
+            "(SELECT time_to_sec(tempo_alocado_semana) " +
+            " FROM projeto_pmbok " +
+            " INNER JOIN entrega_projeto ON entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
+            " WHERE iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto) " +
+            "ELSE 0 " +
+            "END";
         let sql4 = "update iteracao_entrega " +
             " set data_final = date_add(now(), interval ceil(semana_restante) week) ";
+        /*
         let sql5 = "update iteracao_entrega " +
             " set percentualConsumido = (time_to_sec(tempo_consumido) / time_to_sec(horas)) * 100, " +
             " percentualRestante = (time_to_sec(tempo_restante) / time_to_sec(horas)) * 100";
+        */
+        const sql5 = " UPDATE iteracao_entrega " +
+            " SET percentualConsumido = CASE " +
+            " WHEN time_to_sec(horas) <> 0 THEN (time_to_sec(tempo_consumido) / time_to_sec(horas)) * 100 " +
+            " ELSE 0 " +
+            " END, " +
+            " percentualRestante = CASE " +
+            " WHEN time_to_sec(horas) <> 0 THEN (time_to_sec(tempo_restante) / time_to_sec(horas)) * 100 " +
+            " ELSE 0 " +
+            " END";
         let ds = Gerprojprojetopmbok.dataSource;
         Gerprojprojetopmbok.AtualizaAtual((errAtual,resultAtual) => {
             ds.connector.query(sql,(err,result) => {
+                console.log('err', err);
                 ds.connector.query(sql2,(err1,result1) => {
+                        console.log('err1', err1);
                         ds.connector.query(sql3,(err2,result2)=> {
+                            console.log('err2', err2);
                             ds.connector.query(sql4,(err3,result3) => {
+                                console.log('err3', err3);
                                 ds.connector.query(sql5,callback);
                             });
                         });
