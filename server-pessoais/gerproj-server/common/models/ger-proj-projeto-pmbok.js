@@ -71,11 +71,11 @@ and id_dia_semana_gp =
 (
 select 
 CASE
-    WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1
-    WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2
-    WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3
-	WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4
-    WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5
+    WHEN weekday(DATE_SUB(now(),interval 3 hour))=0 THEN 1
+    WHEN weekday(DATE_SUB(now(),interval 3 hour))=1 THEN 2
+    WHEN weekday(DATE_SUB(now(),interval 3 hour))=2 THEN 3
+	WHEN weekday(DATE_SUB(now(),interval 3 hour))=3 THEN 4
+    WHEN weekday(DATE_SUB(now(),interval 3 hour))=4 THEN 5
     ELSE 6
 END 
 )
@@ -83,7 +83,7 @@ END
 left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok 
 left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto 
 left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega 
-and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour))
+and date(date_sub(tempo_tarefa.hora_inicio,interval 3 hour)) = date(DATE_SUB(now(),interval 3 hour))
 
 
 ) as tab2
@@ -123,11 +123,11 @@ and id_dia_semana_gp =
 ( 
 select  
 CASE 
-WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 
-WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 
-WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 
-WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 
-WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 
+WHEN weekday(DATE_SUB(now(),interval 3 hour))=0 THEN 1 
+WHEN weekday(DATE_SUB(now(),interval 3 hour))=1 THEN 2 
+WHEN weekday(DATE_SUB(now(),interval 3 hour))=2 THEN 3 
+WHEN weekday(DATE_SUB(now(),interval 3 hour))=3 THEN 4 
+WHEN weekday(DATE_SUB(now(),interval 3 hour))=4 THEN 5 
 ELSE 6 
 END  
 ) 
@@ -135,7 +135,7 @@ END
 left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  
 left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto 
 left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  
-and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) 
+and date(date_sub(tempo_tarefa.hora_inicio,interval 3 hour)) = date(DATE_SUB(now(),interval 3 hour)) 
 ) as tab2 
 group by id_projeto_pmbok, nome, apelido, tempo_previsto
 
@@ -324,11 +324,11 @@ module.exports = function (Gerprojprojetopmbok) {
             " ( \n" + 
             " select \n" +   
             " CASE \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 \n" + 
-            " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 3 hour))=0 THEN 1 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 3 hour))=1 THEN 2 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 3 hour))=2 THEN 3 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 3 hour))=3 THEN 4 \n" + 
+            " WHEN weekday(DATE_SUB(now(),interval 3 hour))=4 THEN 5 \n" + 
             " ELSE 6 \n" + 
             " END  \n" + 
             " ) \n" + 
@@ -336,7 +336,7 @@ module.exports = function (Gerprojprojetopmbok) {
             " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  \n" + 
             " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto \n" + 
             " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega  \n" + 
-            " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) \n" +  
+            " and date(date_sub(tempo_tarefa.hora_inicio,interval 3 hour)) = date(DATE_SUB(now(),interval 3 hour)) \n" +  
             " ) as tab2 \n" + 
             " group by id_projeto_pmbok, nome, apelido, tempo_previsto, tempoCompleto \n" + 
             " ) as tab3 \n";
@@ -389,11 +389,11 @@ module.exports = function (Gerprojprojetopmbok) {
                 " ( \n" +
                 " select  \n" +
                 " CASE \n" +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=0 THEN 1 \n" +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=1 THEN 2 \n" +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=2 THEN 3 \n" +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=3 THEN 4 \n" +
-                " WHEN weekday(DATE_SUB(now(),interval 2 hour))=4 THEN 5 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 3 hour))=0 THEN 1 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 3 hour))=1 THEN 2 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 3 hour))=2 THEN 3 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 3 hour))=3 THEN 4 \n" +
+                " WHEN weekday(DATE_SUB(now(),interval 3 hour))=4 THEN 5 \n" +
                 " ELSE 6 \n" +
                 " END  \n" +
                 " ) \n" +
@@ -401,7 +401,7 @@ module.exports = function (Gerprojprojetopmbok) {
                 " left outer join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = tab.id_projeto_pmbok  \n" +
                 " left outer join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = id_entrega_projeto  \n" +
                 " left outer join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = id_iteracao_entrega \n" + 
-                " and date(date_sub(tempo_tarefa.hora_inicio,interval 2 hour)) = date(DATE_SUB(now(),interval 2 hour)) \n" +
+                " and date(date_sub(tempo_tarefa.hora_inicio,interval 3 hour)) = date(DATE_SUB(now(),interval 3 hour)) \n" +
                 " where concluida = 'N' and numero_iteracao = 1 \n" +
                 " order by ordenacao \n" +
                 " \n " +
@@ -459,7 +459,7 @@ module.exports = function (Gerprojprojetopmbok) {
         "  inner join entrega_projeto on entrega_projeto.id_projeto_pmbok_ee = projeto_pmbok.id_projeto_pmbok " +
         "  inner join iteracao_entrega on iteracao_entrega.id_entrega_projeto_ra = entrega_projeto.id_entrega_projeto " +
         "  inner join tempo_tarefa on tempo_tarefa.id_iteracao_entrega_cp = iteracao_entrega.id_iteracao_entrega " +
-        "  where date_format(hora_inicio,'%Y-%m-%d') = date_format(date_sub(now(),interval 2 hour),'%Y-%m-%d') " +
+        "  where date_format(hora_inicio,'%Y-%m-%d') = date_format(date_sub(now(),interval 3 hour),'%Y-%m-%d') " +
         "  and tempo_tarefa.hora_inicio <> tempo_tarefa.hora_fim " +
         "  and date_format(hora_inicio,'%H') > '02' " +
         "  order by hora_inicio ";
