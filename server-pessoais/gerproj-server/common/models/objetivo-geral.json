@@ -1,0 +1,33 @@
+{
+  "name": "ObjetivoGeral",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "objetivoGerals": {
+      "type": "hasMany",
+      "model": "ObjetivoGeral",
+      "foreignKey": ""
+    },
+    "objetivoGeral": {
+      "type": "belongsTo",
+      "model": "ObjetivoGeral",
+      "foreignKey": ""
+    },
+    "objetivoProjetos": {
+      "type": "hasMany",
+      "model": "ObjetivoProjeto",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

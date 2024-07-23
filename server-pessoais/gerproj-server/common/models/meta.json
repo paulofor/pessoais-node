@@ -1,0 +1,37 @@
+{
+  "name": "Meta",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "descricao": {
+      "type": "string"
+    },
+    "periodo": {
+      "type": "date"
+    },
+    "resultado": {
+      "type": "string"
+    },
+    "atual": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "gerProjEntregaprojeto": {
+      "type": "belongsTo",
+      "model": "GerProj_EntregaProjeto",
+      "foreignKey": ""
+    },
+    "gerProjProjetopmbok": {
+      "type": "belongsTo",
+      "model": "GerProj_ProjetoPmbok",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

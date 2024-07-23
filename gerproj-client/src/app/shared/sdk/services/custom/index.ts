@@ -24,5 +24,8 @@ export * from './EntregaProjetoFoto';
 export * from './TipoRotinaDia';
 export * from './RotinaDia';
 export * from './FaseEstiloRotina';
+export * from './Meta';
+export * from './ObjetivoGeral';
+export * from './ObjetivoProjeto';
 export * from './SDKModels';
 export * from './logger.service';

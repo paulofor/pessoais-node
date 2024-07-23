@@ -25,6 +25,9 @@ import { EntregaProjetoFoto } from '../../models/EntregaProjetoFoto';
 import { TipoRotinaDia } from '../../models/TipoRotinaDia';
 import { RotinaDia } from '../../models/RotinaDia';
 import { FaseEstiloRotina } from '../../models/FaseEstiloRotina';
+import { Meta } from '../../models/Meta';
+import { ObjetivoGeral } from '../../models/ObjetivoGeral';
+import { ObjetivoProjeto } from '../../models/ObjetivoProjeto';
 
 export interface Models { [name: string]: any }
 
@@ -57,6 +60,9 @@ export class SDKModels {
     TipoRotinaDia: TipoRotinaDia,
     RotinaDia: RotinaDia,
     FaseEstiloRotina: FaseEstiloRotina,
+    Meta: Meta,
+    ObjetivoGeral: ObjetivoGeral,
+    ObjetivoProjeto: ObjetivoProjeto,
     
   };
 

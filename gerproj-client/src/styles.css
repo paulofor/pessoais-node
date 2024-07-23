@@ -262,6 +262,11 @@ body {
   font-family: "Times New Roman", Times, serif;
   color: rgba(85, 9, 108, 0.809);
 }
+.gerproj-entrega-corrente-objetivo-geral {
+  font-size: 100%;
+  font-family: "Times New Roman", Times, serif;
+  color: rgba(32, 126, 10, 0.809);
+}
 .gerproj-entrega-corrente-tempo {
   font-size: 100%;
   font-family: "Times New Roman", Times, serif;

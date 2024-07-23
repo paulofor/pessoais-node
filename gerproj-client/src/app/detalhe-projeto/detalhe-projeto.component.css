@@ -22,3 +22,7 @@
     display: inline-block;
     width: 100px;
 }
+
+.card-meta {
+    width: 18%;
+}

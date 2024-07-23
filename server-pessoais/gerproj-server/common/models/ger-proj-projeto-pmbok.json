@@ -120,6 +120,16 @@
       "type": "belongsTo",
       "model": "GerProj_EntregaProjeto",
       "foreignKey": "id_entrega_projeto_atual"
+    },
+    "objetivoProjetos": {
+      "type": "hasMany",
+      "model": "ObjetivoProjeto",
+      "foreignKey": ""
+    },
+    "meta": {
+      "type": "hasMany",
+      "model": "Meta",
+      "foreignKey": ""
     }
   },
   "acls": [],

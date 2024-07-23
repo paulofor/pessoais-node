@@ -7,7 +7,9 @@ import {
   PossibilidadeReceitaProjeto,
   GerProj_EntregaProjeto,
   GerProj_AlocacaoTempo,
-  GerProj_ProdutoEstrategico
+  GerProj_ProdutoEstrategico,
+  Meta,
+  ObjetivoProjeto
 } from '../index';
 
 declare var Object: any;
@@ -41,6 +43,8 @@ export interface GerProj_ProjetoPmbokInterface {
   gerProjEntregaProjetoAtual?: GerProj_EntregaProjeto;
   gerProjAlocacaotempos?: GerProj_AlocacaoTempo[];
   gerProjProdutoestrategico?: GerProj_ProdutoEstrategico;
+  meta?: Meta[];
+  objetivoProjetos?: ObjetivoProjeto[];
 }
 
 export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
@@ -73,6 +77,8 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
   gerProjEntregaProjetoAtual: GerProj_EntregaProjeto;
   gerProjAlocacaotempos: GerProj_AlocacaoTempo[];
   gerProjProdutoestrategico: GerProj_ProdutoEstrategico;
+  meta: Meta[];
+  objetivoProjetos: ObjetivoProjeto[];
   constructor(data?: GerProj_ProjetoPmbokInterface) {
     Object.assign(this, data);
   }
@@ -259,6 +265,22 @@ export class GerProj_ProjetoPmbok implements GerProj_ProjetoPmbokInterface {
           relationType: 'belongsTo',
                   keyFrom: 'id_produto_estrategico_ra',
           keyTo: 'id'
+        },
+        meta: {
+          name: 'meta',
+          type: 'Meta[]',
+          model: 'Meta',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
+        },
+        objetivoProjetos: {
+          name: 'objetivoProjetos',
+          type: 'ObjetivoProjeto[]',
+          model: 'ObjetivoProjeto',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'gerProjProjetopmbokId'
         },
       }
     }

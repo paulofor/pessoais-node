@@ -5,6 +5,7 @@ import { DetalheProjetoEditaComponent } from '../detalhe-projeto-edita/detalhe-p
 import { EntregaEditaComponent } from '../entrega-edita/entrega-edita.component';
 import { IteracaoEntregaEditaComponent } from '../iteracao-entrega-edita/iteracao-entrega-edita.component';
 import { GerProj_EntregaProjetoApi, GerProj_IteracaoEntregaApi, GerProj_ProjetoPmbok, GerProj_ProjetoPmbokApi } from '../shared/sdk';
+import { MetaEditaComponent } from '../meta-edita/meta-edita.component';
 
 @Component({
   selector: 'app-detalhe-projeto',
@@ -69,6 +70,21 @@ export class DetalheProjetoComponent implements OnInit {
       }
     });
   }
+
+  editaMeta(meta?) {
+    this.dialog.afterAllClosed.subscribe(result => {
+      this.carregaTela();
+    });
+    let componente = MetaEditaComponent;
+    console.log('componente:' , componente)
+    this.dialog.open(componente, {
+      width: '800px',
+      data: {
+          item: meta,
+          origem: this.item,
+      }
+    });
+  }
  
 
   edita(edicao?) {
@@ -90,8 +106,13 @@ export class DetalheProjetoComponent implements OnInit {
   }
 
   carregaTela() {
+    let dataAtual = new Date();
+
+    // Subtrai 3 meses da data atual
+    dataAtual.setMonth(dataAtual.getMonth() - 3);
     let filtro = { 
       'include' : [
+        {'relation' : 'meta' , 'scope' : {'order' : 'periodo', 'where' : {'periodo' : {'gt' : dataAtual}}}},
         'gerProjProdutoestrategico' ,
         'grupoProjeto' , 
         {

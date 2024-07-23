@@ -1,0 +1,68 @@
+{
+  "name": "ObjetivoProjeto",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "peso": {
+      "type": "number"
+    },
+    "objetivoGeralId": {
+      "type": "number",
+      "id": true
+    },
+    "gerProjProjetopmbokId": {
+      "type": "number",
+      "id": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "objetivoGeral": {
+      "type": "belongsTo",
+      "model": "ObjetivoGeral",
+      "foreignKey": ""
+    },
+    "gerProjProjetopmbok": {
+      "type": "belongsTo",
+      "model": "GerProj_ProjetoPmbok",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {
+    "AtualizaPorObjetivoGeral": {
+      "accepts": [
+        {
+          "arg": "objetivoGeralId",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "listaProjeto",
+          "type": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "resultado",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/atualizaPorObjetivoGeral",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

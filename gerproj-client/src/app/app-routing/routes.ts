@@ -20,6 +20,7 @@ import { RendaPassivaListComponent } from '../renda-passiva-list/renda-passiva-l
 import { FaseEstiloRotina } from '../shared/sdk';
 import { TempoTarefaDiaListaComponent } from '../tempo-tarefa-dia-lista/tempo-tarefa-dia-lista.component';
 import { TipoRotinaListaComponent } from '../tipo-rotina-lista/tipo-rotina-lista.component';
+import { ObjetivoGeralListaComponent } from '../objetivo-geral-lista/objetivo-geral-lista.component';
 
 
 export const routes : Routes = [
@@ -47,6 +48,7 @@ export const routes : Routes = [
     { path: 'entregaProjetoFotoAtual' , component: EntregaProjetoFotoAtualComponent },
 
     { path : 'faseEstiloRotina' , component: FaseEstiloRotinaListComponent },
+    { path : 'objetivoGeral' , component: ObjetivoGeralListaComponent },
 
     { path: '',          redirectTo: 'home', pathMatch: 'full' }
 ]

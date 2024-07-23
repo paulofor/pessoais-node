@@ -130,5 +130,17 @@
   "FaseEstiloRotina": {
     "dataSource": "gerProjDS",
     "public": true
+  },
+  "Meta": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "ObjetivoGeral": {
+    "dataSource": "gerProjDS",
+    "public": true
+  },
+  "ObjetivoProjeto": {
+    "dataSource": "gerProjDS",
+    "public": true
   }
 }

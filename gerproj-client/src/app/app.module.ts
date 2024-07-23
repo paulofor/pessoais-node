@@ -82,6 +82,11 @@ import { TipoRotinaListaComponent } from './tipo-rotina-lista/tipo-rotina-lista.
 import { RotinaDiaEditaComponent } from './rotina-dia-edita/rotina-dia-edita.component';
 import { FaseEstiloRotinaListComponent } from './fase-estilo-rotina-list/fase-estilo-rotina-list.component';
 import { FaseEstiloRotinaEditComponent } from './fase-estilo-rotina-edit/fase-estilo-rotina-edit.component';
+import { ObjetivoGeralListaComponent } from './objetivo-geral-lista/objetivo-geral-lista.component';
+import { ObjetivoGeralEditaComponent } from './objetivo-geral-edita/objetivo-geral-edita.component';
+import { EscolheProjetoParaObjetivoComponent } from './escolhe-projeto-para-objetivo/escolhe-projeto-para-objetivo.component';
+import { MetaEditaComponent } from './meta-edita/meta-edita.component';
+
 
 
 
@@ -132,7 +137,11 @@ registerLocaleData(localePt, 'pt-BR');
     TipoRotinaListaComponent,
     RotinaDiaEditaComponent,
     FaseEstiloRotinaListComponent,
-    FaseEstiloRotinaEditComponent
+    FaseEstiloRotinaEditComponent,
+    ObjetivoGeralListaComponent,
+    ObjetivoGeralEditaComponent,
+    EscolheProjetoParaObjetivoComponent,
+    MetaEditaComponent
   ],
   imports: [
     BrowserModule,
@@ -185,7 +194,10 @@ registerLocaleData(localePt, 'pt-BR');
     ExecucaoDiaEditaTempoComponent,
     EntregaEditaComponent,
     IteracaoEntregaEditaComponent,
-    ProjetoEditaComponent
+    ProjetoEditaComponent,
+    ObjetivoGeralEditaComponent,
+    EscolheProjetoParaObjetivoComponent,
+    MetaEditaComponent
   
   ],
   bootstrap: [AppComponent]

@@ -55,6 +55,9 @@
                   {{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].tempoConsumido}} ({{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].percentualConsumido| number : '1.1-1'}}%) de {{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].tempoPrevisto}} =&gt;  
                   <span class="gerproj-entrega-corrente-previsao">{{item.gerProjEntregaProjetoAtual.gerProjIteracaoentregas[0].dataFinal | date : 'dd-MM-yyy' : 'UTC'}}</span>
                 </div>
+                <div *ngFor="let objetivo of item.objetivoProjetos">
+                  <span class="gerproj-entrega-corrente-objetivo-geral">- {{objetivo.objetivoGeral.nome}}</span>
+                </div>
               </td>
 
               <td style='font-weight:bold;text-align:center;'>{{item.tempoAlocadoSemana}} ({{item.percentualTempoAlocado | number : '1.1-1'}}%)</td>

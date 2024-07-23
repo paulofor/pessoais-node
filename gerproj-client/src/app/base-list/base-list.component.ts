@@ -29,16 +29,17 @@ export class BaseListComponent implements OnInit {
   edita(edicao?) {
       console.log('BaseList.edita (data.item=' + edicao + ')');
       this.dialog.afterAllClosed.subscribe(result => {
-          this.carregaTela();
-      });
-      let componente = this.getComponente();
-      console.log('componente:' , componente)
-      this.dialog.open(componente, {
-          width: '800px',
-          data: {
-              item: edicao
-          }
-      });
+        this.carregaTela();
+    });
+    let componente = this.getComponente();
+    console.log('componente:' , componente)
+    this.dialog.open(componente, {
+        width: '800px',
+        data: {
+            item: edicao
+        }
+    });
+     
   }
 
   dialogo1(dados) {

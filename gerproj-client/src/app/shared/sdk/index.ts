@@ -73,6 +73,9 @@ import { EntregaProjetoFotoApi } from './services/custom/EntregaProjetoFoto';
 import { TipoRotinaDiaApi } from './services/custom/TipoRotinaDia';
 import { RotinaDiaApi } from './services/custom/RotinaDia';
 import { FaseEstiloRotinaApi } from './services/custom/FaseEstiloRotina';
+import { MetaApi } from './services/custom/Meta';
+import { ObjetivoGeralApi } from './services/custom/ObjetivoGeral';
+import { ObjetivoProjetoApi } from './services/custom/ObjetivoProjeto';
 /**
 * @module SDKBrowserModule
 * @description
@@ -128,6 +131,9 @@ export class SDKBrowserModule {
         TipoRotinaDiaApi,
         RotinaDiaApi,
         FaseEstiloRotinaApi,
+        MetaApi,
+        ObjetivoGeralApi,
+        ObjetivoProjetoApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

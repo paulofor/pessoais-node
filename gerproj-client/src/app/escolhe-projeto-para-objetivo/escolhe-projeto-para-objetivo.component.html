@@ -1,0 +1,21 @@
+<h2 *ngIf="item" mat-dialog-title>Projetos</h2>
+
+<form *ngIf="listaItem" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+
+    <div *ngFor="let item of listaItem; let i = index;">
+      <mat-checkbox  [checked]="getCheck(item)"  (change)="onChange($event, i, item)">
+        {{item.nome}} <span *ngIf="item.gerProjProdutoestrategico">({{item.gerProjProdutoestrategico.nome}})</span>
+      </mat-checkbox>
+    </div>
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>

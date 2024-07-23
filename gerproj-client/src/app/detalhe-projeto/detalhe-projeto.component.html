@@ -20,6 +20,23 @@
       </div>
     </div>
 
+
+    <div class="dgc-card dgc-principal-card "  >
+      <div class="dgc-label-definicao">Metas:</div>
+      <div class="dgc-painel-principal">
+      <div class="dgc-card card-meta" *ngFor="let meta of item.meta">
+        <div>{{meta.descricao}}</div>
+        <div>{{meta.periodo | date : 'dd-MM-yyyy' : 'UTC'}}</div>
+        <div class="dgc-card-comandos">
+          <button mat-flat-button color="primary" (click)="editaMeta(meta)">Edita</button>
+        </div>
+      </div>
+      </div>
+      <div class="dgc-card-comandos">
+        <button mat-flat-button color="primary" (click)="editaMeta()">Criar Meta</button>
+      </div>
+    </div>
+
     <div class="dgc-card {{obtemTipo(entrega)}}" *ngFor="let entrega of item.gerProjEntregaprojetos">
       <div class="dgc-card-header">
         {{entrega.descricao}}  (#{{entrega.id}})

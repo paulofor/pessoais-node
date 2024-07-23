@@ -1,0 +1,54 @@
+<div class="dgc-painel">
+
+    <div class="dgc-painel-header">
+        <span>Objetivos</span>
+        <div class="dgc-direita">
+            <button mat-flat-button color="primary" (click)="edita()">Novo</button>
+        </div>
+
+    </div>
+
+
+    <div class="dgc-painel-principal" *ngIf="listaBase">
+        <div class="dgc-card card0" *ngFor="let item of listaBase; let i = index">
+            <div class="dgc-card-header">
+                {{item.nome}}
+            </div>
+            <div class="dgc-card card1" *ngFor="let sub of item.objetivoGerals">
+                <div class="dgc-card-header">
+                    {{sub.nome}}
+                </div>
+
+                <button (click)="toggleVisibility(sub.id)">Mostrar/Ocultar</button>
+                <div [id]="'tela' + sub.id" style="display: none;">
+
+                    <div class="dgc-card card2" *ngFor="let sub2 of sub.objetivoGerals">
+                        <div class="dgc-card-header">
+                            {{sub2.nome}}
+                        </div>
+                        <div class="dgc-card-detalhe"  *ngFor="let rel of sub2.objetivoProjetos">
+                            - {{rel.gerProjProjetopmbok.nome}}
+                        </div>
+                        <div class="dgc-card-comandos">
+                            <button mat-flat-button color="primary" (click)="projetos(sub2)">Projetos</button>
+                            <button mat-flat-button color="primary" (click)="edita(sub2)">Alterar</button>
+                        </div>
+
+                    </div>
+                    <div class="dgc-card-detalhe"  *ngFor="let rel of sub.objetivoProjetos">
+                        - {{rel.gerProjProjetopmbok.nome}}
+                    </div>
+                    <div class="dgc-card-comandos">
+                        <button mat-flat-button color="primary" (click)="projetos(sub)">Projetos</button>
+                        <button mat-flat-button color="primary" (click)="adiciona(sub)">Adiciona</button>
+                        <button mat-flat-button color="primary" (click)="edita(sub)">Alterar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="dgc-card-comandos">
+
+                <button mat-flat-button color="primary" (click)="adiciona(item)">Adiciona</button>
+                <button mat-flat-button color="primary" (click)="edita(item)">Alterar</button>
+            </div>
+        </div>
+    </div>

@@ -61,9 +61,13 @@ export class PlanoSemanalComponent implements OnInit {
     let filtro = {
       'order' : 'tempoAlocadoSemana desc',
       'where' : { 'and' : [{'ativo' : 'S'},{'usuarioId' : 1}] },
-      'include' : [{ 'relation' : 'gerProjAlocacaotempos' , 'scope' : {
+      'include' : [
+        {'relation': 'objetivoProjetos' , 'scope' :{'include' : 'objetivoGeral'}},
+        { 'relation' : 'gerProjAlocacaotempos' , 'scope' : {
         'order' : 'id_dia_semana_gp'
-      }} , {'relation' : 'gerProjEntregaProjetoAtual' , 'scope' : {'include' : 'gerProjIteracaoentregas'}}]
+        }} , 
+        {'relation' : 'gerProjEntregaProjetoAtual' , 'scope' : {'include' : 'gerProjIteracaoentregas'}}
+      ]
     }
 
     this.srv.find(filtro)

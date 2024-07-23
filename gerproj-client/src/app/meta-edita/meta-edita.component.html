@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Projeto: {{this.data.origem.nome}}</h2>
+
+<form *ngIf="item" class="example-full-width" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <div height="250px">
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput  #descricao [(ngModel)]="item.descricao" name="descricao" placeholder="Descrição" ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput maxlength="200" #resultado [(ngModel)]="item.resultado" name="resultado" placeholder="Resultado" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput maxlength="10" #periodo [(ngModel)]="item.periodo" name="periodo" placeholder="Prazo (aaaa-mm-dd)" />
+      </mat-form-field>
+ 
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button>Salvar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+  </mat-dialog-actions>
+
+</form>
