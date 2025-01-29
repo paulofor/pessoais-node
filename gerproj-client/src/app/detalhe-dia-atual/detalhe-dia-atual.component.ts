@@ -17,6 +17,7 @@ export class DetalheDiaAtualComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.anos.push(2024);
     this.anos.push(2023);
     this.anos.push(2022);
     this.anos.push(2021);
