@@ -1,0 +1,22 @@
+services:
+  ctrlfin-api:
+    build:
+      context: ./server-pessoais/ctrlfin
+    image: ctrlfin-api:local
+    container_name: ctrlfin-api
+    ports:
+      - "21032:21032"
+    environment:
+      NODE_ENV: production
+
+  ctrlfin-client:
+    build:
+      context: ./ctrlfin5-client
+      args:
+        BASE_HREF: /admin/
+    image: ctrlfin-client:local
+    container_name: ctrlfin-client
+    depends_on:
+      - ctrlfin-api
+    ports:
+      - "8080:80"
