@@ -32,7 +32,7 @@ Após subir os containers:
 - Backend/API: <http://localhost:21032/api/>
 - Explorer LoopBack: <http://localhost:21032/visao/>
 
-O nginx do frontend encaminha chamadas para `/api/` para o serviço `ctrlfin-api:21032` dentro da rede do Compose.
+O frontend usa URLs relativas para a API, como `/api/...`. O nginx do container frontend encaminha essas chamadas para o serviço `ctrlfin-api:21032` dentro da rede do Compose. Assim o navegador não chama mais o host antigo diretamente.
 
 ## Publicação em `163.245.202.80`
 
@@ -55,6 +55,8 @@ Configure estes secrets no repositório:
 - `DEPLOY_SSH_USER`: usuário SSH para acessar `163.245.202.80`.
 - `DEPLOY_SSH_PRIVATE_KEY`: chave privada SSH com acesso ao servidor.
 - `DEPLOY_SSH_PORT`: porta SSH do servidor. Opcional; se não existir, o workflow usa `22`.
+
+> Se o deploy parar no passo **Configure SSH** com `Missing repository secret DEPLOY_SSH_PRIVATE_KEY` ou `Missing repository secret DEPLOY_SSH_USER`, o secret correspondente ainda não foi criado no GitHub ou está vazio. Crie/atualize em **Settings > Secrets and variables > Actions > Repository secrets** e execute o workflow novamente.
 
 ### Pré-requisitos no servidor
 
