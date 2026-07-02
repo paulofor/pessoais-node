@@ -17,6 +17,7 @@ on:
 env:
   DEPLOY_HOST: 163.245.202.80
   DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT || '22' }}
+  DEPLOY_SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
   DEPLOY_PATH: /opt/ctrlfin
   IMAGE_ARCHIVE: ctrlfin-images.tar.gz
 
@@ -52,8 +53,16 @@ jobs:
         env:
           DEPLOY_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
         run: |
-          test -n "${{ secrets.DEPLOY_SSH_USER }}"
-          test -n "${DEPLOY_SSH_PRIVATE_KEY}"
+          if [ -z "${DEPLOY_SSH_USER}" ]; then
+            echo "::error::Missing repository secret DEPLOY_SSH_USER. Configure it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          if [ -z "${DEPLOY_SSH_PRIVATE_KEY}" ]; then
+            echo "::error::Missing repository secret DEPLOY_SSH_PRIVATE_KEY. Configure the private SSH key in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           printf '%s\n' "${DEPLOY_SSH_PRIVATE_KEY}" > ~/.ssh/deploy_key
@@ -63,18 +72,18 @@ jobs:
       - name: Upload deployment files
         run: |
           ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT}" \
-            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}" \
+            "${DEPLOY_SSH_USER}@${DEPLOY_HOST}" \
             "mkdir -p '${DEPLOY_PATH}'"
 
           scp -i ~/.ssh/deploy_key -P "${DEPLOY_PORT}" \
             "${IMAGE_ARCHIVE}" \
             docker-compose.ctrlfin.prod.yml \
-            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+            "${DEPLOY_SSH_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
 
       - name: Load and restart services
         run: |
           ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT}" \
-            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}" \
+            "${DEPLOY_SSH_USER}@${DEPLOY_HOST}" \
             "cd '${DEPLOY_PATH}' && \
              docker load -i '${IMAGE_ARCHIVE}' && \
              docker compose -f docker-compose.ctrlfin.prod.yml up -d --remove-orphans && \
