@@ -1,6 +1,17 @@
 name: Deploy CtrlFin Docker images
 
 on:
+  push:
+    branches:
+      - work
+      - main
+      - master
+    paths:
+      - '.github/workflows/deploy-ctrlfin.yml'
+      - 'ctrlfin5-client/**'
+      - 'server-pessoais/ctrlfin/**'
+      - 'docker-compose.ctrlfin*.yml'
+      - 'README-docker-ctrlfin.md'
   workflow_dispatch:
 
 env:

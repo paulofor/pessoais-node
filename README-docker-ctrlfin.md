@@ -38,7 +38,9 @@ O nginx do frontend encaminha chamadas para `/api/` para o serviço `ctrlfin-api
 
 A publicação é feita pelo workflow GitHub Actions `.github/workflows/deploy-ctrlfin.yml`.
 
-O workflow é manual (`workflow_dispatch`) e faz o seguinte:
+O workflow roda automaticamente em `push` para as branches `work`, `main` e `master` quando arquivos Docker/Deploy do CtrlFin mudam. Ele também pode ser executado manualmente com `workflow_dispatch`.
+
+Em cada execução, ele faz o seguinte:
 
 1. Constrói `ctrlfin-api:latest` a partir de `server-pessoais/ctrlfin`.
 2. Constrói `ctrlfin-client:latest` a partir de `ctrlfin5-client` com `BASE_HREF=/admin/`.
@@ -65,7 +67,9 @@ O servidor `163.245.202.80` precisa ter:
 
 ### Como publicar
 
-No GitHub, execute manualmente o workflow **Deploy CtrlFin Docker images**.
+Para publicar automaticamente, faça push para `work`, `main` ou `master` alterando algum arquivo coberto pelo workflow.
+
+Para publicar manualmente, no GitHub, execute o workflow **Deploy CtrlFin Docker images**.
 
 Após a publicação:
 
