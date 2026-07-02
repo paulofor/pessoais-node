@@ -1,0 +1,18 @@
+services:
+  ctrlfin-api:
+    image: ctrlfin-api:latest
+    container_name: ctrlfin-api
+    restart: unless-stopped
+    ports:
+      - "21032:21032"
+    environment:
+      NODE_ENV: production
+
+  ctrlfin-client:
+    image: ctrlfin-client:latest
+    container_name: ctrlfin-client
+    restart: unless-stopped
+    depends_on:
+      - ctrlfin-api
+    ports:
+      - "8080:80"

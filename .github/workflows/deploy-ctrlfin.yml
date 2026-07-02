@@ -1,0 +1,81 @@
+name: Deploy CtrlFin Docker images
+
+on:
+  push:
+    branches:
+      - work
+      - main
+      - master
+    paths:
+      - '.github/workflows/deploy-ctrlfin.yml'
+      - 'ctrlfin5-client/**'
+      - 'server-pessoais/ctrlfin/**'
+      - 'docker-compose.ctrlfin*.yml'
+      - 'README-docker-ctrlfin.md'
+  workflow_dispatch:
+
+env:
+  DEPLOY_HOST: 163.245.202.80
+  DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT || '22' }}
+  DEPLOY_PATH: /opt/ctrlfin
+  IMAGE_ARCHIVE: ctrlfin-images.tar.gz
+
+jobs:
+  deploy:
+    name: Build and deploy CtrlFin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: |
+          docker build \
+            --tag ctrlfin-api:latest \
+            --tag ctrlfin-api:${{ github.sha }} \
+            ./server-pessoais/ctrlfin
+
+      - name: Build frontend image
+        run: |
+          docker build \
+            --build-arg BASE_HREF=/admin/ \
+            --tag ctrlfin-client:latest \
+            --tag ctrlfin-client:${{ github.sha }} \
+            ./ctrlfin5-client
+
+      - name: Export images
+        run: |
+          docker save ctrlfin-api:latest ctrlfin-client:latest | gzip > "${IMAGE_ARCHIVE}"
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+        run: |
+          test -n "${{ secrets.DEPLOY_SSH_USER }}"
+          test -n "${DEPLOY_SSH_PRIVATE_KEY}"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${DEPLOY_SSH_PRIVATE_KEY}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${DEPLOY_PORT}" "${DEPLOY_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Upload deployment files
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT}" \
+            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}" \
+            "mkdir -p '${DEPLOY_PATH}'"
+
+          scp -i ~/.ssh/deploy_key -P "${DEPLOY_PORT}" \
+            "${IMAGE_ARCHIVE}" \
+            docker-compose.ctrlfin.prod.yml \
+            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+
+      - name: Load and restart services
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT}" \
+            "${{ secrets.DEPLOY_SSH_USER }}@${DEPLOY_HOST}" \
+            "cd '${DEPLOY_PATH}' && \
+             docker load -i '${IMAGE_ARCHIVE}' && \
+             docker compose -f docker-compose.ctrlfin.prod.yml up -d --remove-orphans && \
+             docker image prune -f"
