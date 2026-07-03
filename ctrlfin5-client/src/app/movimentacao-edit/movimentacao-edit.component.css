@@ -1,0 +1,17 @@
+.form-field-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-field-row mat-form-field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .form-field-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
