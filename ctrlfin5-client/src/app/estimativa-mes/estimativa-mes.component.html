@@ -12,9 +12,7 @@
               <thead>
                 <tr>
                   <th width="20%">Nome</th>
-                  <th align="center" width="10%">{{listaBase[0].periodo1}}</th>
-                  <th align="center" width="10%">{{listaBase[0].periodo2}}</th>
-                  <th align="center" width="10%">{{listaBase[0].periodo3}}</th>
+                  <th align="center" width="10%" *ngFor="let mes of meses">{{listaBase[0]['periodo' + mes]}}</th>
                   <th align="center" width="10%">Estimativa</th>
                   <th></th>
                 </tr>
@@ -22,17 +20,13 @@
               <tbody>
                 <tr>
                   <td>Total</td>
-                  <td align="center">{{totalMes1 | number: '1.2-2'}}</td>
-                  <td align="center">{{totalMes2 | number: '1.2-2'}}</td>
-                  <td align="center">{{totalMes3 | number: '1.2-2'}}</td>
+                  <td align="center" *ngFor="let totalMes of totaisMes">{{totalMes | number: '1.2-2'}}</td>
                   <td align="center">{{totalEstimativa | number: '1.2-2'}}</td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let item of listaBase">
                   <td>{{item.nomeConta}}</td>
-                  <td align="center">{{item.total1 | number: '1.2-2'}}</td>
-                  <td align="center">{{item.total2 | number: '1.2-2'}}</td>
-                  <td align="center">{{item.total3 | number: '1.2-2'}}</td>
+                  <td align="center" *ngFor="let mes of meses">{{item['total' + mes] | number: '1.2-2'}}</td>
                   <td align="center">{{item.valorEstimativa | number: '1.2-2'}}</td>
                   <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Altera</button></td>
                 </tr>

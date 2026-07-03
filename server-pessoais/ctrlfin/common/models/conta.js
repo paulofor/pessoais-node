@@ -21,15 +21,13 @@ module.exports = function(Conta) {
     }
 
     Conta.ListaParaEstimativa = function(callback) {
-        app.models.Periodo.ObtemMaisRecentes(3, (err,periodos) => {
+        app.models.Periodo.ObtemMaisRecentes(6, (err,periodos) => {
             app.models.Periodo.ObtemProximo((err,proximo) => {
                 let sql = "select nome_conta as nomeConta, " +
-                " '" + periodos[0].apresentacao + "' as periodo1, " +
-                " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodos[0].id + " and id_conta_a = c.id_conta) as total1, " +
-                " '" + periodos[1].apresentacao + "' as periodo2, " +
-                " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodos[1].id + " and id_conta_a = c.id_conta) as total2, " +
-                " '" + periodos[2].apresentacao + "' as periodo3, " +
-                " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodos[2].id + " and id_conta_a = c.id_conta) as total3, " +
+                periodos.map((periodo, index) =>
+                    " '" + periodo.apresentacao + "' as periodo" + (index + 1) + ", " +
+                    " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodo.id + " and id_conta_a = c.id_conta) as total" + (index + 1) + ", "
+                ).join('') +
                 " e.valor as valorEstimativa , " +
                 " e.id_estimativa_mes as estimativaMesId " +
                 " from conta1 c" +
