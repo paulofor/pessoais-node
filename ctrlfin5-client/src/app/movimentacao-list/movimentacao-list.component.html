@@ -6,6 +6,7 @@
           <div class="header">
             <h4 class="title">Movimentações</h4>
             <button class="btn btn-primary btn-sm " (click)="edita()">Novo</button>
+            <button class="btn btn-primary btn-sm " (click)="confirmaTodos()" [disabled]="confirmandoTodos || listaBase.length === 0">Confirma Todos</button>
           </div>
           <div class="content table-responsive table-full-width">
             <table class="table table-hover table-striped">
@@ -35,7 +36,7 @@
                   <td *ngIf="!item.periodoAplicacao">-</td>
                    <td align="right">{{ getValorFormatado(item) }}</td>
                   <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Edita</button></td>
-                  <td align="right"><button class="btn btn-primary btn-sm " (click)="confirmaItem(item)">Confirma</button></td>
+                  <td align="right"><button class="btn btn-primary btn-sm " (click)="confirmaItem(item)" [disabled]="confirmandoTodos">Confirma</button></td>
                 </tr>
               </tbody>
             </table>
