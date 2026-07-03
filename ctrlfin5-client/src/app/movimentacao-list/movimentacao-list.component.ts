@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { BaseListComponent } from '../base-component/base-list-component';
 import { MovimentacaoEditComponent } from '../movimentacao-edit/movimentacao-edit.component';
 import { MovimentacaoApi, Movimentacao } from '../shared/sdk';
@@ -11,6 +12,8 @@ import { MovimentacaoApi, Movimentacao } from '../shared/sdk';
   styleUrls: ['./movimentacao-list.component.css']
 })
 export class MovimentacaoListComponent extends BaseListComponent {
+
+  confirmandoTodos = false;
 
   constructor(protected dialog: MatDialog, protected srv:MovimentacaoApi,public router: Router) { 
     super(dialog,srv)
@@ -51,6 +54,22 @@ export class MovimentacaoListComponent extends BaseListComponent {
     this.srv.ConfirmaPorId(item.id)
       .subscribe((result) => {
         this.carregaTela();
+      })
+  }
+
+  confirmaTodos() {
+    if (!this.listaBase || this.listaBase.length === 0 || this.confirmandoTodos) {
+      return;
+    }
+
+    this.confirmandoTodos = true;
+    forkJoin(this.listaBase.map(item => this.srv.ConfirmaPorId(item.id)))
+      .subscribe((result) => {
+        this.confirmandoTodos = false;
+        this.carregaTela();
+      }, (error) => {
+        this.confirmandoTodos = false;
+        console.log('Erro ao confirmar movimentações', error);
       })
   }
  
