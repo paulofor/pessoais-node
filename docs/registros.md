@@ -14,3 +14,24 @@
   - Alterada a consulta de estimativas para buscar os 6 períodos mais recentes.
   - Ajustada a montagem dinâmica das colunas mensais retornadas pela API.
   - Atualizada a tela de estimativas para exibir e totalizar 6 meses.
+
+## 2026-07-03 19:41 UTC
+
+- **Motivo:** Impedir que o usuário salve movimentações com Período Fonte menor que o Período Aplicação.
+- **Ajustes:**
+  - Adicionada validação no formulário de movimentação para comparar os períodos selecionados, exibir mensagem de erro e bloquear o botão Salvar quando o Período Fonte for anterior ao Período Aplicação.
+  - Adicionada validação equivalente na API `CriaEdita` de movimentação para rejeitar gravações inválidas também no backend.
+
+## 2026-07-03 19:48 UTC
+
+- **Motivo:** Manter a mesma Conta Fonte e o mesmo Período Fonte ao cadastrar dois itens novos em sequência na tela de movimentações por conta de aplicação e período.
+- **Ajustes:**
+  - A tela de movimentações por conta de aplicação e período passou a guardar a última fonte usada em um novo cadastro concluído.
+  - O formulário de movimentação passou a receber essa última fonte como padrão ao abrir o próximo cadastro novo.
+
+## 2026-07-03 19:53 UTC
+
+- **Motivo:** Ajustar novos cadastros sequenciais na tela de movimentações por conta de aplicação e período para reaproveitar mais campos e aceitar valor decimal com vírgula.
+- **Ajustes:**
+  - O campo Valor passou a normalizar vírgula decimal para ponto antes de salvar, mantendo também valores digitados com ponto.
+  - O próximo cadastro novo passou a manter o Dia e o Período Aplicação da inserção anterior, além da Conta Fonte e do Período Fonte.
