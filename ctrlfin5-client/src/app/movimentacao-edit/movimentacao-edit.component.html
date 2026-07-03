@@ -17,17 +17,17 @@
 
 
     <mat-form-field class="example-full-width">
-      <mat-select placeholder="Conta Fonte" #id_conta_f [(ngModel)]="item.id_conta_f" name="id_conta_f">
-        <mat-option *ngFor="let conta of listaContaFonte" [value]="conta.id">
-          {{ conta.nomeConta }}
+      <mat-select placeholder="Período Aplicação" #id_periodo_a [(ngModel)]="item.id_periodo_a" name="id_periodo_a">
+        <mat-option *ngFor="let periodo of listaPeriodoAplicacao" [value]="periodo.id">
+          {{ periodo.apresentacao }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-select placeholder="Período Aplicação" #id_periodo_a [(ngModel)]="item.id_periodo_a" name="id_periodo_a">
-        <mat-option *ngFor="let periodo of listaPeriodoAplicacao" [value]="periodo.id">
-          {{ periodo.apresentacao }}
+      <mat-select placeholder="Conta Fonte" #id_conta_f [(ngModel)]="item.id_conta_f" name="id_conta_f">
+        <mat-option *ngFor="let conta of listaContaFonte" [value]="conta.id">
+          {{ conta.nomeConta }}
         </mat-option>
       </mat-select>
     </mat-form-field>
