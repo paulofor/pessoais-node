@@ -9,6 +9,29 @@ import { MovimentacaoContaPeriodoComponent } from '../movimentacao-conta-periodo
 })
 export class MovimentacaoContaAplicacaoPeriodoComponent extends MovimentacaoContaPeriodoComponent {
 
+  ultimaFonteMovimentacao: any;
+
+  edita(edicao?) {
+    const dialogRef = this.dialog.open(this.getComponente(), {
+      width: '800px',
+      data: {
+        item: edicao,
+        ultimaFonte: edicao ? null : this.ultimaFonteMovimentacao
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!edicao && result) {
+        this.ultimaFonteMovimentacao = {
+          id_conta_f: result.id_conta_f,
+          id_periodo_f: result.id_periodo_f,
+          id_periodo_a: result.id_periodo_a,
+          dia: result.dia
+        };
+      }
+      this.carregaTela();
+    });
+  }
 
   getFiltroLista(idConta, idPeriodo) {
     return {
