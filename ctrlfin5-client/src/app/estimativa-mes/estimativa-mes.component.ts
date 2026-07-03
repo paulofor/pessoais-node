@@ -15,9 +15,8 @@ export class EstimativaMesComponent extends BaseListComponent {
 
 
   proximo: Periodo;
-  totalMes1: number;
-  totalMes2: number;
-  totalMes3: number;
+  meses = [1, 2, 3, 4, 5, 6];
+  totaisMes: number[] = [];
   totalEstimativa: number;
 
   constructor(protected dialog: MatDialog, protected srv:ContaApi,public router: Router, 
@@ -51,14 +50,12 @@ export class EstimativaMesComponent extends BaseListComponent {
   }
 
   posCarregaLista() {
-    this.totalMes1 = 0;
-    this.totalMes2 = 0;
-    this.totalMes3 = 0;
+    this.totaisMes = this.meses.map(() => 0);
     this.totalEstimativa = 0;
     this.listaBase.forEach((item) => {
-      this.totalMes1 += item.total1;
-      this.totalMes2 += item.total2;
-      this.totalMes3 += item.total3;
+      this.meses.forEach((mes, index) => {
+        this.totaisMes[index] += item['total' + mes];
+      });
       this.totalEstimativa += item.valorEstimativa;
     })
   }
