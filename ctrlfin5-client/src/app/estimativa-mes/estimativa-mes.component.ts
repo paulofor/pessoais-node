@@ -60,6 +60,10 @@ export class EstimativaMesComponent extends BaseListComponent {
     })
   }
 
+  getDetalheMovimentacoes(item: any, mes: number): string {
+    return item['detalheTotal' + mes] || null;
+  }
+
 
   carregaTela() {
 

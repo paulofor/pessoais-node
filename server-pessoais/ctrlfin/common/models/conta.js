@@ -26,7 +26,8 @@ module.exports = function(Conta) {
                 let sql = "select nome_conta as nomeConta, " +
                 periodos.map((periodo, index) =>
                     " '" + periodo.apresentacao + "' as periodo" + (index + 1) + ", " +
-                    " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodo.id + " and id_conta_a = c.id_conta) as total" + (index + 1) + ", "
+                    " (select coalesce(sum(valor),0) from movimentacao1 where id_periodo_a = " + periodo.id + " and id_conta_a = c.id_conta) as total" + (index + 1) + ", " +
+                    " (select group_concat(concat('Dia ', coalesce(dia,''), ': ', coalesce(valor,0), if(comentario is null or comentario = '', '', concat(' - ', comentario))) order by dia separator '\\n') from movimentacao1 where id_periodo_a = " + periodo.id + " and id_conta_a = c.id_conta) as detalheTotal" + (index + 1) + ", "
                 ).join('') +
                 " e.valor as valorEstimativa , " +
                 " e.id_estimativa_mes as estimativaMesId " +
