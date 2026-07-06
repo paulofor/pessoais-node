@@ -26,7 +26,7 @@
                 </tr>
                 <tr *ngFor="let item of listaBase">
                   <td>{{item.nomeConta}}</td>
-                  <td align="center" *ngFor="let mes of meses">{{item['total' + mes] | number: '1.2-2'}}</td>
+                  <td align="center" *ngFor="let mes of meses" [attr.title]="getDetalheMovimentacoes(item, mes)">{{item['total' + mes] | number: '1.2-2'}}</td>
                   <td align="center">{{item.valorEstimativa | number: '1.2-2'}}</td>
                   <td align="right"><button class="btn btn-primary btn-sm " (click)="edita(item)">Altera</button></td>
                 </tr>

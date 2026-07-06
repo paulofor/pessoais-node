@@ -35,3 +35,10 @@
 - **Ajustes:**
   - O campo Valor passou a normalizar vírgula decimal para ponto antes de salvar, mantendo também valores digitados com ponto.
   - O próximo cadastro novo passou a manter o Dia e o Período Aplicação da inserção anterior, além da Conta Fonte e do Período Fonte.
+
+## 2026-07-06 19:43 UTC
+
+- **Motivo:** Exibir o detalhe das movimentações que compõem os valores somados na tela de estimativas mensais.
+- **Ajustes:**
+  - A consulta de estimativas passou a retornar uma descrição agregada das movimentações por conta e período.
+  - As células mensais da tela de estimativas passaram a exibir esse detalhamento no atributo `title`, permitindo visualizar a composição do somatório ao passar o mouse sobre o valor.
