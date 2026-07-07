@@ -11,6 +11,8 @@ import { PeriodoApi } from '../shared/sdk';
 })
 export class TotalMesesComponent extends BaseListComponent {
 
+  maiorValorGrafico = 0;
+
   constructor(protected dialog: MatDialog, protected srv:PeriodoApi,public router: Router) { 
     super(dialog,srv)
   }
@@ -19,10 +21,11 @@ export class TotalMesesComponent extends BaseListComponent {
 
   
   carregaTela() {
-    this.srv.TotalPeriodoAplicacao(6)
+    this.srv.TotalPeriodoAplicacao(12)
     .subscribe((result:any[]) => {
         console.log('result: ' , result);
         this.listaBase = result;
+        this.atualizaMaiorValorGrafico();
     })
   }
  
@@ -32,6 +35,22 @@ export class TotalMesesComponent extends BaseListComponent {
     } else {
       return item.total.toFixed(2);;
     }
+  }
+
+  getAlturaBarra(item) {
+    if (!item.total || !this.maiorValorGrafico) {
+      return '0%';
+    }
+    return ((item.total / this.maiorValorGrafico) * 100) + '%';
+  }
+
+  private atualizaMaiorValorGrafico() {
+    this.maiorValorGrafico = 0;
+    this.listaBase.forEach(item => {
+      if (item.total && item.total > this.maiorValorGrafico) {
+        this.maiorValorGrafico = item.total;
+      }
+    });
   }
 
 }

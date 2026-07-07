@@ -10,7 +10,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="header">
-            <h4 class="title">Total Mês</h4>
+            <h4 class="title">Total Mês - últimos 12 meses</h4>
           </div>
           <div class="content table-responsive table-full-width">
             <table class="table table-hover table-striped">
@@ -29,6 +29,27 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="listaBase">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Gráfico dos últimos 12 meses</h4>
+          </div>
+          <div class="content">
+            <div class="grafico-meses">
+              <div class="grafico-coluna" *ngFor="let item of listaBase">
+                <div class="grafico-valor">{{getValorFormatado(item)}}</div>
+                <div class="grafico-area-barra">
+                  <div class="grafico-barra" [style.height]="getAlturaBarra(item)"></div>
+                </div>
+                <a class="grafico-mes" routerLink="/contaAplicacaoMes/{{item.id_periodo}}">{{item.apresentacao}}</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
