@@ -50,3 +50,10 @@
   - Alterada a consulta de Total Mês para buscar os 12 períodos mais recentes.
   - Atualizado o título da tela para indicar a visualização dos últimos 12 meses.
   - Adicionado um gráfico de barras abaixo da tabela usando os mesmos valores mensais retornados pela API.
+
+## 2026-07-07 03:38 UTC
+
+- **Motivo:** Inverter somente a ordem de exibição do gráfico de Total Mês.
+- **Ajustes:**
+  - Criada uma lista específica para o gráfico com a ordem invertida dos meses retornados pela API.
+  - Mantida a tabela usando a lista original, sem alteração na ordem dos registros.
