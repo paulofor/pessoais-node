@@ -42,3 +42,11 @@
 - **Ajustes:**
   - A consulta de estimativas passou a retornar uma descrição agregada das movimentações por conta e período.
   - As células mensais da tela de estimativas passaram a exibir esse detalhamento no atributo `title`, permitindo visualizar a composição do somatório ao passar o mouse sobre o valor.
+
+## 2026-07-07 03:13 UTC
+
+- **Motivo:** Exibir os últimos doze meses e incluir um gráfico na tela de Total Mês.
+- **Ajustes:**
+  - Alterada a consulta de Total Mês para buscar os 12 períodos mais recentes.
+  - Atualizado o título da tela para indicar a visualização dos últimos 12 meses.
+  - Adicionado um gráfico de barras abaixo da tabela usando os mesmos valores mensais retornados pela API.
