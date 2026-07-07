@@ -12,6 +12,7 @@ import { PeriodoApi } from '../shared/sdk';
 export class TotalMesesComponent extends BaseListComponent {
 
   maiorValorGrafico = 0;
+  listaGrafico = [];
 
   constructor(protected dialog: MatDialog, protected srv:PeriodoApi,public router: Router) { 
     super(dialog,srv)
@@ -25,6 +26,7 @@ export class TotalMesesComponent extends BaseListComponent {
     .subscribe((result:any[]) => {
         console.log('result: ' , result);
         this.listaBase = result;
+        this.listaGrafico = result.slice().reverse();
         this.atualizaMaiorValorGrafico();
     })
   }

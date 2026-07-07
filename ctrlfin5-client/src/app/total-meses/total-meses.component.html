@@ -42,7 +42,7 @@
           </div>
           <div class="content">
             <div class="grafico-meses">
-              <div class="grafico-coluna" *ngFor="let item of listaBase">
+              <div class="grafico-coluna" *ngFor="let item of listaGrafico">
                 <div class="grafico-valor">{{getValorFormatado(item)}}</div>
                 <div class="grafico-area-barra">
                   <div class="grafico-barra" [style.height]="getAlturaBarra(item)"></div>
