@@ -34,7 +34,7 @@ Após subir os containers:
 
 O frontend usa URLs relativas para a API, como `/api/...`. O nginx do container frontend encaminha essas chamadas para o serviço `ctrlfin-api:21032` dentro da rede do Compose. Assim o navegador não chama mais o host antigo diretamente.
 
-## Publicação em `163.245.202.80`
+## Publicação em `187.45.254.75`
 
 A publicação é feita pelo workflow GitHub Actions `.github/workflows/deploy-ctrlfin.yml`.
 
@@ -45,14 +45,14 @@ Em cada execução, ele faz o seguinte:
 1. Constrói `ctrlfin-api:latest` a partir de `server-pessoais/ctrlfin`.
 2. Constrói `ctrlfin-client:latest` a partir de `ctrlfin5-client` com `BASE_HREF=/admin/`.
 3. Exporta as duas imagens em `ctrlfin-images.tar.gz`.
-4. Envia o arquivo e `docker-compose.ctrlfin.prod.yml` por SSH para `163.245.202.80:/opt/ctrlfin`.
+4. Envia o arquivo e `docker-compose.ctrlfin.prod.yml` por SSH para `187.45.254.75:/opt/ctrlfin`.
 5. Executa `docker load` e reinicia os serviços com Docker Compose no servidor.
 
 ### Secrets necessários no GitHub
 
 Configure estes secrets no repositório:
 
-- `DEPLOY_SSH_USER`: usuário SSH para acessar `163.245.202.80`.
+- `DEPLOY_SSH_USER`: usuário SSH para acessar `187.45.254.75`.
 - `DEPLOY_SSH_PRIVATE_KEY`: chave privada SSH com acesso ao servidor.
 - `DEPLOY_SSH_PORT`: porta SSH do servidor. Opcional; se não existir, o workflow usa `22`.
 
@@ -60,7 +60,7 @@ Configure estes secrets no repositório:
 
 ### Pré-requisitos no servidor
 
-O servidor `163.245.202.80` precisa ter:
+O servidor `187.45.254.75` precisa ter:
 
 - Docker instalado.
 - Plugin `docker compose` disponível.
@@ -75,6 +75,6 @@ Para publicar manualmente, no GitHub, execute o workflow **Deploy CtrlFin Docker
 
 Após a publicação:
 
-- Frontend: <http://163.245.202.80:8080/admin/>
-- Backend/API: <http://163.245.202.80:21032/api/>
-- Explorer LoopBack: <http://163.245.202.80:21032/visao/>
+- Frontend: <http://187.45.254.75:8080/admin/>
+- Backend/API: <http://187.45.254.75:21032/api/>
+- Explorer LoopBack: <http://187.45.254.75:21032/visao/>
