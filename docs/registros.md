@@ -57,3 +57,10 @@
 - **Ajustes:**
   - Criada uma lista específica para o gráfico com a ordem invertida dos meses retornados pela API.
   - Mantida a tabela usando a lista original, sem alteração na ordem dos registros.
+
+## 2026-07-30 02:21 UTC
+
+- **Motivo:** Alterar o servidor de publicação do CtrlFin para o novo endereço IP solicitado.
+- **Ajustes:**
+  - Atualizado o host de deploy do workflow do GitHub Actions de `163.245.202.80` para `187.45.254.75`.
+  - Atualizada a documentação de publicação e dos endpoints do CtrlFin para apontar para `187.45.254.75`.

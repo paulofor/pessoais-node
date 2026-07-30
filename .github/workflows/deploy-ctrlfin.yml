@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 env:
-  DEPLOY_HOST: 163.245.202.80
+  DEPLOY_HOST: 187.45.254.75
   DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT || '22' }}
   DEPLOY_SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
   DEPLOY_PATH: /opt/ctrlfin
