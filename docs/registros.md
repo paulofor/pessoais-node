@@ -64,3 +64,10 @@
 - **Ajustes:**
   - Atualizado o host de deploy do workflow do GitHub Actions de `163.245.202.80` para `187.45.254.75`.
   - Atualizada a documentação de publicação e dos endpoints do CtrlFin para apontar para `187.45.254.75`.
+
+## 2026-08-07 00:50 UTC
+
+- **Motivo:** Corrigir a validação que considerava agosto de 2026 anterior a julho de 2026 na edição de movimentações.
+- **Ajustes:**
+  - A comparação de períodos passou a normalizar datas ISO e apresentações no formato `mmm-aaaa` para um valor numérico de ano e mês, evitando a ordenação alfabética dos nomes dos meses.
+  - Adicionados testes para a ordenação entre julho e agosto e para datas de referência no formato ISO.
