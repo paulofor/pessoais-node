@@ -173,11 +173,29 @@ export class MovimentacaoEditComponent extends BaseEditComponent {
     return null;
   }
 
-  normalizaDataPeriodo(periodo: Periodo): string {
-    if (periodo.dataReferencia) {
-      return periodo.dataReferencia;
+  normalizaDataPeriodo(periodo: Periodo): number {
+    const dataReferencia = periodo.dataReferencia || '';
+    const dataIso = /^(\d{4})-(\d{1,2})/.exec(dataReferencia);
+    if (dataIso) {
+      return Number(dataIso[1]) * 100 + Number(dataIso[2]);
     }
-    return periodo.apresentacao;
+
+    const apresentacao = (periodo.apresentacao || '').toLowerCase();
+    const periodoApresentado = /^([a-z\u00e0-\u00ff]{3})[-\/]?(\d{2,4})$/.exec(apresentacao);
+    if (periodoApresentado) {
+      const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun',
+        'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+      const mes = meses.indexOf(periodoApresentado[1]);
+      let ano = Number(periodoApresentado[2]);
+      if (ano < 100) {
+        ano += 2000;
+      }
+      if (mes >= 0) {
+        return ano * 100 + mes + 1;
+      }
+    }
+
+    return 0;
   }
 
   guardaUltimaFonte(item: Movimentacao) {
