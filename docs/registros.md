@@ -71,3 +71,11 @@
 - **Ajustes:**
   - A comparação de períodos passou a normalizar datas ISO e apresentações no formato `mmm-aaaa` para um valor numérico de ano e mês, evitando a ordenação alfabética dos nomes dos meses.
   - Adicionados testes para a ordenação entre julho e agosto e para datas de referência no formato ISO.
+
+## 2026-08-07 01:24 UTC
+
+- **Motivo:** Corrigir a rejeição pelo servidor de uma movimentação cuja fonte é agosto de 2026 e a aplicação é julho de 2026.
+- **Ajustes:**
+  - A validação da API passou a comparar ano e mês normalizados, em vez de comparar diretamente os valores de `dataReferencia` retornados pelo conector.
+  - A normalização aceita datas ISO, objetos `Date` e a apresentação abreviada do período, incluindo anos com dois dígitos.
+  - Adicionados testes unitários para as representações de período aceitas pelo servidor.
