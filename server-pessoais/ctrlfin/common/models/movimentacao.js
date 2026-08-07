@@ -1,5 +1,43 @@
 'use strict';
-var app = require('../../server/server');
+
+function normalizaDataPeriodo(periodo) {
+  if (!periodo) {
+    return null;
+  }
+
+  let dataReferencia = periodo.dataReferencia;
+  if (dataReferencia instanceof Date && !isNaN(dataReferencia.getTime())) {
+    return dataReferencia.getUTCFullYear() * 100 +
+      dataReferencia.getUTCMonth() + 1;
+  }
+
+  let dataIso = /^(\d{4})-(\d{1,2})/.exec(
+    String(dataReferencia || '').trim()
+  );
+  if (dataIso) {
+    return Number(dataIso[1]) * 100 + Number(dataIso[2]);
+  }
+
+  let apresentacao = String(periodo.apresentacao || '').trim().toLowerCase();
+  let formatoApresentacao = /^([a-z\u00e0-\u00ff]{3})[-\/]?(\d{2,4})$/;
+  let periodoApresentado = formatoApresentacao.exec(apresentacao);
+  if (!periodoApresentado) {
+    return null;
+  }
+
+  let meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun',
+    'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  let mes = meses.indexOf(periodoApresentado[1]);
+  let ano = Number(periodoApresentado[2]);
+  if (mes < 0) {
+    return null;
+  }
+  if (ano < 100) {
+    ano += 2000;
+  }
+  return ano * 100 + mes + 1;
+}
+
 module.exports = function(Movimentacao) {
 
 
@@ -82,7 +120,10 @@ module.exports = function(Movimentacao) {
                 return;
             }
 
-            if (periodoFonte.dataReferencia < periodoAplicacao.dataReferencia) {
+            let dataAplicacao = normalizaDataPeriodo(periodoAplicacao);
+            let dataFonte = normalizaDataPeriodo(periodoFonte);
+            let periodosValidos = dataAplicacao !== null && dataFonte !== null;
+            if (periodosValidos && dataFonte < dataAplicacao) {
                 let erro = new Error('Período Fonte deve ser igual ou maior que o Período Aplicação.');
                 erro.statusCode = 422;
                 erro.code = 'PERIODO_FONTE_MENOR_QUE_APLICACAO';
@@ -103,3 +144,5 @@ module.exports = function(Movimentacao) {
         ds.connector.query(sql,callback);
     }
 };
+
+module.exports.normalizaDataPeriodo = normalizaDataPeriodo;
